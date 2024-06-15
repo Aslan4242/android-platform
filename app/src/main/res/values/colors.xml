@@ -5,5 +5,7 @@
     <color name="gray_2">#4F4F4F</color>
     <color name="gray_3">#828282</color>
     <color name="gray_5">#E0E0E0</color>
+    <color name="gray_6">#F2F2F2</color>
+    <color name="gray_7">#D9D9D9</color>
     <color name="orange">#F2994A</color>
 </resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_navigation_graph"
+    app:startDestination="@id/authorizationFragment">
+
+    <fragment
+        android:id="@+id/authorizationFragment"
+        android:name="com.example.androidplatform.ui.authorization.AuthorizationFragment"
+        android:label="fragment_authorization"
+        tools:layout="@layout/fragment_authorization" >
+        <action
+            android:id="@+id/action_authorizationFragment_to_restorePasswordFragment"
+            app:destination="@id/restorePasswordFragment" />
+        <action
+            android:id="@+id/action_authorizationFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_authorizationFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.androidplatform.ui.registration.RegistrationFragment"
+        android:label="fragment_registstration"
+        tools:layout="@layout/fragment_registstration" />
+    <fragment
+        android:id="@+id/restorePasswordFragment"
+        android:name="com.example.androidplatform.ui.restoration_password.RestorePasswordFragment"
+        android:label="fragment_restore_password"
+        tools:layout="@layout/fragment_restore_password" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.androidplatform.ui.dashboard.DashboardFragment"
+        android:label="DashboardFragment" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.androidplatform.ui.history.HistoryFragment"
+        android:label="HistoryFragment" />
+    <fragment
+        android:id="@+id/personalAccountFragment"
+        android:name="com.example.androidplatform.ui.personal_account.PersonalAccountFragment"
+        android:label="PersonalAccountFragment" />
+</navigation>

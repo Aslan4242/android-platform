@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="com.example.androidplatform.ui.authorization.AuthorizationFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/left_guideline"
@@ -39,7 +39,7 @@
         android:id="@+id/authorization_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_medium"
+        android:fontFamily="@font/inter_bold"
         android:textSize="@dimen/text_size_16"
         android:text="@string/authorization"
         android:layout_marginTop="20dp"
@@ -93,10 +93,22 @@
         app:cornerRadius="0dp"
         android:backgroundTint="@color/gray_2"
         app:layout_constraintTop_toBottomOf="@+id/password_et"
-        app:layout_constraintBottom_toTopOf="@id/restore_password_tv"
+        app:layout_constraintBottom_toTopOf="@id/registration_tv"
         app:layout_constraintStart_toEndOf="@+id/left_guideline"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
-        android:enabled="false"/>
+        android:enabled="true"/>
+
+    <TextView
+        android:id="@+id/registration_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        android:layout_marginTop="15dp"
+        android:textSize="@dimen/text_size_12"
+        app:layout_constraintTop_toBottomOf="@+id/enter_btn"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        />
 
     <TextView
         android:id="@+id/restore_password_tv"
@@ -105,7 +117,7 @@
         android:text="@string/restore_password"
         android:layout_marginTop="15dp"
         android:textSize="@dimen/text_size_12"
-        app:layout_constraintTop_toBottomOf="@+id/enter_btn"
+        app:layout_constraintTop_toBottomOf="@+id/registration_tv"
         app:layout_constraintStart_toEndOf="@+id/left_guideline"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         />

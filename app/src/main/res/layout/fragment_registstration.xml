@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="com.example.androidplatform.ui.registration.RegistrationFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/left_guideline"
@@ -24,7 +24,7 @@
         android:id="@+id/authorization_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_medium"
+        android:fontFamily="@font/inter_bold"
         android:textSize="@dimen/text_size_16"
         android:text="@string/registration"
         android:layout_marginTop="20dp"
