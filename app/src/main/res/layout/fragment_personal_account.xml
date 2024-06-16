@@ -259,7 +259,7 @@
                     android:textSize="@dimen/text_size_12" />
 
                 <TextView
-                    android:id="@+id/gender_tv"
+                    android:id="@+id/sex_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
