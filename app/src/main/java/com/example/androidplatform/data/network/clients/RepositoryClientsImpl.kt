@@ -1,7 +1,7 @@
 package com.example.androidplatform.data.network.clients
 
 import com.example.androidplatform.R
-import com.example.androidplatform.data.dto.mapToVacancies
+import com.example.androidplatform.data.dto.mapToClients
 import com.example.androidplatform.data.network.NetworkClient
 import com.example.androidplatform.domain.RepositoryClients
 import com.example.androidplatform.domain.models.SearchResultData
@@ -25,7 +25,7 @@ class RepositoryClientsImpl (
                 if (data.items.isEmpty()) {
                     emit(SearchResultData.Empty(R.string.empty))
                 } else {
-                    emit(SearchResultData.Data(data.mapToVacancies()))
+                    emit(SearchResultData.Data(data.mapToClients()))
                 }
             }
 

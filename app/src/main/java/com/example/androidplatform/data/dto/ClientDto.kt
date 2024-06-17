@@ -6,7 +6,7 @@ class ClientDto(
     val items: List<Item>,
 )
 
-fun ClientDto.mapToVacancies(): Clients {
+fun ClientDto.mapToClients(): Clients {
     return Clients(
         listClients = this.items.map { it.mapToClientItem() }
     )
