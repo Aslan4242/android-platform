@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Android Platform</string>
+    <string name="authorization">Авторизация</string>
+    <string name="registration">Регистрация</string>
+    <string name="user_is_registered">Пользователь зарегистрирован</string>
+    <string name="hint_mobile">Введите номер моб. тел.</string>
+    <string name="phone_pattern">+7(999)999–99–99</string>
+    <string name="surname_pattern">Иванов</string>
+    <string name="name_pattern">Иван</string>
+    <string name="patronymic_pattern">Иванович</string>
+    <string name="birthdate_pattern">01.01.2001</string>
+    <string name="password_masked">********</string>
+    <string name="hint_password">Введите пароль</string>
+    <string name="hint_input_sms_code">Введите код из СМС</string>
+    <string name="enter">Войти</string>
+    <string name="register">Зарегистироваться</string>
+    <string name="restore_password">Восстановить пароль</string>
+    <string name="password_restoration">Восстановление пароля</string>
+    <string name="fill_fields">Заполните поля</string>
+    <string name="gender">Пол</string>
+    <string name="male">Мужской</string>
+    <string name="female">Женский</string>
 </resources>

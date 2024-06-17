@@ -6,13 +6,109 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="45dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="45dp" />
+
+
+    <TextView
+        android:id="@+id/user_is_registered_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_is_registered"
+        android:fontFamily="@font/inter_regular"
+        android:textSize="@dimen/text_size_12"
+        android:layout_marginTop="300dp"
+        app:layout_constraintBottom_toTopOf="@+id/authorization_tv"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/authorization_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_medium"
+        android:textSize="@dimen/text_size_16"
+        android:text="@string/authorization"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/user_is_registered_tv"
+        app:layout_constraintBottom_toTopOf="@+id/mobile_et"/>
+
+    <EditText
+        android:id="@+id/mobile_et"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_12dp"
+        android:layout_weight="1"
+        android:maxLines="1"
+        android:textSize="@dimen/text_size_12"
+        android:background="@drawable/edit_text_frame"
+        android:hint="@string/hint_mobile"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/authorization_tv"
+        app:layout_constraintBottom_toTopOf="@+id/password_et"/>
+
+    <EditText
+        android:id="@+id/password_et"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_12dp"
+        android:layout_weight="1"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/edit_text_frame"
+        android:textSize="@dimen/text_size_12"
+        android:hint="@string/hint_password"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/mobile_et"
+        app:layout_constraintBottom_toTopOf="@+id/enter_btn"/>
+
+    <Button
+        android:id="@+id/enter_btn"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_weight="1"
+        android:paddingVertical="@dimen/_12dp"
+        android:text="@string/enter"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_12"
+        app:cornerRadius="0dp"
+        android:backgroundTint="@color/gray_2"
+        app:layout_constraintTop_toBottomOf="@+id/password_et"
+        app:layout_constraintBottom_toTopOf="@id/restore_password_tv"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        android:enabled="false"/>
+
+    <TextView
+        android:id="@+id/restore_password_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restore_password"
+        android:layout_marginTop="15dp"
+        android:textSize="@dimen/text_size_12"
+        app:layout_constraintTop_toBottomOf="@+id/enter_btn"
+        app:layout_constraintStart_toEndOf="@+id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
