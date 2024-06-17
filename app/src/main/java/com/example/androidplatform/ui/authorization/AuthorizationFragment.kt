@@ -60,10 +60,6 @@ class AuthorizationFragment : Fragment() {
             findNavController().navigate(R.id.action_authorizationFragment_to_restorePasswordFragment)
         }
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
-        }
-
         viewModel.screenState().observe(viewLifecycleOwner) {
             render(it)
         }

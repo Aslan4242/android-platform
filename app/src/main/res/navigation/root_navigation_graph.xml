@@ -33,7 +33,11 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.example.androidplatform.ui.dashboard.DashboardFragment"
-        android:label="DashboardFragment" />
+        android:label="DashboardFragment" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_authorizationFragment"
+            app:destination="@id/authorizationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.androidplatform.ui.history.HistoryFragment"
