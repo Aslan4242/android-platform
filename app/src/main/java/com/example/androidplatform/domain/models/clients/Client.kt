@@ -1,6 +1,6 @@
 package com.example.androidplatform.domain.models.clients
 
-data class ClientsItem (
+data class Client (
     val login: String,
     val email: String,
     val lastName: String,
@@ -9,5 +9,6 @@ data class ClientsItem (
     val sex: String,
     val birthdate: String,
     val phoneNumber: String,
-    val address: String
+    val address: String,
+    val isMustChangePassword: Boolean
 )

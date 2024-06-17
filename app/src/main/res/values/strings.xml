@@ -29,7 +29,7 @@
     <string name="female">Женский</string>
     <string name="my_bank">Мой банк</string>
     <string name="history">История</string>
-    <string name="client_number">Номер клиента</string>
+    <string name="login">Логин</string>
     <string name="phone_number">Телефон</string>
     <string name="surname">Фамилия</string>
     <string name="name">Имя</string>
@@ -45,4 +45,5 @@
     <string name="empty">Не удалось получить клиентов</string>
     <string name="auth_error">Ошибка аутентификации</string>
     <string name="do_you_want_exit">Вы точно хотите выйти?</string>
+    <string name="email">Email</string>
 </resources>

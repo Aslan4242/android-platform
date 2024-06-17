@@ -61,7 +61,7 @@
 
 
             <LinearLayout
-                android:id="@+id/client_number_ll"
+                android:id="@+id/login_ll"
                 android:layout_width="0dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="25dp"
@@ -79,12 +79,47 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
-                    android:text="@string/client_number"
+                    android:text="@string/login"
                     android:textColor="@color/gray_2"
                     android:textSize="@dimen/text_size_12" />
 
                 <TextView
-                    android:id="@+id/client_number_tv"
+                    android:id="@+id/login_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="end"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12"
+                    tools:text="0000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/email_ll"
+                android:layout_width="0dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="25dp"
+                android:background="@color/gray_6"
+                android:enabled="false"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                app:cornerRadius="0dp"
+                app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                app:layout_constraintStart_toEndOf="@+id/left_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/login_ll">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/email"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12" />
+
+                <TextView
+                    android:id="@+id/email_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -108,7 +143,7 @@
                 app:cornerRadius="0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/client_number_ll">
+                app:layout_constraintTop_toBottomOf="@+id/email_ll">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -318,7 +353,7 @@
                 app:cornerRadius="0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/sex_ll">
+                app:layout_constraintTop_toBottomOf="@+id/birthdate_ll">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -353,7 +388,7 @@
                 app:cornerRadius="0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/birthdate_ll" />
+                app:layout_constraintTop_toBottomOf="@+id/address_ll" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

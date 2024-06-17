@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.androidplatform.databinding.FragmentPersonalAccountBinding
-import com.example.androidplatform.domain.models.clients.ClientsItem
+import com.example.androidplatform.domain.models.clients.Client
 import com.example.androidplatform.presentation.personal_account.models.ScreenStateClients
 import com.example.androidplatform.presentation.personal_account.viewmodel.PersonalAccountViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class PersonalAccountFragment : Fragment() {
     private var _binding: FragmentPersonalAccountBinding? = null
@@ -28,7 +30,7 @@ class PersonalAccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getClients("token") // через модуль авторизации получить токен
+        viewModel.getClients()
 
         viewModel.screenState().observe(viewLifecycleOwner) {
             render(it)
@@ -38,7 +40,7 @@ class PersonalAccountFragment : Fragment() {
     private fun render(state: ScreenStateClients) {
         when (state) {
             is ScreenStateClients.Content -> {
-                showContent(state.listClients)
+                showContent(state.client)
             }
 
 //            is ScreenStateClients.Empty -> {
@@ -61,10 +63,25 @@ class PersonalAccountFragment : Fragment() {
         }
     }
 
-    private fun showContent(clientsList: List<ClientsItem>) {
-        binding.fullNameTv.text = clientsList[0].apply {
+    private fun showContent(client: Client) {
+        binding.fullNameTv.text = client.run {
             "$lastName $firstName $middleName"
-        }.toString()
+        }
+        binding.loginTv.text = client.login
+        binding.emailTv.text = client.email
+        binding.surnameTv.text = client.lastName
+        binding.nameTv.text = client.firstName
+        binding.patronymicTv.text = client.middleName
+        binding.sexTv.text = client.sex
+        binding.birthdateTv.text = convertDateTime(client.birthdate)
+        binding.phoneNumberTv.text = client.phoneNumber
+        binding.addressTv.text = client.address
+    }
 
+    private fun convertDateTime(input: String): String {
+        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS")
+        val dateTime = LocalDateTime.parse(input, inputFormatter)
+        val outputFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+        return dateTime.format(outputFormatter)
     }
 }

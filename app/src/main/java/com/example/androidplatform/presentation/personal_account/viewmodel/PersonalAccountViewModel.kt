@@ -18,13 +18,13 @@ class PersonalAccountViewModel(
     private val _screenState = MutableLiveData<ScreenStateClients>()
     fun screenState(): LiveData<ScreenStateClients> = _screenState
 
-    fun getClients(token: String) {
+    fun getClients() {
         viewModelScope.launch(Dispatchers.IO)  {
-            val result = clientInteractor.getClients(token)
+            val result = clientInteractor.getClients()
             result.collect { data ->
                 withContext(Dispatchers.Main) {
                     when (data) {
-                        is SearchResultData.Data -> _screenState.value = ScreenStateClients.Content(data.value?.listClients!!)
+                        is SearchResultData.Data -> _screenState.value = ScreenStateClients.Content(data.value!!)
                         is SearchResultData.ErrorServer -> _screenState.value = ScreenStateClients.Error(data.message)
                         is SearchResultData.NoInternet -> _screenState.value = ScreenStateClients.Error(data.message)
                         is SearchResultData.Empty -> _screenState.value = ScreenStateClients.Error(data.message)
