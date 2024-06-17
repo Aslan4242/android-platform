@@ -4,7 +4,7 @@
     <string name="registration">Регистрация</string>
     <string name="personal_account">Личный кабинет</string>
     <string name="user_is_registered">Пользователь зарегистрирован</string>
-    <string name="hint_mobile">Введите номер моб. тел.</string>
+    <string name="hint_login">Введите логин</string>
     <string name="phone_pattern">+7(999)999–99–99</string>
     <string name="surname_pattern">Иванов</string>
     <string name="name_pattern">Иван</string>

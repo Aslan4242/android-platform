@@ -40,13 +40,13 @@ class AuthorizationFragment : Fragment() {
             }
         }
 
-        binding.mobileEt.addTextChangedListener(textWatcher)
+        binding.loginEt.addTextChangedListener(textWatcher)
         binding.passwordEt.addTextChangedListener(textWatcher)
 
         binding.enterBtn.setOnClickListener {
-            if (binding.mobileEt.text.isNotEmpty() && binding.passwordEt.text.isNotEmpty()) {
+            if (binding.loginEt.text.isNotEmpty() && binding.passwordEt.text.isNotEmpty()) {
                 viewModel.authenticate(
-                    login = binding.mobileEt.text.toString(),
+                    login = binding.loginEt.text.toString(),
                     password = binding.passwordEt.text.toString()
                 )
             }
@@ -75,7 +75,7 @@ class AuthorizationFragment : Fragment() {
     }
 
     private fun updateEnterButton() {
-        if (binding.mobileEt.text.isNotEmpty() && binding.passwordEt.text.isNotEmpty()) {
+        if (binding.loginEt.text.isNotEmpty() && binding.passwordEt.text.isNotEmpty()) {
             binding.enterBtn.apply {
                 isEnabled = true
                 setBackgroundColor(resources.getColor(R.color.orange))
