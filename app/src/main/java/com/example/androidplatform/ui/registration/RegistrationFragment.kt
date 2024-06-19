@@ -79,7 +79,6 @@ class RegistrationFragment : Fragment() {
             is RegistrationState.Content -> {
                 findNavController().popBackStack()
             }
-
             else -> {}
         }
     }
@@ -88,9 +87,7 @@ class RegistrationFragment : Fragment() {
         return when (group.checkedRadioButtonId) {
             R.id.male_radio_button -> requireContext().resources.getString(R.string.male_eng)
             R.id.female_radio_button -> requireContext().resources.getString(R.string.female_eng)
-            else -> {
-                "Не указан"
-            }
+            else -> { "Не указан" }
         }
     }
 

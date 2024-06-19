@@ -16,7 +16,8 @@ class RootActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(binding.root)
         val bottomNavigationView = binding.bottomNavigationView
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.root_container_view) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.root_container_view) as NavHostFragment
         val navController = navHostFragment.navController
 
         bottomNavigationView.setupWithNavController(navController)

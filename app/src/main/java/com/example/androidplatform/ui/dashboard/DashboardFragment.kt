@@ -49,7 +49,7 @@ class DashboardFragment : Fragment()  {
             .setNeutralButton("Отмена") { dialog, which ->
                 // ничего не делаем
             }.setNegativeButton("Выйти") { dialog, which ->
-                findNavController().navigate(R.id.action_dashboardFragment_to_authorizationFragment)
+                findNavController().navigate(R.id.action_pop_back)
             }
     }
 

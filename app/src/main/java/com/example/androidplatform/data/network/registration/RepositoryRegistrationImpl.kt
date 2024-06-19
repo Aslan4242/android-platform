@@ -37,7 +37,6 @@ class RepositoryRegistrationImpl(
             address = address,
             sex = sex
         )
-        val data = searchResult.getOrNull()
         val error = searchResult.exceptionOrNull()
 
         when {
