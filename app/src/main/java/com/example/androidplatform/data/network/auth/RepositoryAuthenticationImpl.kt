@@ -38,7 +38,7 @@ class RepositoryAuthenticationImpl (
             }
 
             error is HttpException -> {
-                emit(SearchResultData.ErrorServer(R.string.server_error))
+                emit(SearchResultData.ErrorServer(R.string.server_error, error.response()?.errorBody()?.string() ?: ""))
             }
         }
     }

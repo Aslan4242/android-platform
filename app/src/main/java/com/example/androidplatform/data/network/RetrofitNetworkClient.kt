@@ -88,7 +88,7 @@ class RetrofitNetworkClient(
                 if (result.isSuccessful) {
                     Result.success(Void.TYPE.cast(null))
                 } else {
-                    Result.failure(HttpException(result))
+                    Result.failure(HttpException(result)) // result.errorBody().string()
                 }
             } catch (e: HttpException) {
                 Result.failure(e)

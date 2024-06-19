@@ -26,7 +26,7 @@ class RepositoryRegistrationImpl(
         sex: String,
     ): Flow<SearchResultData<Void>> = flow {
         val searchResult = client.createClient(
-            login =login,
+            login = login,
             password = password,
             phoneNumber = phoneNumber,
             email = email,
@@ -53,7 +53,12 @@ class RepositoryRegistrationImpl(
             }
 
             error is HttpException -> {
-                emit(SearchResultData.ErrorServer(R.string.server_error))
+                emit(
+                    SearchResultData.ErrorServer(
+                        R.string.server_error,
+                        error.response()?.errorBody()?.string() ?: ""
+                    )
+                )
             }
         }
     }

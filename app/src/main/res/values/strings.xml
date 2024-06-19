@@ -49,4 +49,6 @@
     <string name="do_you_want_exit">Вы точно хотите выйти?</string>
     <string name="email">Email</string>
     <string name="invalid_credentials">Некорректные учетные данные</string>
+    <string name="successful_registration">Вы успешно зарегистрированы!</string>
+    <string name="passwords_missmatch">Пароли не сопадают</string>
 </resources>

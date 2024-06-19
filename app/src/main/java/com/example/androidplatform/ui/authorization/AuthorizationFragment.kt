@@ -76,7 +76,7 @@ class AuthorizationFragment : Fragment() {
             render(it)
         }
 
-        viewModel.showToastError.observe(viewLifecycleOwner) {
+        viewModel.showToastMessage.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), resources.getString(it), Toast.LENGTH_LONG).show()
         }
     }

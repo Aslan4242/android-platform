@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.androidplatform.domain.api.RegistrationInteractor
 import com.example.androidplatform.domain.models.SearchResultData
 import com.example.androidplatform.presentation.registration.models.RegistrationState
+import com.example.androidplatform.util.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -19,6 +20,8 @@ class RegistrationViewModel(
 
     private val _screenState = MutableLiveData<RegistrationState>()
     fun screenState(): LiveData<RegistrationState> = _screenState
+    private val _showToastMessage = SingleLiveEvent<String>()
+    val showToastMessage: LiveData<String> = _showToastMessage
 
     fun createClient(
         login: String,
@@ -50,14 +53,18 @@ class RegistrationViewModel(
                     when (data) {
                         is SearchResultData.Data -> _screenState.value = RegistrationState.Content("Client created successfully")
 
-                        is SearchResultData.ErrorServer -> _screenState.value =
-                            RegistrationState.Error(data.message)
-
-                        is SearchResultData.NoInternet -> _screenState.value =
-                            RegistrationState.Error(data.message)
-
-                        is SearchResultData.Empty -> _screenState.value =
-                            RegistrationState.Error(data.message)
+                        is SearchResultData.ErrorServer -> {
+                            _screenState.value = RegistrationState.Error(data.message)
+                            _showToastMessage.postValue(data.description)
+                        }
+                        is SearchResultData.NoInternet -> {
+                            _screenState.value = RegistrationState.Error(data.message)
+                            _showToastMessage.postValue(NO_INTERNET)
+                        }
+                        is SearchResultData.Empty -> {
+                            _screenState.value = RegistrationState.Error(data.message)
+                            _showToastMessage.postValue(NO_INTERNET)
+                        }
                     }
                 }
             }
@@ -67,6 +74,10 @@ class RegistrationViewModel(
     private fun getDateTime(birthdate: String): String {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
         return birthdate.ifEmpty { ZonedDateTime.now().format(formatter)}
+    }
+
+    companion object {
+        const val NO_INTERNET = "Нет интернета"
     }
 }
 
