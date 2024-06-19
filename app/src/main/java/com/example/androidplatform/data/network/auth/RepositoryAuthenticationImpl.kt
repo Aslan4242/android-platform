@@ -1,9 +1,7 @@
 package com.example.androidplatform.data.network.auth
 
 import com.example.androidplatform.R
-import com.example.androidplatform.data.network.AuthRequest
 import com.example.androidplatform.data.network.NetworkClient
-import com.example.androidplatform.data.network.mapToAuthentication
 import com.example.androidplatform.domain.RepositoryAuthentication
 import com.example.androidplatform.domain.models.SearchResultData
 import com.example.androidplatform.domain.models.authorization.Authentication

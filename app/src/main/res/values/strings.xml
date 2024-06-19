@@ -15,7 +15,7 @@
     <string name="hint_password">Введите пароль</string>
     <string name="hint_input_sms_code">Введите код из СМС</string>
     <string name="enter">Войти</string>
-    <string name="register">Зарегистироваться</string>
+    <string name="register">Зарегистрироваться</string>
     <string name="logout">Выйти из аккаунта</string>
     <string name="restore_password">Восстановить пароль</string>
     <string name="password_restoration">Восстановление пароля</string>
@@ -26,7 +26,9 @@
     <string name="open_account">Открыть счет</string>
     <string name="gender">Пол</string>
     <string name="male">Мужской</string>
+    <string name="male_eng">Male</string>
     <string name="female">Женский</string>
+    <string name="female_eng">Female</string>
     <string name="my_bank">Мой банк</string>
     <string name="history">История</string>
     <string name="login">Логин</string>

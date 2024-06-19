@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.androidplatform.data.network.AuthRequest
+import com.example.androidplatform.data.network.auth.AuthRequest
 import com.example.androidplatform.domain.api.AuthenticationInteractor
 import com.example.androidplatform.domain.models.SearchResultData
 import com.example.androidplatform.presentation.authentication.models.StateAuthentication

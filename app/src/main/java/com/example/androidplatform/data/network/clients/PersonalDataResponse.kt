@@ -1,4 +1,4 @@
-package com.example.androidplatform.data.network
+package com.example.androidplatform.data.network.clients
 
 import com.example.androidplatform.data.models.PersonalData
 

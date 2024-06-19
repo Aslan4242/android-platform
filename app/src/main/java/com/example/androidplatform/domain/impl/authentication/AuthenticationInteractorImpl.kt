@@ -1,6 +1,6 @@
 package com.example.androidplatform.domain.impl.authentication
 
-import com.example.androidplatform.data.network.AuthRequest
+import com.example.androidplatform.data.network.auth.AuthRequest
 import com.example.androidplatform.domain.RepositoryAuthentication
 import com.example.androidplatform.domain.api.AuthenticationInteractor
 import com.example.androidplatform.domain.models.SearchResultData
