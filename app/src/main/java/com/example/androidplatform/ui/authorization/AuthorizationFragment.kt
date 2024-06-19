@@ -6,7 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.addCallback
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.androidplatform.R
@@ -38,6 +38,14 @@ class AuthorizationFragment : Fragment() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(s: Editable?) {
+                if (binding.loginEt.text.isNotEmpty()) {
+                    binding.loginEt.setBackgroundResource(R.drawable.edit_text_frame)
+                    binding.loginEt.setHintTextColor(resources.getColor(R.color.gray_3))
+                }
+                if (binding.passwordEt.text.isNotEmpty()) {
+                    binding.passwordEt.setBackgroundResource(R.drawable.edit_text_frame)
+                    binding.passwordEt.setHintTextColor(resources.getColor(R.color.gray_3))
+                }
                 updateEnterButton()
             }
         }
@@ -51,6 +59,8 @@ class AuthorizationFragment : Fragment() {
                     login = binding.loginEt.text.toString(),
                     password = binding.passwordEt.text.toString()
                 )
+            } else {
+                showErrorMessage()
             }
         }
 
@@ -64,6 +74,10 @@ class AuthorizationFragment : Fragment() {
 
         viewModel.screenState().observe(viewLifecycleOwner) {
             render(it)
+        }
+
+        viewModel.showToastError.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), resources.getString(it), Toast.LENGTH_LONG).show()
         }
     }
 
@@ -79,14 +93,23 @@ class AuthorizationFragment : Fragment() {
     private fun updateEnterButton() {
         if (binding.loginEt.text.isNotEmpty() && binding.passwordEt.text.isNotEmpty()) {
             binding.enterBtn.apply {
-                isEnabled = true
                 setBackgroundColor(resources.getColor(R.color.orange))
             }
         } else {
             binding.enterBtn.apply {
-                isEnabled = false
                 setBackgroundColor(resources.getColor(R.color.gray_2))
             }
+        }
+    }
+
+    private fun showErrorMessage () {
+        if (binding.loginEt.text.isEmpty()) {
+            binding.loginEt.setBackgroundResource(R.drawable.edit_text_frame_error)
+            binding.loginEt.setHintTextColor(resources.getColor(R.color.red_2))
+        }
+        if (binding.passwordEt.text.isEmpty()) {
+            binding.passwordEt.setBackgroundResource(R.drawable.edit_text_frame_error)
+            binding.passwordEt.setHintTextColor(resources.getColor(R.color.red_2))
         }
     }
 }

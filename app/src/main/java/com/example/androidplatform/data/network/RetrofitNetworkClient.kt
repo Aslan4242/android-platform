@@ -6,7 +6,7 @@ import com.example.androidplatform.data.network.auth.AuthRequest
 import com.example.androidplatform.data.network.auth.AuthResponse
 import com.example.androidplatform.data.network.registration.RegistrationRequest
 import com.example.androidplatform.domain.models.clients.Client
-import com.example.androidplatform.isConnected
+import com.example.androidplatform.util.isConnected
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
