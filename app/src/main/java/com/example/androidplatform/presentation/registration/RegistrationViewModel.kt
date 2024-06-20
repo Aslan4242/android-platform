@@ -11,7 +11,8 @@ import com.example.androidplatform.util.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.time.ZonedDateTime
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class RegistrationViewModel(
@@ -73,7 +74,12 @@ class RegistrationViewModel(
 
     private fun getDateTime(birthdate: String): String {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-        return birthdate.ifEmpty { ZonedDateTime.now().format(formatter)}
+        return if (birthdate.isNotEmpty()) {
+            LocalDate.parse(birthdate, DateTimeFormatter.ofPattern("dd.MM.yyyy")).atStartOfDay().format(formatter)
+        } else {
+            // если не указана дата рождения, то ставим 01.04.2001
+            LocalDateTime.of(2001, 4, 1, 0, 0).format(formatter)
+        }
     }
 
     companion object {

@@ -1,5 +1,6 @@
 package com.example.androidplatform.ui.registration
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,6 +16,7 @@ import com.example.androidplatform.databinding.FragmentRegiststrationBinding
 import com.example.androidplatform.presentation.registration.RegistrationViewModel
 import com.example.androidplatform.presentation.registration.models.RegistrationState
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.Calendar
 
 class RegistrationFragment : Fragment() {
     private var _binding: FragmentRegiststrationBinding? = null
@@ -80,6 +82,31 @@ class RegistrationFragment : Fragment() {
                 isPasswordsMatch()
             }
         })
+
+        binding.birthdateEt.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+            val datePickerDialog = DatePickerDialog(
+                requireContext(),
+                R.style.DatePickerDialogTheme,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    val selectedDate =
+                        String.format("%02d.%02d.%d", selectedDay, selectedMonth + 1, selectedYear)
+                    binding.birthdateEt.setText(selectedDate)
+                },
+                year,
+                month,
+                day
+            )
+            datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+            datePickerDialog.show()
+        }
+
+        binding.clearBirthdateTv.setOnClickListener {
+            binding.birthdateEt.text.clear()
+        }
 
         binding.registerBtn.setOnClickListener {
             if (

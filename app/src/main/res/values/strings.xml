@@ -10,7 +10,7 @@
     <string name="name_pattern">Иван</string>
     <string name="patronymic_pattern">Иванович</string>
     <string name="full_name_pattern">Иванов Иван Иванович</string>
-    <string name="birthdate_pattern">01.01.2001</string>
+    <string name="birthdate_hint">День рождения</string>
     <string name="password_masked">********</string>
     <string name="hint_password">Введите пароль</string>
     <string name="hint_input_sms_code">Введите код из СМС</string>
@@ -51,4 +51,5 @@
     <string name="invalid_credentials">Некорректные учетные данные</string>
     <string name="successful_registration">Вы успешно зарегистрированы!</string>
     <string name="passwords_missmatch">Пароли не сопадают</string>
+    <string name="clear_field">Очистить поле</string>
 </resources>

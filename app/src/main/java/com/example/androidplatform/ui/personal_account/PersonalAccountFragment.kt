@@ -79,7 +79,7 @@ class PersonalAccountFragment : Fragment() {
     }
 
     private fun convertDateTime(input: String): String {
-        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS")
+        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
         val dateTime = LocalDateTime.parse(input, inputFormatter)
         val outputFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
         return dateTime.format(outputFormatter)
