@@ -12,6 +12,9 @@ import com.example.androidplatform.presentation.personal_account.viewmodel.Perso
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatterBuilder
+import java.time.format.DateTimeParseException
+import java.time.temporal.ChronoField
 
 class PersonalAccountFragment : Fragment() {
     private var _binding: FragmentPersonalAccountBinding? = null
@@ -79,9 +82,22 @@ class PersonalAccountFragment : Fragment() {
     }
 
     private fun convertDateTime(input: String): String {
-        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
-        val dateTime = LocalDateTime.parse(input, inputFormatter)
+        val dateTime = parseDate(input)
         val outputFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
         return dateTime.format(outputFormatter)
+    }
+
+    private fun parseDate(input: String): LocalDateTime {
+        val formatter = DateTimeFormatterBuilder()
+            .appendPattern("yyyy-MM-dd")
+            .optionalStart()
+            .appendPattern("'T'HH:mm:ss")
+            .optionalStart()
+            .appendFraction(ChronoField.MICRO_OF_SECOND, 0, 3, true)
+            .optionalEnd()
+            .optionalEnd()
+            .toFormatter()
+
+        return LocalDateTime.parse(input, formatter)
     }
 }
