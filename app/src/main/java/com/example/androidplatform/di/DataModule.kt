@@ -4,6 +4,11 @@ package com.example.androidplatform.di
 import com.example.androidplatform.data.network.ITesterApi
 import com.example.androidplatform.data.network.NetworkClient
 import com.example.androidplatform.data.network.RetrofitNetworkClient
+import com.example.androidplatform.BuildConfig
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -14,8 +19,17 @@ private var TOKEN = ""
 
 val dataModule = module {
     single<ITesterApi> {
+        val client = OkHttpClient.Builder()
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                if (BuildConfig.DEBUG) {
+                    level = HttpLoggingInterceptor.Level.HEADERS
+                    level = HttpLoggingInterceptor.Level.BODY
+                }
+            }).build()
+
         Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ITesterApi::class.java)

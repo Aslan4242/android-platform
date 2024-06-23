@@ -1,4 +1,4 @@
-package com.example.androidplatform.ui.restoration_password
+package com.example.androidplatform.ui.change_password
 
 import android.os.Bundle
 import android.text.Editable
@@ -13,7 +13,10 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.androidplatform.R
+import com.example.androidplatform.databinding.FragmentChangePasswordBinding
 import com.example.androidplatform.databinding.FragmentRestorePasswordBinding
+import com.example.androidplatform.presentation.change_password.ChangePasswordViewModel
+import com.example.androidplatform.presentation.change_password.models.ChangePasswordState
 import com.example.androidplatform.presentation.restoration_password.RestorePasswordViewModel
 import com.example.androidplatform.presentation.restoration_password.RestorePasswordViewModel.Companion.DEFAULT_PASSWORD
 import com.example.androidplatform.presentation.restoration_password.models.RestorePasswordState
@@ -21,84 +24,66 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class RestorePasswordFragment : Fragment() {
-    private var _binding: FragmentRestorePasswordBinding? = null
+class ChangePasswordFragment : Fragment() {
+    private var _binding: FragmentChangePasswordBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by viewModel<RestorePasswordViewModel>()
-    lateinit var confirmDialog: MaterialAlertDialogBuilder
+    private val viewModel by viewModel<ChangePasswordViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRestorePasswordBinding.inflate(inflater, container, false)
+        _binding = FragmentChangePasswordBinding.inflate(inflater, container, false)
         return binding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val login = arguments?.get("login") as? String
+        viewModel.setLogin(login)
         observeViewModel()
         setClickListeners()
         addTextChangeListeners()
-        createDialog()
     }
 
     private fun setClickListeners() {
         binding.enterBtn.setOnClickListener {
-            val login = binding.etLogin.text?.toString()
-            val code = binding.smsCodeEt.text?.toString()
-            viewModel.sendRestoreCode(login, code)
-        }
-        binding.tvTimer.setOnClickListener {
-            showSnackbar(getString(R.string.code_was_resent))
-            binding.smsCodeEt.setText("")
-            viewModel.restartTimer()
+            val password1 = binding.etNewPassword.text?.toString()
+            val password2 = binding.repeatPasswordEt.text?.toString()
+            viewModel.changePassword(password1, password2)
         }
     }
 
     private fun observeViewModel() {
-        viewModel.formattedTime.observe(viewLifecycleOwner) {
-            binding.tvTimer.text = it
+        viewModel.errorInputPassword1.observe(viewLifecycleOwner) {
+            val errorMessage = if (it) getString(R.string.send_password_error) else null
+            binding.tilNewPassword.error = errorMessage
         }
-        viewModel.isSendCode.observe(viewLifecycleOwner) {
-            with(binding) {
-                smsCodeTil.visibility = VISIBLE
-                tvTimer.visibility = VISIBLE
-            }
-        }
-        viewModel.isChangeCode.observe(viewLifecycleOwner) {
-            if (it) {
-                with(binding) {
-                    smsCodeTil.visibility = GONE
-                    tvTimer.visibility = GONE
-                    smsCodeEt.setText("")
-                }
-            }
-        }
-        viewModel.errorInputLogin.observe(viewLifecycleOwner) {
-            val errorMessage = if (it) getString(R.string.login_error) else null
-            binding.tilLogin.error = errorMessage
-        }
-        viewModel.errorInputCode.observe(viewLifecycleOwner) {
-            val errorMessage = if (it) getString(R.string.code_error) else null
-            binding.smsCodeTil.error = errorMessage
+        viewModel.errorInputPassword2.observe(viewLifecycleOwner) {
+            val errorMessage = if (it) getString(R.string.send_password_error) else null
+            binding.tilRepeatPassword.error = errorMessage
         }
         viewModel.isButtonEnabled.observe(viewLifecycleOwner) {
             binding.enterBtn.isEnabled = it
         }
         viewModel.screenState.observe(viewLifecycleOwner) {
             when(it) {
-                is RestorePasswordState.Loading -> {
+                is ChangePasswordState.Loading -> {
                     binding.progressBar.visibility = VISIBLE
                 }
-                is RestorePasswordState.Content -> {
+                is ChangePasswordState.Content -> {
                     binding.progressBar.visibility = GONE
-                    confirmDialog.show()
+                    showSnackbar(getString(R.string.password_change_successful))
+                    findNavController().popBackStack()
                 }
-                is RestorePasswordState.Error -> {
+                is ChangePasswordState.ContentAuth -> {
+
+                }
+                is ChangePasswordState.Error -> {
                     binding.progressBar.visibility = GONE
+                    showSnackbar(it.message.toString())
                 }
             }
         }
@@ -108,27 +93,24 @@ class RestorePasswordFragment : Fragment() {
     }
 
     private fun addTextChangeListeners() {
-        binding.etLogin.addTextChangedListener(object : TextWatcher {
+        binding.etNewPassword.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val text = s?.toString() ?: ""
-                viewModel.resetErrorInputLogin()
-                viewModel.changeLogin(text)
+                viewModel.changePassword1(s?.toString())
             }
 
             override fun afterTextChanged(s: Editable?) {
 
             }
         })
-        binding.smsCodeEt.addTextChangedListener(object : TextWatcher {
+        binding.repeatPasswordEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                viewModel.resetErrorInputCode()
-                viewModel.changeCode(s?.toString())
+                viewModel.changePassword2(s?.toString())
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -138,20 +120,6 @@ class RestorePasswordFragment : Fragment() {
 
     private fun showSnackbar(text: String) {
         Snackbar.make(binding.root, text, Snackbar.LENGTH_LONG).show()
-    }
-
-    private fun createDialog() {
-        confirmDialog = MaterialAlertDialogBuilder(requireContext())
-            .setTitle(R.string.do_you_want_change_password)
-            .setNeutralButton("Отмена") { dialog, which ->
-                showSnackbar("Пароль сброшен на дефолтный $DEFAULT_PASSWORD")
-                findNavController().popBackStack()
-            }.setNegativeButton("Поменять") { dialog, which ->
-                findNavController().navigate(
-                    RestorePasswordFragmentDirections
-                        .actionRestorePasswordFragmentToChangePasswordFragment(binding.etLogin.text?.toString())
-                )
-            }
     }
 
     override fun onDestroyView() {

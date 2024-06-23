@@ -52,4 +52,15 @@
     <string name="successful_registration">Вы успешно зарегистрированы!</string>
     <string name="passwords_missmatch">Пароли не сопадают</string>
     <string name="clear_field">Очистить поле</string>
+    <string name="resend_code">Отправить код еще раз</string>
+    <string name="new_password">Новый пароль</string>
+    <string name="new_password_repeat">Повторите новый пароль</string>
+    <string name="change_password">Обновите пароль</string>
+    <string name="login_error">Некорректный логин</string>
+    <string name="code_error">Код должен содержать 4 цифры</string>
+    <string name="send_code_error">Некорректный код</string>
+    <string name="do_you_want_change_password">Вы хотите сразу изменить пароль?</string>
+    <string name="send_password_error">Некорректный пароль</string>
+    <string name="password_change_successful">Пароль успешно изменен</string>
+    <string name="code_was_resent">Код отправлен повторно</string>
 </resources>

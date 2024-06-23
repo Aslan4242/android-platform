@@ -29,7 +29,13 @@
         android:id="@+id/restorePasswordFragment"
         android:name="com.example.androidplatform.ui.restoration_password.RestorePasswordFragment"
         android:label="fragment_restore_password"
-        tools:layout="@layout/fragment_restore_password" />
+        tools:layout="@layout/fragment_restore_password" >
+        <action
+            android:id="@+id/action_restorePasswordFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment"
+            app:popUpTo="@id/restorePasswordFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.example.androidplatform.ui.dashboard.DashboardFragment"
@@ -48,4 +54,13 @@
         android:id="@+id/personalAccountFragment"
         android:name="com.example.androidplatform.ui.personal_account.PersonalAccountFragment"
         android:label="PersonalAccountFragment" />
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.androidplatform.ui.change_password.ChangePasswordFragment"
+        android:label="ChangePasswordFragment" >
+        <argument
+            android:name="login"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>
