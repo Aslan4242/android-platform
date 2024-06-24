@@ -9,7 +9,6 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.androidplatform.R
@@ -18,7 +17,6 @@ import com.example.androidplatform.presentation.restoration_password.RestorePass
 import com.example.androidplatform.presentation.restoration_password.RestorePasswordViewModel.Companion.DEFAULT_PASSWORD
 import com.example.androidplatform.presentation.restoration_password.models.RestorePasswordState
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RestorePasswordFragment : Fragment() {
@@ -52,7 +50,7 @@ class RestorePasswordFragment : Fragment() {
             viewModel.sendRestoreCode(login, code)
         }
         binding.tvTimer.setOnClickListener {
-            showSnackbar(getString(R.string.code_was_resent))
+            showToast(getString(R.string.code_was_resent))
             binding.smsCodeEt.setText("")
             viewModel.restartTimer()
         }
@@ -103,7 +101,7 @@ class RestorePasswordFragment : Fragment() {
             }
         }
         viewModel.showToastMessage.observe(viewLifecycleOwner) {
-            showSnackbar(it)
+            showToast(it)
         }
     }
 
@@ -136,15 +134,15 @@ class RestorePasswordFragment : Fragment() {
         })
     }
 
-    private fun showSnackbar(text: String) {
-        Snackbar.make(binding.root, text, Snackbar.LENGTH_LONG).show()
+    private fun showToast(text: String) {
+        Toast.makeText(requireContext(), text, Toast.LENGTH_LONG).show()
     }
 
     private fun createDialog() {
         confirmDialog = MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.do_you_want_change_password)
             .setNeutralButton("Отмена") { dialog, which ->
-                showSnackbar("Пароль сброшен на дефолтный $DEFAULT_PASSWORD")
+                showToast("Пароль сброшен на дефолтный $DEFAULT_PASSWORD")
                 findNavController().popBackStack()
             }.setNegativeButton("Поменять") { dialog, which ->
                 findNavController().navigate(

@@ -9,19 +9,12 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.androidplatform.R
 import com.example.androidplatform.databinding.FragmentChangePasswordBinding
-import com.example.androidplatform.databinding.FragmentRestorePasswordBinding
 import com.example.androidplatform.presentation.change_password.ChangePasswordViewModel
 import com.example.androidplatform.presentation.change_password.models.ChangePasswordState
-import com.example.androidplatform.presentation.restoration_password.RestorePasswordViewModel
-import com.example.androidplatform.presentation.restoration_password.RestorePasswordViewModel.Companion.DEFAULT_PASSWORD
-import com.example.androidplatform.presentation.restoration_password.models.RestorePasswordState
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChangePasswordFragment : Fragment() {
@@ -75,7 +68,7 @@ class ChangePasswordFragment : Fragment() {
                 }
                 is ChangePasswordState.Content -> {
                     binding.progressBar.visibility = GONE
-                    showSnackbar(getString(R.string.password_change_successful))
+                    showToast(getString(R.string.password_change_successful))
                     findNavController().popBackStack()
                 }
                 is ChangePasswordState.ContentAuth -> {
@@ -83,12 +76,12 @@ class ChangePasswordFragment : Fragment() {
                 }
                 is ChangePasswordState.Error -> {
                     binding.progressBar.visibility = GONE
-                    showSnackbar(it.message.toString())
+                    showToast(it.message.toString())
                 }
             }
         }
         viewModel.showToastMessage.observe(viewLifecycleOwner) {
-            showSnackbar(it)
+            showToast(it)
         }
     }
 
@@ -118,8 +111,8 @@ class ChangePasswordFragment : Fragment() {
         })
     }
 
-    private fun showSnackbar(text: String) {
-        Snackbar.make(binding.root, text, Snackbar.LENGTH_LONG).show()
+    private fun showToast(text: String) {
+        Toast.makeText(requireContext(), text, Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroyView() {
