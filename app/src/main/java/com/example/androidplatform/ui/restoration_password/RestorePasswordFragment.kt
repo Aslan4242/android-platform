@@ -87,7 +87,7 @@ class RestorePasswordFragment : Fragment() {
             binding.enterBtn.isEnabled = it
         }
         viewModel.screenState.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is RestorePasswordState.Loading -> {
                     binding.progressBar.visibility = VISIBLE
                 }
@@ -141,10 +141,17 @@ class RestorePasswordFragment : Fragment() {
     private fun createDialog() {
         confirmDialog = MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.do_you_want_change_password)
-            .setNeutralButton("Отмена") { dialog, which ->
-                showToast("Пароль сброшен на дефолтный $DEFAULT_PASSWORD")
+            .setNegativeButton(R.string.reset) { dialog, which ->
+                dialog.dismiss()
+                showToast(
+                    String.format(
+                        resources.getText(R.string.password_was_reset).toString(),
+                        DEFAULT_PASSWORD
+                    )
+                )
                 findNavController().popBackStack()
-            }.setNegativeButton("Поменять") { dialog, which ->
+            }.setPositiveButton(R.string.change) { dialog, which ->
+                dialog.dismiss()
                 findNavController().navigate(
                     RestorePasswordFragmentDirections
                         .actionRestorePasswordFragmentToChangePasswordFragment(binding.etLogin.text?.toString())

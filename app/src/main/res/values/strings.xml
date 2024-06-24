@@ -19,6 +19,7 @@
     <string name="logout">Выйти из аккаунта</string>
     <string name="restore_password">Восстановить пароль</string>
     <string name="password_restoration">Восстановление пароля</string>
+    <string name="password_change">Изменение пароля</string>
     <string name="fill_fields">Заполните поля</string>
     <string name="cards">Карты</string>
     <string name="accounts">Счета</string>
@@ -59,8 +60,11 @@
     <string name="login_error">Некорректный логин</string>
     <string name="code_error">Код должен содержать 4 цифры</string>
     <string name="send_code_error">Некорректный код</string>
-    <string name="do_you_want_change_password">Вы хотите сразу изменить пароль?</string>
+    <string name="do_you_want_change_password">Вы хотите сбросить или изменить пароль?</string>
     <string name="send_password_error">Некорректный пароль</string>
     <string name="password_change_successful">Пароль успешно изменен</string>
     <string name="code_was_resent">Код отправлен повторно</string>
+    <string name="reset">Сбросить</string>
+    <string name="change">Изменить</string>
+    <string name="password_was_reset">Пароль был сброшен на %s</string>
 </resources>

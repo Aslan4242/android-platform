@@ -1,13 +1,11 @@
 package com.example.androidplatform.di
 
 
+import com.example.androidplatform.BuildConfig
 import com.example.androidplatform.data.network.ITesterApi
 import com.example.androidplatform.data.network.NetworkClient
 import com.example.androidplatform.data.network.RetrofitNetworkClient
-import com.example.androidplatform.BuildConfig
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module

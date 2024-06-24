@@ -4,7 +4,6 @@ import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.example.androidplatform.data.network.auth.RepositoryAuthenticationImpl
-import com.example.androidplatform.data.network.change_password.ChangePasswordRequest
 import com.example.androidplatform.data.network.change_password.RepositoryChangePasswordImpl
 import com.example.androidplatform.data.network.clients.RepositoryClientsImpl
 import com.example.androidplatform.data.network.registration.RepositoryRegistrationImpl

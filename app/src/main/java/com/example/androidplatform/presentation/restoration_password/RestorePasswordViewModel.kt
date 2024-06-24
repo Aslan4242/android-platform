@@ -9,13 +9,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.androidplatform.R
 import com.example.androidplatform.domain.api.RestorePasswordInteractor
 import com.example.androidplatform.domain.models.SearchResultData
-import com.example.androidplatform.presentation.registration.models.RegistrationState
 import com.example.androidplatform.presentation.restoration_password.models.RestorePasswordState
 import com.example.androidplatform.util.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.Thread.sleep
 
 class RestorePasswordViewModel(
     application: Application,
@@ -94,14 +92,14 @@ class RestorePasswordViewModel(
         if (fieldsValid) {
             _isSendCode.value = true
             _isChangeCode.value = false
-            _isButtonEnabled.value = false
+            enableButton(false)
             startTimer()
         }
     }
 
     fun changeLogin(login: String?) {
         val login = parseField(login)
-        val fieldsValid = validateLogin(login)
+        val fieldsValid = login.isNotEmpty()
         if (fieldsValid || lastLogin != login) {
             _isChangeCode.value = true
         }
@@ -189,7 +187,7 @@ class RestorePasswordViewModel(
         return result
     }
 
-    private fun enableButton(enabled: Boolean) {
+    fun enableButton(enabled: Boolean) {
         _isButtonEnabled.value = enabled
     }
 

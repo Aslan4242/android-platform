@@ -5,15 +5,12 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.androidplatform.R
 import com.example.androidplatform.data.network.auth.AuthRequest
 import com.example.androidplatform.domain.api.AuthenticationInteractor
 import com.example.androidplatform.domain.api.ChangePasswordInteractor
 import com.example.androidplatform.domain.models.SearchResultData
-import com.example.androidplatform.presentation.authentication.models.StateAuthentication
 import com.example.androidplatform.presentation.change_password.models.ChangePasswordState
 import com.example.androidplatform.presentation.restoration_password.RestorePasswordViewModel.Companion.DEFAULT_PASSWORD
-import com.example.androidplatform.presentation.restoration_password.models.RestorePasswordState
 import com.example.androidplatform.util.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -152,24 +149,21 @@ class ChangePasswordViewModel(
         this.login = login
     }
 
-    fun resetErrorInputNewPassword() {
+    fun resetErrorInputPassword() {
         _errorInputPassword1.value = false
-    }
-
-    fun resetErrorInputRepeatNewPassword() {
         _errorInputPassword2.value = false
     }
 
     fun changePassword1(password: String?) {
         val password = parseField(password)
-        resetErrorInputNewPassword()
+        resetErrorInputPassword()
 
         _isButtonEnabled.value = password.isNotEmpty() && _errorInputPassword2.value != true
     }
 
     fun changePassword2(password: String?) {
         val password = parseField(password)
-        resetErrorInputRepeatNewPassword()
+        resetErrorInputPassword()
 
         _isButtonEnabled.value = password.isNotEmpty() && _errorInputPassword1.value != true
     }

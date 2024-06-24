@@ -1,7 +1,5 @@
 package com.example.androidplatform.data.network.clients
 
-import com.example.androidplatform.data.models.PersonalData
-
 class PersonalDataResponse(
     val login: String,
     val email: String,
