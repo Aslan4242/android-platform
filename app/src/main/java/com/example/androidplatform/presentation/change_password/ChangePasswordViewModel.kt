@@ -88,11 +88,11 @@ class ChangePasswordViewModel(
                         }
                         is SearchResultData.NoInternet -> {
                             _screenState.value = ChangePasswordState.Error(data.message)
-                            _showToastMessage.postValue(data.message.toString())
+                            _showToastMessage.postValue(getApplication<Application>().resources.getString(data.message))
                         }
                         is SearchResultData.Empty -> {
                             _screenState.value = ChangePasswordState.Error(data.message)
-                            _showToastMessage.postValue(data.message.toString())
+                            _showToastMessage.postValue(getApplication<Application>().resources.getString(data.message))
                         }
                     }
                 }

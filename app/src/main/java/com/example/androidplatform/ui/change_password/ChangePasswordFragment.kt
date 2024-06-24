@@ -76,7 +76,7 @@ class ChangePasswordFragment : Fragment() {
                 }
                 is ChangePasswordState.Error -> {
                     binding.progressBar.visibility = GONE
-                    showToast(it.message.toString())
+                    showToast(context?.resources?.getString(it.message) ?: "")
                 }
             }
         }

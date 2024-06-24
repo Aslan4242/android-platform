@@ -23,7 +23,6 @@ class RestorePasswordViewModel(
 ) : AndroidViewModel(application) {
 
     private var countDownTimer: CountDownTimer? = null
-    private val context = getApplication<Application>().applicationContext
     private val lastLogin = ""
 
     private val _screenState = MutableLiveData<RestorePasswordState>()
@@ -77,11 +76,11 @@ class RestorePasswordViewModel(
                         }
                         is SearchResultData.NoInternet -> {
                             _screenState.value = RestorePasswordState.Error(data.message)
-                            _showToastMessage.postValue(data.message.toString())
+                            _showToastMessage.postValue(getApplication<Application>().resources.getString(data.message))
                         }
                         is SearchResultData.Empty -> {
                             _screenState.value = RestorePasswordState.Error(data.message)
-                            _showToastMessage.postValue(data.message.toString())
+                            _showToastMessage.postValue(getApplication<Application>().resources.getString(data.message))
                         }
                     }
                 }
@@ -125,7 +124,7 @@ class RestorePasswordViewModel(
             if (code == DEFAULT_CODE) {
                 restorePassword(login)
             } else {
-                _showToastMessage.postValue(context.resources.getString(R.string.send_code_error))
+                _showToastMessage.postValue(getApplication<Application>().resources.getString(R.string.send_code_error))
             }
         }
     }
@@ -156,7 +155,7 @@ class RestorePasswordViewModel(
                 }
 
                 override fun onFinish() {
-                    _formattedTime.postValue(context.resources.getString(R.string.resend_code))
+                    _formattedTime.postValue(getApplication<Application>().resources.getString(R.string.resend_code))
                 }
             }
         }
