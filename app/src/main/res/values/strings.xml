@@ -3,7 +3,6 @@
     <string name="authorization">Авторизация</string>
     <string name="registration">Регистрация</string>
     <string name="personal_account">Личный кабинет</string>
-    <string name="user_is_registered">Пользователь зарегистрирован</string>
     <string name="hint_login">Введите логин</string>
     <string name="hint_phone">Номер телефона</string>
     <string name="phone_pattern">+7(999)999–99–99</string>
