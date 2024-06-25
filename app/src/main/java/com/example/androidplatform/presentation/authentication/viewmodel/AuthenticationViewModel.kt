@@ -24,6 +24,7 @@ class AuthenticationViewModel(
     val showToastMessage: LiveData<Int> = _showToastMessage
 
     fun authenticate(login: String, password: String) {
+        _screenState.value = StateAuthentication.Loading
         viewModelScope.launch(Dispatchers.IO)  {
             val result = authenticationInteractor.authentication(AuthRequest(login, password))
             result.collect { data ->

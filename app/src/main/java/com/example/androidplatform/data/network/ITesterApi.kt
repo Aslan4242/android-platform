@@ -8,12 +8,21 @@ import com.example.androidplatform.data.network.registration.RegistrationRequest
 import com.example.androidplatform.data.network.restoration_password.RestoreCodeRequest
 import com.example.androidplatform.domain.models.clients.Client
 import retrofit2.Response
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.PATCH
+import retrofit2.http.POST
+import retrofit2.http.PUT
 
 interface ITesterApi {
 
     @POST("authorization/token")
     suspend fun authenticate(@Body request: AuthRequest): AuthResponse
+
+    @DELETE("authorization/logout")
+    suspend fun logout(@Header("Authorization") token: String): Response<Void>
 
     @GET("clients")
     suspend fun getClients(@Header("Authorization") token: String): Client

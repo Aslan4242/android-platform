@@ -38,6 +38,28 @@ class RetrofitNetworkClient(
         return response
     }
 
+    override suspend fun logout(): Result<Void> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val token = sharedPreferences.getString("token", "") ?: ""
+                val result = service.logout(token)
+                if (result.isSuccessful) {
+                    Result.success(Void.TYPE.cast(null))
+                } else {
+                    Result.failure(HttpException(result))
+                }
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
+
     override suspend fun getClients(): Result<Client> {
         if (!isConnected(context)) {
             return Result.failure(ConnectException())
@@ -90,7 +112,7 @@ class RetrofitNetworkClient(
                 if (result.isSuccessful) {
                     Result.success(Void.TYPE.cast(null))
                 } else {
-                    Result.failure(HttpException(result)) // result.errorBody().string()
+                    Result.failure(HttpException(result))
                 }
             } catch (e: HttpException) {
                 Result.failure(e)
