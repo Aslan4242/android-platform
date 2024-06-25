@@ -73,10 +73,19 @@ class AuthorizationFragment : Fragment() {
 
     private fun render(state: StateAuthentication) {
         when (state) {
+            is StateAuthentication.Loading -> {
+                binding.registrationDataSv.visibility = View.GONE
+                binding.progressBar.visibility = View.VISIBLE
+            }
             is StateAuthentication.Content -> {
+                binding.registrationDataSv.visibility = View.VISIBLE
                 findNavController().navigate(R.id.action_authorizationFragment_to_dashboardFragment)
             }
-            else -> {}
+            is StateAuthentication.Error -> {
+                binding.registrationDataSv.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.GONE
+                Toast.makeText(requireContext(), state.message, Toast.LENGTH_LONG).show()
+            }
         }
     }
 
