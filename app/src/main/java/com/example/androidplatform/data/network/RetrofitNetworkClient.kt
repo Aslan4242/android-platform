@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.androidplatform.data.network.auth.AuthRequest
 import com.example.androidplatform.data.network.auth.AuthResponse
+import com.example.androidplatform.data.network.change_password.ChangePasswordRequest
 import com.example.androidplatform.data.network.registration.RegistrationRequest
+import com.example.androidplatform.data.network.restoration_password.RestoreCodeRequest
 import com.example.androidplatform.domain.models.clients.Client
 import com.example.androidplatform.util.isConnected
 import kotlinx.coroutines.Dispatchers
@@ -89,6 +91,53 @@ class RetrofitNetworkClient(
                     Result.success(Void.TYPE.cast(null))
                 } else {
                     Result.failure(HttpException(result)) // result.errorBody().string()
+                }
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
+
+    override suspend fun restorePassword(
+        login: String
+    ): Result<Void> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val result = service.restorePassword(RestoreCodeRequest(login))
+                Result.success(result)
+                if (result.isSuccessful) {
+                    Result.success(Void.TYPE.cast(null))
+                } else {
+                    Result.failure(HttpException(result))
+                }
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
+
+    override suspend fun changePassword(password: String): Result<Void> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val token = sharedPreferences.getString("token", "") ?: ""
+                val result = service.changePassword(token, ChangePasswordRequest(password))
+                Result.success(result)
+                if (result.isSuccessful) {
+                    Result.success(Void.TYPE.cast(null))
+                } else {
+                    Result.failure(HttpException(result))
                 }
             } catch (e: HttpException) {
                 Result.failure(e)

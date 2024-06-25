@@ -1,8 +1,8 @@
 package com.example.androidplatform.ui.root
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -26,7 +26,8 @@ class RootActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.authorizationFragment,
                 R.id.restorePasswordFragment,
-                R.id.registrationFragment -> {
+                R.id.registrationFragment,
+                R.id.changePasswordFragment -> {
                     bottomNavigationView.visibility = View.GONE
                 }
                 else -> {

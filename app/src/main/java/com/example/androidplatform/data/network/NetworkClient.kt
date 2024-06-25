@@ -19,4 +19,6 @@ interface NetworkClient {
         address: String,
         sex: String
     ): Result<Void>
+    suspend fun restorePassword(login: String): Result<Void>
+    suspend fun changePassword(password: String): Result<Void>
 }
