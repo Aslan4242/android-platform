@@ -78,7 +78,6 @@ class AuthorizationFragment : Fragment() {
                 binding.progressBar.visibility = View.VISIBLE
             }
             is StateAuthentication.Content -> {
-                binding.registrationDataSv.visibility = View.VISIBLE
                 findNavController().navigate(R.id.action_authorizationFragment_to_dashboardFragment)
             }
             is StateAuthentication.Error -> {
