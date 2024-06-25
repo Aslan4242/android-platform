@@ -97,11 +97,11 @@ class RegistrationFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.errorInputPassword1.observe(viewLifecycleOwner) {
             val errorMessage = if (it) getString(R.string.send_password_error) else null
-            binding.passwordLayout.error = errorMessage
+            binding.passwordTil.error = errorMessage
         }
         viewModel.errorInputPassword2.observe(viewLifecycleOwner) {
             val errorMessage = if (it) getString(R.string.send_password_error) else null
-            binding.passwordRepeatLayout.error = errorMessage
+            binding.passwordRepeatTil.error = errorMessage
         }
         viewModel.isButtonEnabled.observe(viewLifecycleOwner) {
             binding.registerBtn.apply {

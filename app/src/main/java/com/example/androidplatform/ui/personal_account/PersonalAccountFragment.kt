@@ -101,6 +101,7 @@ class PersonalAccountFragment : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
             }
+
             else -> {}
         }
     }
@@ -114,7 +115,7 @@ class PersonalAccountFragment : Fragment() {
         binding.surnameTv.text = client.lastName
         binding.nameTv.text = client.firstName
         binding.patronymicTv.text = client.middleName
-        binding.sexTv.text = client.sex
+        binding.sexTv.text = translateGender(client.sex)
         binding.birthdateTv.text = convertDateTime(client.birthdate)
         binding.phoneNumberTv.text = client.phoneNumber
         binding.addressTv.text = client.address
@@ -138,5 +139,13 @@ class PersonalAccountFragment : Fragment() {
             .toFormatter()
 
         return LocalDateTime.parse(input, formatter)
+    }
+
+    private fun translateGender(gender: String): String {
+        return when (gender) {
+            requireContext().getString(R.string.male_eng) -> requireContext().getString(R.string.male)
+            requireContext().getString(R.string.female_eng) -> requireContext().getString(R.string.female)
+            else -> "Не указан"
+        }
     }
 }

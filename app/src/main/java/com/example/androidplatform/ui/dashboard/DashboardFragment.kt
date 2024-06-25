@@ -32,8 +32,6 @@ class DashboardFragment : Fragment()  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val window = requireActivity().window
-        window.navigationBarColor = resources.getColor(R.color.gray_3)
 
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
