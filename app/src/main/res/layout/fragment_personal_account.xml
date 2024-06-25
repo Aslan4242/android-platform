@@ -382,7 +382,6 @@
                 android:layout_marginTop="24dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/orange"
-                android:enabled="false"
                 android:text="@string/logout"
                 android:textColor="@color/white"
                 app:cornerRadius="0dp"
