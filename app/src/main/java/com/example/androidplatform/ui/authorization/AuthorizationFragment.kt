@@ -31,21 +31,11 @@ class AuthorizationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val window = requireActivity().window
-        window.navigationBarColor = resources.getColor(R.color.white)
 
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(s: Editable?) {
-                if (binding.loginEt.text.isNotEmpty()) {
-                    binding.loginEt.setBackgroundResource(R.drawable.edit_text_frame)
-                    binding.loginEt.setHintTextColor(resources.getColor(R.color.gray_3))
-                }
-                if (binding.passwordEt.text.isNotEmpty()) {
-                    binding.passwordEt.setBackgroundResource(R.drawable.edit_text_frame)
-                    binding.passwordEt.setHintTextColor(resources.getColor(R.color.gray_3))
-                }
                 updateEnterButton()
             }
         }
@@ -54,13 +44,11 @@ class AuthorizationFragment : Fragment() {
         binding.passwordEt.addTextChangedListener(textWatcher)
 
         binding.enterBtn.setOnClickListener {
-            if (binding.loginEt.text.isNotEmpty() && binding.passwordEt.text.isNotEmpty()) {
+            if (binding.loginEt.text?.isNotEmpty() == true && binding.passwordEt.text?.isNotEmpty() == true) {
                 viewModel.authenticate(
                     login = binding.loginEt.text.toString(),
                     password = binding.passwordEt.text.toString()
                 )
-            } else {
-                showErrorMessage()
             }
         }
 
@@ -83,33 +71,32 @@ class AuthorizationFragment : Fragment() {
 
     private fun render(state: StateAuthentication) {
         when (state) {
+            is StateAuthentication.Loading -> {
+                binding.registrationDataSv.visibility = View.GONE
+                binding.progressBar.visibility = View.VISIBLE
+            }
             is StateAuthentication.Content -> {
                 findNavController().navigate(R.id.action_authorizationFragment_to_dashboardFragment)
             }
-            else -> {}
+            is StateAuthentication.Error -> {
+                binding.registrationDataSv.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.GONE
+                Toast.makeText(requireContext(), state.message, Toast.LENGTH_LONG).show()
+            }
         }
     }
 
     private fun updateEnterButton() {
-        if (binding.loginEt.text.isNotEmpty() && binding.passwordEt.text.isNotEmpty()) {
+        if (binding.loginEt.text?.isNotEmpty() == true && binding.passwordEt.text?.isNotEmpty() == true) {
             binding.enterBtn.apply {
+                isEnabled = true
                 setBackgroundColor(resources.getColor(R.color.orange))
             }
         } else {
             binding.enterBtn.apply {
+                isEnabled = false
                 setBackgroundColor(resources.getColor(R.color.gray_2))
             }
-        }
-    }
-
-    private fun showErrorMessage () {
-        if (binding.loginEt.text.isEmpty()) {
-            binding.loginEt.setBackgroundResource(R.drawable.edit_text_frame_error)
-            binding.loginEt.setHintTextColor(resources.getColor(R.color.red_2))
-        }
-        if (binding.passwordEt.text.isEmpty()) {
-            binding.passwordEt.setBackgroundResource(R.drawable.edit_text_frame_error)
-            binding.passwordEt.setHintTextColor(resources.getColor(R.color.red_2))
         }
     }
 }

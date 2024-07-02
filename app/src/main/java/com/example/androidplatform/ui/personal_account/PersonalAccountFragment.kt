@@ -4,11 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.androidplatform.R
 import com.example.androidplatform.databinding.FragmentPersonalAccountBinding
 import com.example.androidplatform.domain.models.clients.Client
+import com.example.androidplatform.presentation.logout.models.LogoutState
 import com.example.androidplatform.presentation.personal_account.models.ScreenStateClients
 import com.example.androidplatform.presentation.personal_account.viewmodel.PersonalAccountViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -19,6 +24,7 @@ class PersonalAccountFragment : Fragment() {
     private var _binding: FragmentPersonalAccountBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<PersonalAccountViewModel>()
+    private lateinit var confirmDialog: MaterialAlertDialogBuilder
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +42,26 @@ class PersonalAccountFragment : Fragment() {
 
         viewModel.screenState().observe(viewLifecycleOwner) {
             render(it)
+        }
+
+        viewModel.logoutScreenState().observe(viewLifecycleOwner) {
+            logoutMessage(it)
+        }
+
+        viewModel.showToastMessage.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+        }
+
+        confirmDialog = MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.do_you_want_exit)
+            .setNeutralButton("Отмена") { _, _ ->
+                // ничего не делаем
+            }.setNegativeButton("Выйти") { _, _ ->
+                viewModel.logout()
+            }
+
+        binding.logoutBtn.setOnClickListener {
+            confirmDialog.show()
         }
     }
 
@@ -65,6 +91,21 @@ class PersonalAccountFragment : Fragment() {
         }
     }
 
+    private fun logoutMessage(state: LogoutState) {
+        when (state) {
+            is LogoutState.Content -> {
+                findNavController().navigate(R.id.action_logout_pop_back)
+                Toast.makeText(
+                    requireContext(),
+                    state.message,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
+            else -> {}
+        }
+    }
+
     private fun showContent(client: Client) {
         binding.fullNameTv.text = client.run {
             "$lastName $firstName $middleName"
@@ -74,7 +115,7 @@ class PersonalAccountFragment : Fragment() {
         binding.surnameTv.text = client.lastName
         binding.nameTv.text = client.firstName
         binding.patronymicTv.text = client.middleName
-        binding.sexTv.text = client.sex
+        binding.sexTv.text = translateGender(client.sex)
         binding.birthdateTv.text = convertDateTime(client.birthdate)
         binding.phoneNumberTv.text = client.phoneNumber
         binding.addressTv.text = client.address
@@ -98,5 +139,13 @@ class PersonalAccountFragment : Fragment() {
             .toFormatter()
 
         return LocalDateTime.parse(input, formatter)
+    }
+
+    private fun translateGender(gender: String): String {
+        return when (gender) {
+            requireContext().getString(R.string.male_eng) -> requireContext().getString(R.string.male)
+            requireContext().getString(R.string.female_eng) -> requireContext().getString(R.string.female)
+            else -> "Не указан"
+        }
     }
 }

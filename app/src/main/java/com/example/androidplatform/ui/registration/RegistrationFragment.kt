@@ -36,52 +36,13 @@ class RegistrationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         var gender = requireContext().resources.getString(R.string.male_eng)
 
-        val textWatcher = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun afterTextChanged(s: Editable?) {
-                listOf(
-                    binding.loginEt,
-                    binding.emailEt,
-                    binding.passwordEt,
-                    binding.passwordRepeatEt
-                ).forEach { editText ->
-                    if (editText.text.isNotEmpty()) {
-                        editText.apply {
-                            setBackgroundResource(R.drawable.edit_text_frame)
-                            setHintTextColor(resources.getColor(R.color.gray_3))
-                        }
-                    }
-                }
-                updateRegisterButton()
-            }
-        }
-
         binding.genderRadioGroup.setOnCheckedChangeListener { group, _ ->
             gender = getGender(group)
         }
 
-        binding.loginEt.addTextChangedListener(textWatcher)
-        binding.emailEt.addTextChangedListener(textWatcher)
-        binding.passwordEt.addTextChangedListener(textWatcher)
-        binding.passwordRepeatEt.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun afterTextChanged(s: Editable?) {
-                if (binding.passwordEt.text.toString() == binding.passwordRepeatEt.text.toString()) {
-                    binding.passwordEt.apply {
-                        setBackgroundResource(R.drawable.edit_text_frame)
-                        setHintTextColor(resources.getColor(R.color.gray_3))
-                    }
-                    binding.passwordRepeatEt.apply {
-                        setBackgroundResource(R.drawable.edit_text_frame)
-                        setHintTextColor(resources.getColor(R.color.gray_3))
-                    }
-                    binding.passwordErrorTv.visibility = View.GONE
-                }
-                isPasswordsMatch()
-            }
-        })
+        observeViewModel()
+        addTextChangeListeners()
+        setClickListeners(gender)
 
         binding.birthdateEt.setOnClickListener {
             val calendar = Calendar.getInstance()
@@ -103,57 +64,6 @@ class RegistrationFragment : Fragment() {
             datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
             datePickerDialog.show()
         }
-
-        binding.clearBirthdateTv.setOnClickListener {
-            binding.birthdateEt.text.clear()
-        }
-
-        binding.registerBtn.setOnClickListener {
-            if (
-                binding.loginEt.text.isNotEmpty()
-                && binding.emailEt.text.isNotEmpty()
-                && binding.passwordEt.text.isNotEmpty()
-                && (binding.passwordEt.text.toString() == binding.passwordRepeatEt.text.toString())
-            ) {
-                viewModel.createClient(
-                    login = binding.loginEt.text.toString(),
-                    password = binding.passwordEt.text.toString(),
-                    phoneNumber = binding.phoneNumberEt.text.toString(),
-                    email = binding.emailEt.text.toString(),
-                    name = binding.nameEt.text.toString(),
-                    surname = binding.surnameEt.text.toString(),
-                    patronymic = binding.patronymicEt.text.toString(),
-                    birthdate = binding.birthdateEt.text.toString(),
-                    address = binding.addressEt.text.toString(),
-                    sex = gender
-                )
-            } else {
-                showErrorMessage()
-            }
-        }
-
-        viewModel.screenState().observe(viewLifecycleOwner) {
-            render(it)
-        }
-
-        viewModel.showToastMessage.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
-        }
-    }
-
-    private fun render(state: RegistrationState) {
-        when (state) {
-            is RegistrationState.Content -> {
-                Toast.makeText(
-                    requireContext(),
-                    resources.getString(R.string.successful_registration),
-                    Toast.LENGTH_LONG
-                ).show()
-                findNavController().popBackStack()
-            }
-
-            else -> {}
-        }
     }
 
     private fun getGender(group: RadioGroup): String {
@@ -166,52 +76,99 @@ class RegistrationFragment : Fragment() {
         }
     }
 
-
-    private fun updateRegisterButton() {
-        if (
-            binding.loginEt.text.isNotEmpty()
-            && binding.passwordEt.text.isNotEmpty()
-            && binding.emailEt.text.isNotEmpty()
-        ) {
-            binding.registerBtn.setBackgroundColor(resources.getColor(R.color.orange))
-        } else {
-            binding.registerBtn.setBackgroundColor(resources.getColor(R.color.gray_2))
+    private fun setClickListeners(gender: String) {
+        binding.registerBtn.setOnClickListener {
+            viewModel.registration(
+                login = binding.loginEt.text.toString(),
+                password = binding.passwordEt.text.toString(),
+                repeatPassword = binding.passwordRepeatEt.text.toString(),
+                phoneNumber = binding.phoneNumberEt.text.toString(),
+                email = binding.emailEt.text.toString(),
+                name = binding.nameEt.text.toString(),
+                surname = binding.surnameEt.text.toString(),
+                patronymic = binding.patronymicEt.text.toString(),
+                birthdate = binding.birthdateEt.text.toString(),
+                address = binding.addressEt.text.toString(),
+                sex = gender
+            )
         }
     }
 
-    private fun showErrorMessage() {
-        listOf(
-            binding.loginEt,
-            binding.emailEt,
-            binding.passwordEt,
-            binding.passwordRepeatEt
-        ).forEach { editText ->
-            if (editText.text.isEmpty()) {
-                editText.apply {
-                    setBackgroundResource(R.drawable.edit_text_frame_error)
-                    setHintTextColor(resources.getColor(R.color.red_2))
+    private fun observeViewModel() {
+        viewModel.errorInputPassword1.observe(viewLifecycleOwner) {
+            val errorMessage = if (it) getString(R.string.send_password_error) else null
+            binding.passwordTil.error = errorMessage
+        }
+        viewModel.errorInputPassword2.observe(viewLifecycleOwner) {
+            val errorMessage = if (it) getString(R.string.send_password_error) else null
+            binding.passwordRepeatTil.error = errorMessage
+        }
+        viewModel.isButtonEnabled.observe(viewLifecycleOwner) {
+            binding.registerBtn.apply {
+                isEnabled = it
+                if (it)
+                    setBackgroundColor(resources.getColor(R.color.orange))
+                else
+                    setBackgroundColor(resources.getColor(R.color.gray_2))
+            }
+        }
+        viewModel.screenState().observe(viewLifecycleOwner) {
+            when (it) {
+                is RegistrationState.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+
+                is RegistrationState.Content -> {
+                    binding.progressBar.visibility = View.GONE
+                    showToast(getString(R.string.successful_registration))
+                    findNavController().popBackStack()
+                }
+
+                is RegistrationState.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    showToast(context?.resources?.getString(it.message) ?: "")
                 }
             }
         }
+        viewModel.showToastMessage.observe(viewLifecycleOwner) {
+            showToast(it)
+        }
     }
 
-    private fun isPasswordsMatch() {
-        if (binding.passwordEt.text.toString() != binding.passwordRepeatEt.text.toString()) {
-            binding.passwordEt.apply {
-                setBackgroundResource(R.drawable.edit_text_frame_error)
-                setHintTextColor(resources.getColor(R.color.red_2))
+    private fun addTextChangeListeners() {
+        val textWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
-            binding.passwordRepeatEt.apply {
-                setBackgroundResource(R.drawable.edit_text_frame_error)
-                setHintTextColor(resources.getColor(R.color.red_2))
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                viewModel.apply {
+                    addLogin(binding.loginEt.text.toString())
+                    addEmail(binding.emailEt.text.toString())
+                    addBirthdate(binding.birthdateEt.text.toString())
+                    addPassword1(binding.passwordEt.text.toString())
+                    addPassword2(binding.passwordRepeatEt.text.toString())
+                }
             }
-            binding.passwordErrorTv.visibility = View.VISIBLE
+
+            override fun afterTextChanged(s: Editable?) {
+            }
         }
 
+        binding.apply {
+            loginEt.addTextChangedListener(textWatcher)
+            emailEt.addTextChangedListener(textWatcher)
+            birthdateEt.addTextChangedListener(textWatcher)
+            passwordEt.addTextChangedListener(textWatcher)
+            passwordRepeatEt.addTextChangedListener(textWatcher)
+        }
     }
 
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null
-//    }
+    private fun showToast(text: String) {
+        Toast.makeText(requireContext(), text, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

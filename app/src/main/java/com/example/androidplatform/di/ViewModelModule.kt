@@ -26,7 +26,8 @@ val viewModelModule = module {
 
     viewModel {
             PersonalAccountViewModel(
-                clientInteractor = get()
+                clientInteractor = get(),
+                logoutInteractor = get()
             )
     }
 
