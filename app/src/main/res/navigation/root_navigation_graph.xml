@@ -41,6 +41,9 @@
         android:name="com.example.androidplatform.ui.dashboard.DashboardFragment"
         android:label="DashboardFragment" >
         <action
+            android:id="@+id/action_dashboardFragment_to_cardsFragment"
+            app:destination="@id/cardsFragment" />
+        <action
             android:id="@+id/action_pop_back"
             app:destination="@id/authorizationFragment"
             app:popUpTo="@id/authorizationFragment"
@@ -69,5 +72,25 @@
             app:argType="string"
             app:nullable="true" />
     </fragment>
-
+    <fragment
+        android:id="@+id/cardsFragment"
+        android:name="com.example.androidplatform.ui.cards.CardsFragment"
+        android:label="CardsFragment" >
+    <action
+        android:id="@+id/action_cards_fragment_to_personal_data_by_card_ordering_fragment"
+        app:destination="@id/personalDataByCardOrderingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/debitCardsFragment"
+        android:name="com.example.androidplatform.ui.debit_cards.DebitCardsFragment"
+        android:label="DebitCardsFragment" >
+    </fragment>
+    <fragment
+        android:id="@+id/personalDataByCardOrderingFragment"
+        android:name="com.example.androidplatform.ui.personal_data_by_card_ordering.PersonalDataByCardOrderingFragment"
+        android:label="PersonalDataByCardOrderingFragment" >
+        <action
+            android:id="@+id/action_personalDataByCardOrderingFragment_to_dashBoardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
 </navigation>

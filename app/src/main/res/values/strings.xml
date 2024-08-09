@@ -24,6 +24,13 @@
     <string name="fill_fields">Заполните поля</string>
     <string name="fill_field">Заполните поле</string>
     <string name="cards">Карты</string>
+    <string name="bank_card">Банковские карты</string>
+    <string name="debit_card">Дебетовые</string>
+    <string name="debit_card_title">Дебетовая карта</string>
+    <string name="debit_card_description">Дебетовая карта — финансовый инструмент для безналичных расчетов.</string>
+    <string name="credit_card">Кредитные</string>
+    <string name="credit_card_title">Кредитная карта</string>
+    <string name="credit_card_description">Кредитная карта — это платежная карта, на которой лежат деньги банка. Если оплачиваете что-то кредитной картой, берете у банка в долг — эти деньги нужно вернуть.</string>
     <string name="accounts">Счета</string>
     <string name="order_card">Заказать карту</string>
     <string name="open_account">Открыть счет</string>
@@ -70,4 +77,15 @@
     <string name="change">Изменить</string>
     <string name="password_was_reset">Пароль был сброшен на %s</string>
     <string name="required_field">Обязательное поле</string>
+    <string name="order">Заказать</string>
+    <string name="personal_data">Персональные данные</string>
+    <string name="passport_data">Паспортные данные</string>
+    <string name="birthdate_pattern">01.01.2000</string>
+    <string name="card_ordered_successfully">Заказ оформлен,\nдождитесь звонка от менеджера</string>
+    <string name="back_to_dashboard">Вернуться в мой банк</string>
+    <string name="program_type">Программа выпуска</string>
+    <string name="mir">МИР</string>
+    <string name="visa">Visa</string>
+    <string name="mastercard">Mastercard</string>
+    <string name="maestro">Maestro</string>
 </resources>
