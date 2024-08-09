@@ -59,5 +59,4 @@
             android:layout_height="@dimen/_200dp" />
     </LinearLayout>
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

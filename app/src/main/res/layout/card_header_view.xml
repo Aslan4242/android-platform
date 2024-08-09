@@ -19,5 +19,4 @@
         android:textSize="@dimen/text_size_16"
         tools:text="@string/cards"/>
 
-
 </LinearLayout>
