@@ -87,12 +87,12 @@ class PersonalDataByCardOrderingFragment : Fragment() {
 
         binding.orderCardBtn.setOnClickListener {
             when (arguments?.getString("cardProduct")) {
-                "DEBIT_CARD" -> viewModel.cardOrder(
+                "DEBIT_CARD" -> viewModel.orderCard(
                     CardProduct.DEBIT_CARD,
                     getPaymentType(programType)
                 )
 
-                "CREDIT_CARD" -> viewModel.cardOrder(
+                "CREDIT_CARD" -> viewModel.orderCard(
                     CardProduct.CREDIT_CARD,
                     getPaymentType(programType)
                 )

@@ -49,7 +49,7 @@ class PersonalDataByCardOrderingViewModel(
         }
     }
 
-    fun cardOrder(cardProduct: CardProduct, cardProgramType: CardProgramType) {
+    fun orderCard(cardProduct: CardProduct, cardProgramType: CardProgramType) {
         viewModelScope.launch(Dispatchers.IO) {
             val launchOperationResult =
                 launchOperationInteractor.launchOperation(OperationCode.CARD_ORDER)
