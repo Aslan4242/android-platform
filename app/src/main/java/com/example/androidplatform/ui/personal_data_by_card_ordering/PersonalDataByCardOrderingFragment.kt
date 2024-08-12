@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.androidplatform.R
 import com.example.androidplatform.data.network.proceed_operation.CardProduct
-import com.example.androidplatform.data.network.proceed_operation.CardProgramType
 import com.example.androidplatform.databinding.FragmentPersonalDataByCardOrderingBinding
 import com.example.androidplatform.domain.models.clients.Client
 import com.example.androidplatform.presentation.personal_account.models.ScreenStateClients
@@ -20,10 +19,6 @@ import com.example.androidplatform.presentation.personal_data_by_card_ordering.v
 import com.example.androidplatform.ui.root.RootActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeFormatterBuilder
-import java.time.temporal.ChronoField
 
 class PersonalDataByCardOrderingFragment : Fragment() {
     private var _binding: FragmentPersonalDataByCardOrderingBinding? = null
@@ -89,12 +84,12 @@ class PersonalDataByCardOrderingFragment : Fragment() {
             when (arguments?.getString("cardProduct")) {
                 "DEBIT_CARD" -> viewModel.orderCard(
                     CardProduct.DEBIT_CARD,
-                    getPaymentType(programType)
+                    viewModel.getPaymentType(programType)
                 )
 
                 "CREDIT_CARD" -> viewModel.orderCard(
                     CardProduct.CREDIT_CARD,
-                    getPaymentType(programType)
+                    viewModel.getPaymentType(programType)
                 )
             }
         }
@@ -130,49 +125,14 @@ class PersonalDataByCardOrderingFragment : Fragment() {
         override fun onSlide(bottomSheet: View, slideOffset: Float) {}
     }
 
-
     private fun showClientData(client: Client) {
         binding.apply {
             surnameEt.setText(client.lastName)
             nameEt.setText(client.firstName)
             patronymicEt.setText(client.middleName)
-            birthdateEt.setText(convertDateTime(client.birthdate))
-            genderRadioGroup.check(getGenderId(client.sex))
+            birthdateEt.setText(viewModel.convertDateTime(client.birthdate))
+            genderRadioGroup.check(viewModel.getGenderId(client.sex))
             addressEt.setText(client.address)
-        }
-    }
-
-    private fun convertDateTime(input: String): String {
-        return parseDate(input).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
-    }
-
-    private fun parseDate(input: String): LocalDateTime {
-        val formatter = DateTimeFormatterBuilder()
-            .appendPattern("yyyy-MM-dd")
-            .optionalStart()
-            .appendPattern("'T'HH:mm:ss")
-            .optionalStart()
-            .appendFraction(ChronoField.MICRO_OF_SECOND, 0, 3, true)
-            .optionalEnd()
-            .optionalEnd()
-            .toFormatter()
-        return LocalDateTime.parse(input, formatter)
-    }
-
-    private fun getGenderId(gender: String): Int {
-        return when (gender) {
-            getString(R.string.male_eng) -> R.id.male_radio_button
-            getString(R.string.female_eng) -> R.id.female_radio_button
-            else -> 0
-        }
-    }
-
-    private fun getPaymentType(paymentType: String): CardProgramType {
-        return when (paymentType) {
-            getString(R.string.mir) -> CardProgramType.MIR
-            getString(R.string.visa) -> CardProgramType.VISA
-            getString(R.string.maestro) -> CardProgramType.MAESTRO
-            else -> CardProgramType.MASTERCARD
         }
     }
 
@@ -196,3 +156,4 @@ class PersonalDataByCardOrderingFragment : Fragment() {
         _binding = null
     }
 }
+

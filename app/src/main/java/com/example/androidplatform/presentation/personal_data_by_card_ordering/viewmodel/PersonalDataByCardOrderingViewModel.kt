@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.androidplatform.R
 import com.example.androidplatform.data.network.launch_operation.OperationCode
 import com.example.androidplatform.data.network.proceed_operation.CardProduct
 import com.example.androidplatform.data.network.proceed_operation.CardProgramType
@@ -21,6 +22,10 @@ import com.example.androidplatform.util.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatterBuilder
+import java.time.temporal.ChronoField
 
 class PersonalDataByCardOrderingViewModel(
     private val clientInteractor: ClientInteractor,
@@ -70,7 +75,8 @@ class PersonalDataByCardOrderingViewModel(
                                 )
                             )
                         )
-                        val confirmOperationResult = confirmOperationInteractor.confirmOperation(requestId)
+                        val confirmOperationResult =
+                            confirmOperationInteractor.confirmOperation(requestId)
                         withContext(Dispatchers.Main) {
                             proceedOperationResult.collect { proceedData ->
                                 handleOperationState(proceedData)
@@ -80,6 +86,7 @@ class PersonalDataByCardOrderingViewModel(
                             }
                         }
                     }
+
                     is SearchResultData.ErrorServer,
                     is SearchResultData.NoInternet,
                     is SearchResultData.Empty -> {
@@ -89,6 +96,40 @@ class PersonalDataByCardOrderingViewModel(
                     }
                 }
             }
+        }
+    }
+
+    fun getPaymentType(paymentType: String): CardProgramType {
+        return when (paymentType) {
+            "МИР" -> CardProgramType.MIR
+            "Visa" -> CardProgramType.VISA
+            "Maestro" -> CardProgramType.MAESTRO
+            else -> CardProgramType.MASTERCARD
+        }
+    }
+
+    fun convertDateTime(input: String): String {
+        return parseDate(input).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+    }
+
+    private fun parseDate(input: String): LocalDateTime {
+        val formatter = DateTimeFormatterBuilder()
+            .appendPattern("yyyy-MM-dd")
+            .optionalStart()
+            .appendPattern("'T'HH:mm:ss")
+            .optionalStart()
+            .appendFraction(ChronoField.MICRO_OF_SECOND, 0, 3, true)
+            .optionalEnd()
+            .optionalEnd()
+            .toFormatter()
+        return LocalDateTime.parse(input, formatter)
+    }
+
+    fun getGenderId(gender: String): Int {
+        return when (gender) {
+            "Male" -> R.id.male_radio_button
+            "Female" -> R.id.female_radio_button
+            else -> 0
         }
     }
 
