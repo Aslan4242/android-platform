@@ -7,6 +7,7 @@ import com.example.androidplatform.data.network.change_password.ChangePasswordRe
 import com.example.androidplatform.data.network.registration.RegistrationRequest
 import com.example.androidplatform.data.network.restoration_password.RestoreCodeRequest
 import com.example.androidplatform.domain.models.clients.Client
+import com.example.androidplatform.domain.models.history.Transaction
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -38,4 +39,7 @@ interface ITesterApi {
         @Header("Authorization") token: String,
         @Body changePasswordRequest: ChangePasswordRequest
     ): Response<Void>
+
+    @GET("transactions")
+    suspend fun getHistory(@Header("Authorization") token: String): List<Transaction>
 }

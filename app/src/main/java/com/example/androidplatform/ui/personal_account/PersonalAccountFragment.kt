@@ -13,12 +13,10 @@ import com.example.androidplatform.domain.models.clients.Client
 import com.example.androidplatform.presentation.logout.models.LogoutState
 import com.example.androidplatform.presentation.personal_account.models.ScreenStateClients
 import com.example.androidplatform.presentation.personal_account.viewmodel.PersonalAccountViewModel
+import com.example.androidplatform.util.parseDate
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeFormatterBuilder
-import java.time.temporal.ChronoField
 
 class PersonalAccountFragment : Fragment() {
     private var _binding: FragmentPersonalAccountBinding? = null
@@ -122,23 +120,9 @@ class PersonalAccountFragment : Fragment() {
     }
 
     private fun convertDateTime(input: String): String {
-        val dateTime = parseDate(input)
+        val dateTime = input.parseDate()
         val outputFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
         return dateTime.format(outputFormatter)
-    }
-
-    private fun parseDate(input: String): LocalDateTime {
-        val formatter = DateTimeFormatterBuilder()
-            .appendPattern("yyyy-MM-dd")
-            .optionalStart()
-            .appendPattern("'T'HH:mm:ss")
-            .optionalStart()
-            .appendFraction(ChronoField.MICRO_OF_SECOND, 0, 3, true)
-            .optionalEnd()
-            .optionalEnd()
-            .toFormatter()
-
-        return LocalDateTime.parse(input, formatter)
     }
 
     private fun translateGender(gender: String): String {

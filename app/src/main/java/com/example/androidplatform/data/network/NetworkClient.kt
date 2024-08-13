@@ -3,6 +3,7 @@ package com.example.androidplatform.data.network
 import com.example.androidplatform.data.network.auth.AuthRequest
 import com.example.androidplatform.data.network.auth.AuthResponse
 import com.example.androidplatform.domain.models.clients.Client
+import com.example.androidplatform.domain.models.history.Transaction
 
 interface NetworkClient {
     suspend fun authenticate(authRequest: AuthRequest): Result<AuthResponse>
@@ -22,4 +23,5 @@ interface NetworkClient {
     ): Result<Void>
     suspend fun restorePassword(login: String): Result<Void>
     suspend fun changePassword(password: String): Result<Void>
+    suspend fun getHistory(): Result<List<Transaction>>
 }
