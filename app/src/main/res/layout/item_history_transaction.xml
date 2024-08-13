@@ -3,33 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_45dp"
+    android:layout_marginTop="@dimen/_16dp"
     android:background="@color/gray_6"
-    android:paddingVertical="25dp"
-    android:paddingHorizontal="16dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginHorizontal="45dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/_16dp"
+    android:paddingVertical="@dimen/_20dp">
 
     <TextView
         android:id="@+id/transaction_name"
         android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
         android:layout_weight="1"
-        android:textSize="@dimen/text_size_12"
         android:fontFamily="@font/inter_medium"
         android:textColor="@color/gray_2"
-        android:layout_marginEnd="24dp"
-        tools:text="Между своими счетами"
-        />
+        android:textSize="@dimen/text_size_12"
+        tools:text="Между своими счетами" />
 
     <TextView
         android:id="@+id/transaction_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size_12"
-        android:fontFamily="@font/inter_medium"
         android:layout_gravity="center"
-        tools:text="50 000 Р"
-        />
+        android:fontFamily="@font/inter_medium"
+        android:textSize="@dimen/text_size_12"
+        tools:text="50 000 Р" />
 
 </LinearLayout>
