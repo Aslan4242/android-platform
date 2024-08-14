@@ -23,7 +23,7 @@
             android:id="@+id/transaction_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_regular"
+            android:fontFamily="@font/inter_bold"
             android:textColor="@color/gray_2"
             android:textSize="@dimen/text_size_12"
             tools:text="4012412391023912490123" />

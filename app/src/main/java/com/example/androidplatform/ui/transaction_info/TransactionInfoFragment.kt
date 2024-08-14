@@ -62,7 +62,8 @@ class TransactionInfoFragment : Fragment() {
             progressBar.visibility = View.GONE
             accountNameValue.text = transaction.account.name
             if (transaction.receiver == null) {
-                accountNumberLl.visibility = View.GONE
+                accountNumberLabel.visibility = View.GONE
+                accountNumberValue.visibility = View.GONE
                 accountNumberReceiverValue.text = transaction.account.number
             } else {
                 if (transaction.type == TransactionType.EXPENSE.value) {
@@ -79,6 +80,7 @@ class TransactionInfoFragment : Fragment() {
             transactionCommentValue.text = transaction.comment
             transaction.reason?.let {
                 transactionReasonValue.visibility = View.VISIBLE
+                transactionReasonLabel.visibility = View.VISIBLE
                 transactionReasonValue.text = it
             }
             transactionStateValue.setText(
