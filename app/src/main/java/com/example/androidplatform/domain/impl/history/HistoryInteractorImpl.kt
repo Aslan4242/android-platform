@@ -10,4 +10,8 @@ class HistoryInteractorImpl(private val historyRepository: RepositoryHistory) : 
     override suspend fun getHistory(): Flow<SearchResultData<List<Transaction>>> {
         return historyRepository.getHistory()
     }
+
+    override suspend fun getTransaction(transactionId: Int): Flow<SearchResultData<Transaction>> {
+        return historyRepository.getTransaction(transactionId)
+    }
 }

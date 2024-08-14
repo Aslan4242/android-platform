@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/history_cl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.androidplatform.ui.registration.RegistrationFragment">
+
+    <TextView
+        android:id="@+id/transaction_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20dp"
+        android:fontFamily="@font/inter_medium"
+        android:text="@string/transaction"
+        android:textSize="@dimen/text_size_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/transaction_info_sv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_0dp"
+        android:paddingVertical="@dimen/_16dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/transaction_tv">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/left_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/_45dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/right_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/_45dp" />
+
+            <LinearLayout
+                android:id="@+id/account_name_ll"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13dp"
+                android:background="@color/gray_6"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_16dp"
+                android:paddingVertical="@dimen/_20dp"
+                app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                app:layout_constraintStart_toStartOf="@id/left_guideline"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/account_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:text="@string/account_name"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12" />
+
+                <TextView
+                    android:id="@+id/account_name_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12"
+                    tools:text="Карточный счёт Visa *8808" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/account_number_ll"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16dp"
+                android:background="@color/gray_6"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_16dp"
+                android:paddingVertical="@dimen/_20dp"
+                app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                app:layout_constraintStart_toStartOf="@id/left_guideline"
+                app:layout_constraintTop_toBottomOf="@id/account_name_ll">
+
+                <TextView
+                    android:id="@+id/account_number_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:text="@string/account_number"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12" />
+
+                <TextView
+                    android:id="@+id/account_number_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12"
+                    tools:text="40810614578744000312" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/account_number_receiver_ll"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13dp"
+                android:background="@color/gray_6"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_16dp"
+                android:paddingVertical="@dimen/_20dp"
+                app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                app:layout_constraintStart_toStartOf="@id/left_guideline"
+                app:layout_constraintTop_toBottomOf="@id/account_number_ll">
+
+                <TextView
+                    android:id="@+id/account_number_receiver_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:text="@string/account_number_receiver"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12" />
+
+                <TextView
+                    android:id="@+id/account_number_receiver_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_regular"
+                    android:gravity="end"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12"
+                    tools:text="40825175331828824378" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/transaction_date_ll"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13dp"
+                android:background="@color/gray_6"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_16dp"
+                android:paddingVertical="@dimen/_20dp"
+                app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                app:layout_constraintStart_toStartOf="@id/left_guideline"
+                app:layout_constraintTop_toBottomOf="@id/account_number_receiver_ll">
+
+                <TextView
+                    android:id="@+id/transaction_date_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:text="@string/transaction_date"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12" />
+
+                <TextView
+                    android:id="@+id/transaction_date_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12"
+                    tools:text="2024-08-13 05:34:22" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/transaction_amount_ll"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13dp"
+                android:background="@color/gray_6"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_16dp"
+                android:paddingVertical="@dimen/_20dp"
+                app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                app:layout_constraintStart_toStartOf="@id/left_guideline"
+                app:layout_constraintTop_toBottomOf="@id/transaction_date_ll">
+
+                <TextView
+                    android:id="@+id/transaction_amount_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:text="@string/transaction_amount"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12" />
+
+                <TextView
+                    android:id="@+id/transaction_amount_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12"
+                    tools:text="50 500 Р" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/transaction_comment_ll"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13dp"
+                android:background="@color/gray_6"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_16dp"
+                android:paddingVertical="@dimen/_20dp"
+                app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                app:layout_constraintStart_toStartOf="@id/left_guideline"
+                app:layout_constraintTop_toBottomOf="@id/transaction_amount_ll">
+
+                <TextView
+                    android:id="@+id/transaction_comment_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:text="@string/transaction_comment"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12" />
+
+                <TextView
+                    android:id="@+id/transaction_comment_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12"
+                    tools:text="Перевод от A Aa Aaa" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/transaction_reason_ll"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13dp"
+                android:background="@color/gray_6"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:paddingHorizontal="@dimen/_16dp"
+                android:paddingVertical="@dimen/_20dp"
+                app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                app:layout_constraintStart_toStartOf="@id/left_guideline"
+                app:layout_constraintTop_toBottomOf="@id/transaction_comment_ll">
+
+                <TextView
+                    android:id="@+id/transaction_reason_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:text="@string/transaction_reason"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12" />
+
+                <TextView
+                    android:id="@+id/transaction_reason_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12"
+                    tools:text="null" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/transaction_state_ll"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13dp"
+                android:background="@color/gray_6"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_16dp"
+                android:paddingVertical="@dimen/_20dp"
+                app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                app:layout_constraintStart_toStartOf="@id/left_guideline"
+                app:layout_constraintTop_toBottomOf="@id/transaction_reason_ll">
+
+                <TextView
+                    android:id="@+id/transaction_state_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:text="@string/transaction_state"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12" />
+
+                <TextView
+                    android:id="@+id/transaction_state_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12"
+                    tools:text="@string/transaction_state_completed" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/transaction_type_ll"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13dp"
+                android:background="@color/gray_6"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_16dp"
+                android:paddingVertical="@dimen/_20dp"
+                app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                app:layout_constraintStart_toStartOf="@id/left_guideline"
+                app:layout_constraintTop_toBottomOf="@id/transaction_state_ll">
+
+                <TextView
+                    android:id="@+id/transaction_type_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_5dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:text="@string/transaction_type"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12" />
+
+                <TextView
+                    android:id="@+id/transaction_type_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/text_size_12"
+                    tools:text="@string/transaction_type_income" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/transaction_tv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

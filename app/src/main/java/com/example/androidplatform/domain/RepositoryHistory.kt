@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface RepositoryHistory {
     suspend fun getHistory(): Flow<SearchResultData<List<Transaction>>>
+    suspend fun getTransaction(transactionId: Int): Flow<SearchResultData<Transaction>>
 }

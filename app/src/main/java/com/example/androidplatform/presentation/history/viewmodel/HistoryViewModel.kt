@@ -33,10 +33,17 @@ class HistoryViewModel(private val historyInteractor: HistoryInteractor) : ViewM
             historyList.collect { data ->
                 withContext(Dispatchers.Main) {
                     when (data) {
-                        is SearchResultData.Data -> _screenState.value = HistoryState.Content(data.value!!)
-                        is SearchResultData.Empty -> _screenState.value = HistoryState.Error(data.message)
-                        is SearchResultData.ErrorServer -> _screenState.value = HistoryState.Error(data.message)
-                        is SearchResultData.NoInternet -> _screenState.value = HistoryState.Error(data.message)
+                        is SearchResultData.Data -> _screenState.value =
+                            HistoryState.Content(data.value!!)
+
+                        is SearchResultData.Empty -> _screenState.value =
+                            HistoryState.Error(data.message)
+
+                        is SearchResultData.ErrorServer -> _screenState.value =
+                            HistoryState.Error(data.message)
+
+                        is SearchResultData.NoInternet -> _screenState.value =
+                            HistoryState.Error(data.message)
                     }
                 }
             }
@@ -53,8 +60,10 @@ class HistoryViewModel(private val historyInteractor: HistoryInteractor) : ViewM
     fun groupTransactionsByDate(transactions: List<Transaction>) = transactions
         .groupBy { transaction -> convertDateTime(transaction.date) }
         .toSortedMap(Comparator.reverseOrder())
-        .flatMap { entry -> mutableListOf<Any>(entry.key)
-            .apply { addAll(entry.value) } }
+        .flatMap { entry ->
+            mutableListOf<Any>(entry.key)
+                .apply { addAll(entry.value) }
+        }
 
     private fun convertDateTime(input: String): String {
         val dateTime = input.parseDate()

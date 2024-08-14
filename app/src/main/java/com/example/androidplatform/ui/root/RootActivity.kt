@@ -27,7 +27,8 @@ class RootActivity : AppCompatActivity() {
                 R.id.authorizationFragment,
                 R.id.restorePasswordFragment,
                 R.id.registrationFragment,
-                R.id.changePasswordFragment -> {
+                R.id.changePasswordFragment,
+                R.id.transactionInfoFragment -> {
                     bottomNavigationView.visibility = View.GONE
                 }
                 else -> {

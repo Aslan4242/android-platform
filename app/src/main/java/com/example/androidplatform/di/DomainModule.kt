@@ -105,6 +105,8 @@ val domainModule = module {
 
     single<RepositoryHistory> {
         RepositoryHistoryImpl(get())
+    }
+
     single<RepositoryLaunchOperation> {
         RepositoryLaunchOperationImpl(get())
     }

@@ -193,6 +193,24 @@ class RetrofitNetworkClient(
         }
         return response
     }
+
+    override suspend fun getTransaction(transactionId: Int): Result<Transaction> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val token = sharedPreferences.getString("token", "") ?: ""
+                val result = service.getTransaction(token, transactionId)
+                Result.success(result)
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
     
     override suspend fun launchOperation(operationCode: OperationCode): Result<OperationItem> {
         if (!isConnected(context)) {

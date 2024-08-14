@@ -13,15 +13,17 @@
         android:layout_height="wrap_content"
         android:text="@string/spending"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_size_12" />
+        android:textSize="@dimen/text_size_12"
+        android:fontFamily="@font/inter_regular"/>
 
     <TextView
         android:id="@+id/spending_value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textSize="@dimen/text_size_16"
-        android:textStyle="bold"
+        android:textSize="@dimen/text_size_20"
+        android:fontFamily="@font/inter_regular"
+        android:textColor="@color/black"
         tools:text="50 000 Р" />
 
 </LinearLayout>

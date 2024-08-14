@@ -15,7 +15,7 @@ fun String.toMoneyFormat(): String {
     return stringBuilder.toString()
 }
 
-fun String.toCurrencyMoneyFormat(currencyCode: Short): String {
+fun String.toCurrencyMoneyFormat(currencyCode: Int): String {
     return when (currencyCode) {
         Currency.RUB.code -> "${this.toMoneyFormat()} ₽"
         Currency.USD.code -> "${this.toMoneyFormat()} $"

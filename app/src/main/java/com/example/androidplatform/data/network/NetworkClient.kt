@@ -25,19 +25,17 @@ interface NetworkClient {
         address: String,
         sex: String
     ): Result<Void>
-
     suspend fun restorePassword(login: String): Result<Void>
     suspend fun changePassword(password: String): Result<Void>
     suspend fun getHistory(): Result<List<Transaction>>
+    suspend fun getTransaction(transactionId: Int): Result<Transaction>
     suspend fun launchOperation(operationCode: OperationCode): Result<OperationItem>
     suspend fun proceedOperation(
         requestId: Int,
         proceedOperationRequestItemList: ArrayList<ProceedOperationRequestItem>
     ): Result<OperationItem>
-
     suspend fun confirmOperation(
         requestId: Int,
     ): Result<OperationItem>
-
     suspend fun getCards(): Result<List<Card>>
 }

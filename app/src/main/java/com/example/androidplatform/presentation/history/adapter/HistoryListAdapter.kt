@@ -1,6 +1,7 @@
 package com.example.androidplatform.presentation.history.adapter
 
 import android.view.LayoutInflater
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -9,9 +10,12 @@ import com.example.androidplatform.databinding.ItemHistoryDateBinding
 import com.example.androidplatform.databinding.ItemHistoryExpenseBlockBinding
 import com.example.androidplatform.databinding.ItemHistoryTransactionBinding
 import com.example.androidplatform.domain.models.history.Transaction
+import com.example.androidplatform.presentation.transaction_info.listeners.OnHistoryItemClickListener
 import com.example.androidplatform.presentation.history.models.HistoryExpenseBlockData
 
-class HistoryListAdapter : ListAdapter<Any, ViewHolder>(HistoryItemDiffCallback) {
+class HistoryListAdapter(
+    private val onHistoryItemClickListener: OnHistoryItemClickListener
+) : ListAdapter<Any, ViewHolder>(HistoryItemDiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         if (viewType == DATE) {
             val binding = ItemHistoryDateBinding.inflate(LayoutInflater.from(parent.context),
@@ -20,7 +24,7 @@ class HistoryListAdapter : ListAdapter<Any, ViewHolder>(HistoryItemDiffCallback)
         } else if (viewType == TRANSACTION) {
             val binding = ItemHistoryTransactionBinding.inflate(LayoutInflater.from(parent.context),
                 parent, false)
-            return HistoryItemViewHolder(binding)
+            return HistoryItemViewHolder(binding, onHistoryItemClickListener)
         } else {
             val binding = ItemHistoryExpenseBlockBinding.inflate(LayoutInflater.from(parent.context),
                 parent, false)

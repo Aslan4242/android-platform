@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_20dp"
-        android:fontFamily="@font/inter_bold"
+        android:fontFamily="@font/inter_medium"
         android:text="@string/history"
         android:textSize="@dimen/text_size_16"
         app:layout_constraintStart_toEndOf="@+id/left_guideline"
@@ -49,8 +49,10 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_0dp"
             android:nestedScrollingEnabled="false"
+            android:paddingVertical="@dimen/_10dp"
+            android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_history_transaction" />
+            tools:listitem="@layout/item_history_transaction"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar

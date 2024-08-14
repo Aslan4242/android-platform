@@ -42,4 +42,33 @@ class RepositoryHistoryImpl(
             }
         }
     }
+
+    override suspend fun getTransaction(transactionId: Int): Flow<SearchResultData<Transaction>> = flow {
+        val historyResult = client.getTransaction(transactionId)
+        val data = historyResult.getOrNull()
+        val error = historyResult.exceptionOrNull()
+
+        when {
+            data != null -> {
+                emit(SearchResultData.Data(data))
+            }
+
+            error is ConnectException -> {
+                emit(SearchResultData.NoInternet(R.string.no_internet))
+            }
+
+            error is SocketTimeoutException -> {
+                emit(SearchResultData.NoInternet(R.string.no_internet))
+            }
+
+            error is HttpException -> {
+                emit(
+                    SearchResultData.ErrorServer(
+                        R.string.server_error,
+                        error.response()?.errorBody()?.string() ?: ""
+                    )
+                )
+            }
+        }
+    }
 }

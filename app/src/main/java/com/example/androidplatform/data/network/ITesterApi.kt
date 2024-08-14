@@ -20,6 +20,7 @@ import retrofit2.http.Header
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ITesterApi {
@@ -47,6 +48,12 @@ interface ITesterApi {
 
     @GET("transactions")
     suspend fun getHistory(@Header("Authorization") token: String): List<Transaction>
+
+    @GET("transactions/info/{transactionId}")
+    suspend fun getTransaction(
+        @Header("Authorization") token: String,
+        @Path("transactionId") transactionId: Int
+    ): Transaction
 
     @PUT("operations")
     suspend fun launchOperation(
