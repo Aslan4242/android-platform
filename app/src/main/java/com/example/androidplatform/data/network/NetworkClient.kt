@@ -2,8 +2,12 @@ package com.example.androidplatform.data.network
 
 import com.example.androidplatform.data.network.auth.AuthRequest
 import com.example.androidplatform.data.network.auth.AuthResponse
+import com.example.androidplatform.data.network.launch_operation.OperationCode
+import com.example.androidplatform.data.network.proceed_operation.ProceedOperationRequestItem
+import com.example.androidplatform.domain.models.cards.Card
 import com.example.androidplatform.domain.models.clients.Client
 import com.example.androidplatform.domain.models.history.Transaction
+import com.example.androidplatform.domain.models.launch_operation.OperationItem
 
 interface NetworkClient {
     suspend fun authenticate(authRequest: AuthRequest): Result<AuthResponse>
@@ -21,7 +25,19 @@ interface NetworkClient {
         address: String,
         sex: String
     ): Result<Void>
+
     suspend fun restorePassword(login: String): Result<Void>
     suspend fun changePassword(password: String): Result<Void>
     suspend fun getHistory(): Result<List<Transaction>>
+    suspend fun launchOperation(operationCode: OperationCode): Result<OperationItem>
+    suspend fun proceedOperation(
+        requestId: Int,
+        proceedOperationRequestItemList: ArrayList<ProceedOperationRequestItem>
+    ): Result<OperationItem>
+
+    suspend fun confirmOperation(
+        requestId: Int,
+    ): Result<OperationItem>
+
+    suspend fun getCards(): Result<List<Card>>
 }

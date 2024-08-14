@@ -5,10 +5,15 @@ import android.content.SharedPreferences
 import com.example.androidplatform.data.network.auth.AuthRequest
 import com.example.androidplatform.data.network.auth.AuthResponse
 import com.example.androidplatform.data.network.change_password.ChangePasswordRequest
+import com.example.androidplatform.data.network.launch_operation.LaunchOperationRequest
+import com.example.androidplatform.data.network.launch_operation.OperationCode
+import com.example.androidplatform.data.network.proceed_operation.ProceedOperationRequestItem
 import com.example.androidplatform.data.network.registration.RegistrationRequest
 import com.example.androidplatform.data.network.restoration_password.RestoreCodeRequest
+import com.example.androidplatform.domain.models.cards.Card
 import com.example.androidplatform.domain.models.clients.Client
 import com.example.androidplatform.domain.models.history.Transaction
+import com.example.androidplatform.domain.models.launch_operation.OperationItem
 import com.example.androidplatform.util.isConnected
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -170,7 +175,7 @@ class RetrofitNetworkClient(
         }
         return response
     }
-
+    
     override suspend fun getHistory(): Result<List<Transaction>> {
         if (!isConnected(context)) {
             return Result.failure(ConnectException())
@@ -179,6 +184,89 @@ class RetrofitNetworkClient(
             try {
                 val token = sharedPreferences.getString("token", "") ?: ""
                 val result = service.getHistory(token)
+                Result.success(result)
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
+    
+    override suspend fun launchOperation(operationCode: OperationCode): Result<OperationItem> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val token = sharedPreferences.getString("token", "") ?: ""
+                val result = service.launchOperation(token, LaunchOperationRequest(operationCode.description))
+                Result.success(result)
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
+
+    override suspend fun proceedOperation(
+        requestId: Int,
+        proceedOperationRequestItemList: ArrayList<ProceedOperationRequestItem>
+    ): Result<OperationItem> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val token = sharedPreferences.getString("token", "") ?: ""
+                val result = service.proceedOperation(
+                    token,
+                    requestId,
+                    proceedOperationRequestItemList)
+                Result.success(result)
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
+
+    override suspend fun confirmOperation(
+        requestId: Int,
+    ): Result<OperationItem> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val token = sharedPreferences.getString("token", "") ?: ""
+                val result = service.confirmOperation(
+                    token,
+                    requestId
+                )
+                Result.success(result)
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
+
+    override suspend fun getCards(): Result<List<Card>> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val token = sharedPreferences.getString("token", "") ?: ""
+                val result = service.getCards(token)
                 Result.success(result)
             } catch (e: HttpException) {
                 Result.failure(e)
