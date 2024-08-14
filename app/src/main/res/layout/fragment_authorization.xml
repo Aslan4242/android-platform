@@ -23,14 +23,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="45dp" />
+                app:layout_constraintGuide_begin="@dimen/_45dp" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/right_guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_end="45dp" />
+                app:layout_constraintGuide_end="@dimen/_45dp" />
 
             <TextView
                 android:id="@+id/authorization_tv"
@@ -50,7 +50,7 @@
                 android:id="@+id/login_til"
                 android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/_20dp"
                 android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                 style="@style/TextInputLayoutStyle"
                 app:errorEnabled="true"
@@ -62,7 +62,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_et"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/_40dp"
                     android:paddingVertical="@dimen/_12dp"
                     android:maxLines="1"
                     android:textSize="@dimen/text_size_12"
@@ -74,7 +74,7 @@
                 android:id="@+id/password_til"
                 android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/_5dp"
                 android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                 style="@style/TextInputLayoutStyle"
                 app:errorEnabled="true"
@@ -86,7 +86,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password_et"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/_40dp"
                     android:inputType="textPassword"
                     android:paddingVertical="@dimen/_12dp"
                     android:maxLines="1"
@@ -101,11 +101,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingVertical="@dimen/_12dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/_5dp"
                 android:text="@string/enter"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_12"
-                app:cornerRadius="0dp"
+                app:cornerRadius="@dimen/_0dp"
                 android:backgroundTint="@color/gray_2"
                 app:layout_constraintTop_toBottomOf="@+id/password_til"
                 app:layout_constraintBottom_toTopOf="@id/registration_tv"
@@ -118,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/register"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="@dimen/_15dp"
                 android:textSize="@dimen/text_size_12"
                 android:textColor="@color/gray_2"
                 app:layout_constraintTop_toBottomOf="@+id/enter_btn"
@@ -131,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/restore_password"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="@dimen/_15dp"
                 android:textSize="@dimen/text_size_12"
                 android:textColor="@color/gray_2"
                 app:layout_constraintTop_toBottomOf="@+id/registration_tv"

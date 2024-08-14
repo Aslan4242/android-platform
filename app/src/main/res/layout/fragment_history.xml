@@ -11,14 +11,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="45dp" />
+        app:layout_constraintGuide_begin="@dimen/_45dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/right_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="45dp" />
+        app:layout_constraintGuide_end="@dimen/_45dp" />
 
     <TextView
         android:id="@+id/history_tv"
@@ -27,7 +27,7 @@
         android:fontFamily="@font/inter_bold"
         android:textSize="@dimen/text_size_16"
         android:text="@string/history"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_20dp"
         app:layout_constraintStart_toEndOf="@+id/left_guideline"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintTop_toTopOf="parent"

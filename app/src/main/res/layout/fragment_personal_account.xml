@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="@dimen/_20dp"
+        android:layout_marginBottom="@dimen/_20dp"
         android:fontFamily="@font/inter_bold"
         android:text="@string/personal_account"
         android:textSize="@dimen/text_size_16"
@@ -39,14 +39,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="45dp" />
+                app:layout_constraintGuide_begin="@dimen/_45dp" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/right_guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_end="45dp" />
+                app:layout_constraintGuide_end="@dimen/_45dp" />
 
             <TextView
                 android:id="@+id/full_name_tv"
@@ -62,15 +62,15 @@
 
             <LinearLayout
                 android:id="@+id/login_ll"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_0dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="25dp"
                 android:background="@color/gray_6"
                 android:enabled="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                app:cornerRadius="0dp"
+                android:paddingHorizontal="@dimen/_16dp"
+                app:cornerRadius="@dimen/_0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/full_name_tv">
@@ -85,7 +85,7 @@
 
                 <TextView
                     android:id="@+id/login_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter_medium"
@@ -97,15 +97,15 @@
 
             <LinearLayout
                 android:id="@+id/email_ll"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_0dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="25dp"
                 android:background="@color/gray_6"
                 android:enabled="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                app:cornerRadius="0dp"
+                android:paddingHorizontal="@dimen/_16dp"
+                app:cornerRadius="@dimen/_0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/login_ll">
@@ -120,7 +120,7 @@
 
                 <TextView
                     android:id="@+id/email_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter_medium"
@@ -132,15 +132,15 @@
 
             <LinearLayout
                 android:id="@+id/phone_number_ll"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_0dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="13dp"
                 android:background="@color/gray_6"
                 android:enabled="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                app:cornerRadius="0dp"
+                android:paddingHorizontal="@dimen/_16dp"
+                app:cornerRadius="@dimen/_0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/email_ll">
@@ -155,7 +155,7 @@
 
                 <TextView
                     android:id="@+id/phone_number_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter_medium"
@@ -167,15 +167,15 @@
 
             <LinearLayout
                 android:id="@+id/surname_ll"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_0dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="13dp"
                 android:background="@color/gray_6"
                 android:enabled="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                app:cornerRadius="0dp"
+                android:paddingHorizontal="@dimen/_16dp"
+                app:cornerRadius="@dimen/_0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/phone_number_ll">
@@ -190,7 +190,7 @@
 
                 <TextView
                     android:id="@+id/surname_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter_medium"
@@ -202,15 +202,15 @@
 
             <LinearLayout
                 android:id="@+id/name_ll"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_0dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="13dp"
                 android:background="@color/gray_6"
                 android:enabled="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                app:cornerRadius="0dp"
+                android:paddingHorizontal="@dimen/_16dp"
+                app:cornerRadius="@dimen/_0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/surname_ll">
@@ -225,7 +225,7 @@
 
                 <TextView
                     android:id="@+id/name_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter_medium"
@@ -237,15 +237,15 @@
 
             <LinearLayout
                 android:id="@+id/patronymic_ll"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_0dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="13dp"
                 android:background="@color/gray_6"
                 android:enabled="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                app:cornerRadius="0dp"
+                android:paddingHorizontal="@dimen/_16dp"
+                app:cornerRadius="@dimen/_0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/name_ll">
@@ -260,7 +260,7 @@
 
                 <TextView
                     android:id="@+id/patronymic_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter_medium"
@@ -272,15 +272,15 @@
 
             <LinearLayout
                 android:id="@+id/sex_ll"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_0dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="13dp"
                 android:background="@color/gray_6"
                 android:enabled="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                app:cornerRadius="0dp"
+                android:paddingHorizontal="@dimen/_16dp"
+                app:cornerRadius="@dimen/_0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/patronymic_ll">
@@ -295,7 +295,7 @@
 
                 <TextView
                     android:id="@+id/sex_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter_medium"
@@ -307,15 +307,15 @@
 
             <LinearLayout
                 android:id="@+id/birthdate_ll"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_0dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="13dp"
                 android:background="@color/gray_6"
                 android:enabled="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                app:cornerRadius="0dp"
+                android:paddingHorizontal="@dimen/_16dp"
+                app:cornerRadius="@dimen/_0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/sex_ll">
@@ -330,7 +330,7 @@
 
                 <TextView
                     android:id="@+id/birthdate_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter_medium"
@@ -342,15 +342,15 @@
 
             <LinearLayout
                 android:id="@+id/address_ll"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_0dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="13dp"
                 android:background="@color/gray_6"
                 android:enabled="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                app:cornerRadius="0dp"
+                android:paddingHorizontal="@dimen/_16dp"
+                app:cornerRadius="@dimen/_0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/birthdate_ll">
@@ -365,7 +365,7 @@
 
                 <TextView
                     android:id="@+id/address_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter_medium"
@@ -379,12 +379,12 @@
                 android:id="@+id/logout_btn"
                 android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/_24dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/orange"
                 android:text="@string/logout"
                 android:textColor="@color/white"
-                app:cornerRadius="0dp"
+                app:cornerRadius="@dimen/_0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/address_ll" />
