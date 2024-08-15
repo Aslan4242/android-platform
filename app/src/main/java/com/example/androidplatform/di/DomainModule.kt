@@ -7,6 +7,7 @@ import com.example.androidplatform.data.network.auth.RepositoryAuthenticationImp
 import com.example.androidplatform.data.network.cards.RepositoryCardsImpl
 import com.example.androidplatform.data.network.change_password.RepositoryChangePasswordImpl
 import com.example.androidplatform.data.network.clients.RepositoryClientsImpl
+import com.example.androidplatform.data.network.history.RepositoryHistoryImpl
 import com.example.androidplatform.data.network.confirm_operation.RepositoryConfirmOperationImpl
 import com.example.androidplatform.data.network.launch_operation.RepositoryLaunchOperationImpl
 import com.example.androidplatform.data.network.logout.RepositoryLogoutImpl
@@ -17,6 +18,7 @@ import com.example.androidplatform.domain.RepositoryAuthentication
 import com.example.androidplatform.domain.RepositoryCards
 import com.example.androidplatform.domain.RepositoryChangePassword
 import com.example.androidplatform.domain.RepositoryClients
+import com.example.androidplatform.domain.RepositoryHistory
 import com.example.androidplatform.domain.RepositoryConfirmOperation
 import com.example.androidplatform.domain.RepositoryLaunchOperation
 import com.example.androidplatform.domain.RepositoryLogout
@@ -27,6 +29,7 @@ import com.example.androidplatform.domain.api.AuthenticationInteractor
 import com.example.androidplatform.domain.api.CardsInteractor
 import com.example.androidplatform.domain.api.ChangePasswordInteractor
 import com.example.androidplatform.domain.api.ClientInteractor
+import com.example.androidplatform.domain.api.HistoryInteractor
 import com.example.androidplatform.domain.api.ConfirmOperationInteractor
 import com.example.androidplatform.domain.api.LaunchOperationInteractor
 import com.example.androidplatform.domain.api.LogoutInteractor
@@ -37,6 +40,7 @@ import com.example.androidplatform.domain.impl.authentication.AuthenticationInte
 import com.example.androidplatform.domain.impl.cards.CardsInteractorImpl
 import com.example.androidplatform.domain.impl.change_password.ChangePasswordInteractorImpl
 import com.example.androidplatform.domain.impl.clients.ClientInteractorImpl
+import com.example.androidplatform.domain.impl.history.HistoryInteractorImpl
 import com.example.androidplatform.domain.impl.confirm_opration.ConfirmOperationInteractorImpl
 import com.example.androidplatform.domain.impl.launch_operation.LaunchOperationInteractorImpl
 import com.example.androidplatform.domain.impl.logout.LogoutInteractorImpl
@@ -93,6 +97,14 @@ val domainModule = module {
 
     single<RepositoryChangePassword> {
         RepositoryChangePasswordImpl(get())
+    }
+
+    single<HistoryInteractor> {
+        HistoryInteractorImpl(get())
+    }
+
+    single<RepositoryHistory> {
+        RepositoryHistoryImpl(get())
     }
 
     single<RepositoryLaunchOperation> {

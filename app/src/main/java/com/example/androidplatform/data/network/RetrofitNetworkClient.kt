@@ -12,6 +12,7 @@ import com.example.androidplatform.data.network.registration.RegistrationRequest
 import com.example.androidplatform.data.network.restoration_password.RestoreCodeRequest
 import com.example.androidplatform.domain.models.cards.Card
 import com.example.androidplatform.domain.models.clients.Client
+import com.example.androidplatform.domain.models.history.Transaction
 import com.example.androidplatform.domain.models.launch_operation.OperationItem
 import com.example.androidplatform.util.isConnected
 import kotlinx.coroutines.Dispatchers
@@ -174,7 +175,43 @@ class RetrofitNetworkClient(
         }
         return response
     }
+    
+    override suspend fun getHistory(): Result<List<Transaction>> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val token = sharedPreferences.getString("token", "") ?: ""
+                val result = service.getHistory(token)
+                Result.success(result)
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
 
+    override suspend fun getTransaction(transactionId: Int): Result<Transaction> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val token = sharedPreferences.getString("token", "") ?: ""
+                val result = service.getTransaction(token, transactionId)
+                Result.success(result)
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
+    
     override suspend fun launchOperation(operationCode: OperationCode): Result<OperationItem> {
         if (!isConnected(context)) {
             return Result.failure(ConnectException())
