@@ -13,6 +13,7 @@ import com.example.androidplatform.data.network.logout.RepositoryLogoutImpl
 import com.example.androidplatform.data.network.proceed_operation.RepositoryProceedOperationImpl
 import com.example.androidplatform.data.network.registration.RepositoryRegistrationImpl
 import com.example.androidplatform.data.network.restoration_password.RepositoryRestorePasswordImpl
+import com.example.androidplatform.data.network.stories.RepositoryStoriesImpl
 import com.example.androidplatform.domain.RepositoryAuthentication
 import com.example.androidplatform.domain.RepositoryCards
 import com.example.androidplatform.domain.RepositoryChangePassword
@@ -23,6 +24,7 @@ import com.example.androidplatform.domain.RepositoryLogout
 import com.example.androidplatform.domain.RepositoryProceedOperation
 import com.example.androidplatform.domain.RepositoryRegistration
 import com.example.androidplatform.domain.RepositoryRestorePassword
+import com.example.androidplatform.domain.RepositoryStories
 import com.example.androidplatform.domain.api.AuthenticationInteractor
 import com.example.androidplatform.domain.api.CardsInteractor
 import com.example.androidplatform.domain.api.ChangePasswordInteractor
@@ -33,6 +35,7 @@ import com.example.androidplatform.domain.api.LogoutInteractor
 import com.example.androidplatform.domain.api.ProceedOperationInteractor
 import com.example.androidplatform.domain.api.RegistrationInteractor
 import com.example.androidplatform.domain.api.RestorePasswordInteractor
+import com.example.androidplatform.domain.api.StoriesInteractor
 import com.example.androidplatform.domain.impl.authentication.AuthenticationInteractorImpl
 import com.example.androidplatform.domain.impl.cards.CardsInteractorImpl
 import com.example.androidplatform.domain.impl.change_password.ChangePasswordInteractorImpl
@@ -43,6 +46,7 @@ import com.example.androidplatform.domain.impl.logout.LogoutInteractorImpl
 import com.example.androidplatform.domain.impl.proceed_operation.ProceedOperationInteractorImpl
 import com.example.androidplatform.domain.impl.registration.RegistrationInteractorImpl
 import com.example.androidplatform.domain.impl.restore.RestorePasswordInteractorImpl
+import com.example.androidplatform.domain.impl.stories.StoriesInteractorImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -117,6 +121,14 @@ val domainModule = module {
 
     single<ConfirmOperationInteractor> {
         ConfirmOperationInteractorImpl(get())
+    }
+
+    single<RepositoryStories> {
+        RepositoryStoriesImpl()
+    }
+
+    single<StoriesInteractor> {
+        StoriesInteractorImpl(get())
     }
 
     single<SharedPreferences> {

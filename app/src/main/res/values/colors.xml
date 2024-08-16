@@ -14,5 +14,6 @@
     <color name="red_2">#FF7272</color>
     <color name="transparent">#00000000</color>
     <color name="overlay_color">#99000000</color>
+    <color name="light_transparent">#66FFFFFF</color>
     <color name="grey_background">#E6E8EB</color>
 </resources>

@@ -10,16 +10,19 @@ import androidx.navigation.fragment.findNavController
 import com.example.androidplatform.R
 import com.example.androidplatform.databinding.FragmentDashboardBinding
 import com.example.androidplatform.domain.models.cards.Card
+import com.example.androidplatform.presentation.dashboard.adapter.StoriesAdapter
 import com.example.androidplatform.presentation.dashboard.models.ScreenStateCards
+import com.example.androidplatform.presentation.dashboard.models.StoriesListState
 import com.example.androidplatform.presentation.dashboard.viewmodel.DashBoardViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DashboardFragment : Fragment()  {
+class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<DashBoardViewModel>()
     lateinit var confirmDialog: MaterialAlertDialogBuilder
+    lateinit var storiesAdapter: StoriesAdapter
     private var listData: List<Card> = emptyList()
 
     override fun onCreateView(
@@ -35,6 +38,17 @@ class DashboardFragment : Fragment()  {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getCards()
+
+        storiesAdapter = StoriesAdapter { storyPosition, storiesCount ->
+            findNavController().navigate(
+                DashboardFragmentDirections.actionDashboardFragmentToStoriesFragment(
+                    storiesCount,
+                    storyPosition
+                )
+            )
+        }
+        binding.rvStories.adapter = storiesAdapter
+        viewModel.getStories()
 
         val swipeRefreshLayout = binding.dashboardSrl
         swipeRefreshLayout.setOnRefreshListener {
@@ -55,6 +69,10 @@ class DashboardFragment : Fragment()  {
             findNavController().navigate(R.id.action_dashboardFragment_to_cardsFragment)
         }
 
+        viewModel.storiesListState().observe(viewLifecycleOwner) {
+            render(it)
+        }
+
         confirmDialog = MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.do_you_want_exit)
             .setNeutralButton("Отмена") { dialog, which ->
@@ -69,10 +87,21 @@ class DashboardFragment : Fragment()  {
             is ScreenStateCards.Content -> {
                 listData = state.cards
                 val expandableListView = binding.cardsNlv
-                val adapter = CardsExpandableListAdapter(requireContext(), resources.getString(R.string.cards), listData)
+                val adapter = CardsExpandableListAdapter(
+                    requireContext(),
+                    resources.getString(R.string.cards),
+                    listData
+                )
                 expandableListView.setAdapter(adapter)
             }
 
+            else -> {}
+        }
+    }
+
+    private fun render(state: StoriesListState) {
+        when (state) {
+            is StoriesListState.Content -> storiesAdapter.submitList(state.stories)
             else -> {}
         }
     }

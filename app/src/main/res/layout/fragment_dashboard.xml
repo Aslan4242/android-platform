@@ -13,139 +13,153 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/dashboard_sv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/dashboard_sv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/left_guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="@dimen/_45dp" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/right_guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="@dimen/_45dp" />
-
-            <TextView
-                android:id="@+id/cards_tv"
-                android:layout_width="@dimen/_0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="@dimen/_10dp"
-                android:fontFamily="@font/inter_medium"
-                android:text="@string/cards"
-                android:textColor="@color/gray_3"
-                android:textSize="@dimen/text_size_12"
-                app:layout_constraintBottom_toTopOf="@+id/order_card_btn"
-                app:layout_constraintEnd_toStartOf="@+id/right_guideline"
-                app:layout_constraintStart_toEndOf="@+id/left_guideline"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <LinearLayout
-                android:id="@+id/order_card_btn"
-                android:layout_width="@dimen/_0dp"
-                android:layout_height="58dp"
-                android:layout_marginTop="@dimen/_5dp"
-                android:background="@color/gray_6"
-                android:enabled="false"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="@dimen/_16dp"
-                app:cornerRadius="@dimen/_0dp"
-                app:layout_constraintEnd_toStartOf="@+id/right_guideline"
-                app:layout_constraintStart_toEndOf="@+id/left_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/cards_tv">
-
-                <ImageView
-                    android:layout_width="@dimen/_45dp"
-                    android:layout_height="@dimen/_28dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/card_icon"/>
-
-                <TextView
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/left_guideline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_medium"
-                    android:text="@string/order_card"
-                    android:textColor="@color/gray_2"
-                    android:textSize="@dimen/text_size_12" />
-            </LinearLayout>
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/_45dp" />
 
-            <com.example.androidplatform.util.NoScrollExListView
-                android:id="@+id/cards_nlv"
-                android:layout_width="@dimen/_0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toStartOf="@+id/right_guideline"
-                app:layout_constraintStart_toEndOf="@+id/left_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/order_card_btn" />
-
-            <TextView
-                android:id="@+id/accounts_tv"
-                android:layout_width="@dimen/_0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15dp"
-                android:layout_marginBottom="@dimen/_10dp"
-                android:fontFamily="@font/inter_medium"
-                android:text="@string/accounts"
-                android:textColor="@color/gray_3"
-                android:textSize="@dimen/text_size_12"
-                app:layout_constraintEnd_toStartOf="@+id/right_guideline"
-                app:layout_constraintStart_toEndOf="@+id/left_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/cards_nlv" />
-
-            <LinearLayout
-                android:id="@+id/open_account_btn"
-                android:layout_width="@dimen/_0dp"
-                android:layout_height="58dp"
-                android:layout_marginTop="@dimen/_5dp"
-                android:background="@color/gray_6"
-                android:enabled="false"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="@dimen/_16dp"
-                app:cornerRadius="@dimen/_0dp"
-                app:layout_constraintEnd_toStartOf="@+id/right_guideline"
-                app:layout_constraintStart_toEndOf="@+id/left_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/accounts_tv">
-
-                <ImageView
-                    android:layout_width="@dimen/_28dp"
-                    android:layout_height="@dimen/_28dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="@dimen/_5dp"
-                    android:src="@drawable/account_icon" />
-
-                <TextView
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/right_guideline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/_45dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_stories"
+                    android:layout_width="@dimen/_0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/_18dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/item_dashboard_story" />
+
+                <TextView
+                    android:id="@+id/cards_tv"
+                    android:layout_width="@dimen/_0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="@dimen/_10dp"
                     android:fontFamily="@font/inter_medium"
-                    android:text="@string/open_account"
-                    android:textColor="@color/gray_2"
-                    android:textSize="@dimen/text_size_12" />
-            </LinearLayout>
+                    android:text="@string/cards"
+                    android:textColor="@color/gray_3"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintBottom_toTopOf="@+id/order_card_btn"
+                    app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/left_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/rv_stories" />
 
-            <com.example.androidplatform.util.NoScrollExListView
-                android:id="@+id/accounts_nlv"
-                android:layout_width="@dimen/_0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toStartOf="@+id/right_guideline"
-                app:layout_constraintStart_toEndOf="@+id/left_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/open_account_btn" />
+                <LinearLayout
+                    android:id="@+id/order_card_btn"
+                    android:layout_width="@dimen/_0dp"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:background="@color/gray_6"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/_16dp"
+                    app:cornerRadius="@dimen/_0dp"
+                    app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/left_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/cards_tv">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:layout_width="@dimen/_45dp"
+                        android:layout_height="@dimen/_28dp"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/card_icon" />
 
-    </androidx.core.widget.NestedScrollView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/order_card"
+                        android:textColor="@color/gray_2"
+                        android:textSize="@dimen/text_size_12" />
+                </LinearLayout>
+
+                <com.example.androidplatform.util.NoScrollExListView
+                    android:id="@+id/cards_nlv"
+                    android:layout_width="@dimen/_0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/left_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/order_card_btn" />
+
+                <TextView
+                    android:id="@+id/accounts_tv"
+                    android:layout_width="@dimen/_0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15dp"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/accounts"
+                    android:textColor="@color/gray_3"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/left_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/cards_nlv" />
+
+                <LinearLayout
+                    android:id="@+id/open_account_btn"
+                    android:layout_width="@dimen/_0dp"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:background="@color/gray_6"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/_16dp"
+                    app:cornerRadius="@dimen/_0dp"
+                    app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/left_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/accounts_tv">
+
+                    <ImageView
+                        android:layout_width="@dimen/_28dp"
+                        android:layout_height="@dimen/_28dp"
+                        android:layout_marginStart="@dimen/_5dp"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/account_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/open_account"
+                        android:textColor="@color/gray_2"
+                        android:textSize="@dimen/text_size_12" />
+                </LinearLayout>
+
+                <com.example.androidplatform.util.NoScrollExListView
+                    android:id="@+id/accounts_nlv"
+                    android:layout_width="@dimen/_0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/left_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/open_account_btn" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

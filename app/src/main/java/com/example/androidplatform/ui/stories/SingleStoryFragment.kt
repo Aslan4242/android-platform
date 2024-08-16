@@ -1,0 +1,106 @@
+package com.example.androidplatform.ui.stories
+
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.androidplatform.databinding.FragmentSingleStoryBinding
+import com.example.androidplatform.domain.models.stories.Story
+import com.example.androidplatform.presentation.stories.models.StoriesScreenState
+import com.example.androidplatform.presentation.stories.viewmodel.StoriesViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
+class SingleStoryFragment : Fragment() {
+    private var _binding: FragmentSingleStoryBinding? = null
+    private val binding get() = _binding!!
+    private val viewModel by viewModel<StoriesViewModel>()
+    private var touchEventTime = 0L
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentSingleStoryBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.getStoryById(arguments?.getInt("page")!!)
+        viewModel.screenState().observe(viewLifecycleOwner) {
+            render(it)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun render(state: StoriesScreenState) {
+        when (state) {
+            is StoriesScreenState.Content -> showContent(state.story)
+            else -> {}
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun showContent(story: Story) {
+        with(binding) {
+            tvDescription.text = story.text
+            ivBackground.setImageResource(story.image)
+            pbStory.setOnProgressEndListener {
+                (requireParentFragment() as StoriesFragment).switchStory(1)
+            }
+            ivBackground.setOnTouchListener { v, event ->
+                if (event.action == MotionEvent.ACTION_DOWN) {
+                    touchEventTime = event.eventTime
+                    binding.pbStory.pause()
+                } else if (event.action == MotionEvent.ACTION_UP) {
+                    if (event.eventTime - touchEventTime < 200L) {
+                        if (event.x > binding.ivBackground.width / 2) {
+                            (requireParentFragment() as StoriesFragment).switchStory(1)
+                        } else {
+                            (requireParentFragment() as StoriesFragment).switchStory(-1)
+                        }
+                    } else {
+                        binding.pbStory.resume()
+                    }
+                } else if (event.action == MotionEvent.ACTION_CANCEL) {
+                    binding.pbStory.cancel()
+                }
+                true
+            }
+            ivClose.setOnClickListener { findNavController().navigateUp() }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.pbStory.cancel()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (requireParentFragment() as StoriesFragment).setUpPageSelectedCallback {
+            binding.pbStory.start()
+        }
+        binding.pbStory.start()
+    }
+
+    companion object {
+        fun newInstance(page: Int): SingleStoryFragment {
+            val fragment = SingleStoryFragment()
+            val arguments = Bundle().apply {
+                putInt("page", page)
+            }
+            fragment.arguments = arguments
+            return fragment
+        }
+    }
+}

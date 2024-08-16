@@ -9,6 +9,7 @@ import com.example.androidplatform.presentation.personal_account.viewmodel.Perso
 import com.example.androidplatform.presentation.personal_data_by_card_ordering.viewmodel.PersonalDataByCardOrderingViewModel
 import com.example.androidplatform.presentation.registration.RegistrationViewModel
 import com.example.androidplatform.presentation.restoration_password.RestorePasswordViewModel
+import com.example.androidplatform.presentation.stories.viewmodel.StoriesViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -44,6 +45,7 @@ val viewModelModule = module {
 
     viewModel {
         DashBoardViewModel(
+            storiesInteractor = get(),
             cardsInteractor = get()
         )
     }
@@ -64,6 +66,12 @@ val viewModelModule = module {
             changePasswordInteractor = get(),
             authenticationInteractor = get(),
             application = androidContext() as Application
+        )
+    }
+
+    viewModel {
+        StoriesViewModel(
+            storiesInteractor = get()
         )
     }
 }
