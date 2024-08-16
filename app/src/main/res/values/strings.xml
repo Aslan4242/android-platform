@@ -88,4 +88,20 @@
     <string name="visa">Visa</string>
     <string name="mastercard">Mastercard</string>
     <string name="maestro">Maestro</string>
+    <string name="transaction">Транзакция</string>
+    <string name="account_number">Счёт отправителя:</string>
+    <string name="account_number_receiver">Счёт получателя:</string>
+    <string name="account_name">Название счёта:</string>
+    <string name="transaction_date">Время выполнения:</string>
+    <string name="transaction_amount">Сумма:</string>
+    <string name="transaction_comment">Комментарий:</string>
+    <string name="transaction_reason">Причина:</string>
+    <string name="transaction_state">Статус:</string>
+    <string name="transaction_state_hold">Удержание</string>
+    <string name="transaction_state_completed">Завершено</string>
+    <string name="transaction_state_canceled">Отменено</string>
+    <string name="transaction_type">Тип:</string>
+    <string name="transaction_type_income">Доходы</string>
+    <string name="transaction_type_expense">Расходы</string>
+    <string name="unknown">Неизвестно</string>
 </resources>

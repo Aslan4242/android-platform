@@ -5,6 +5,8 @@ import com.example.androidplatform.presentation.authentication.viewmodel.Authent
 import com.example.androidplatform.presentation.cards.viewmodel.CardsViewModel
 import com.example.androidplatform.presentation.change_password.ChangePasswordViewModel
 import com.example.androidplatform.presentation.dashboard.viewmodel.DashBoardViewModel
+import com.example.androidplatform.presentation.history.viewmodel.HistoryViewModel
+import com.example.androidplatform.presentation.transaction_info.viewmodel.TransactionInfoViewModel
 import com.example.androidplatform.presentation.personal_account.viewmodel.PersonalAccountViewModel
 import com.example.androidplatform.presentation.personal_data_by_card_ordering.viewmodel.PersonalDataByCardOrderingViewModel
 import com.example.androidplatform.presentation.registration.RegistrationViewModel
@@ -66,6 +68,18 @@ val viewModelModule = module {
             changePasswordInteractor = get(),
             authenticationInteractor = get(),
             application = androidContext() as Application
+        )
+    }
+
+    viewModel {
+        HistoryViewModel(
+            historyInteractor = get()
+        )
+    }
+
+    viewModel {
+        TransactionInfoViewModel(
+            historyInteractor = get()
         )
     }
 

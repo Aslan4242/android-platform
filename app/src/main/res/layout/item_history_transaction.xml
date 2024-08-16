@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/transaction_block"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_45dp"
+    android:layout_marginTop="@dimen/_16dp"
+    android:background="@color/gray_6"
+    android:foreground="?selectableItemBackground"
+    android:clickable="true"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/_16dp"
+    android:paddingVertical="@dimen/_20dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/transaction_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
+            android:textColor="@color/gray_2"
+            android:textSize="@dimen/text_size_12"
+            tools:text="4012412391023912490123" />
+
+        <TextView
+            android:id="@+id/transaction_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/_5dp"
+            android:fontFamily="@font/inter_regular"
+            android:textColor="@color/gray_2"
+            android:textSize="@dimen/text_size_12"
+            tools:text="Между своими счетами" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/transaction_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/inter_regular"
+        android:textSize="@dimen/text_size_12"
+        tools:text="50 000 Р" />
+
+</LinearLayout>

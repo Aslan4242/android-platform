@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/date"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_45dp"
+    android:fontFamily="@font/inter_regular"
+    android:paddingTop="@dimen/_20dp"
+    android:textColor="@color/gray_2"
+    android:textSize="@dimen/text_size_12"
+    tools:text="Сегодня" />

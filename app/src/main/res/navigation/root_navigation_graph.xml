@@ -64,9 +64,23 @@
             app:destination="@id/storiesFragment"/>
     </fragment>
     <fragment
+        android:id="@+id/transactionInfoFragment"
+        android:name="com.example.androidplatform.ui.transaction_info.TransactionInfoFragment"
+        android:label="transactionInfoFragment"
+        tools:layout="@layout/fragment_transaction_info">
+        <argument
+            android:name="transactionId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.androidplatform.ui.history.HistoryFragment"
-        android:label="HistoryFragment" />
+        android:label="HistoryFragment"
+        tools:layout="@layout/fragment_history">
+        <action
+            android:id="@+id/action_historyFragment_to_transactionInfoFragment"
+            app:destination="@+id/transactionInfoFragment"/>
+    </fragment>
     <fragment
         android:id="@+id/personalAccountFragment"
         android:name="com.example.androidplatform.ui.personal_account.PersonalAccountFragment"

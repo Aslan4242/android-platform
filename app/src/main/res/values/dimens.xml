@@ -3,11 +3,13 @@
     <dimen name="text_size_10">10sp</dimen>
     <dimen name="text_size_12">12sp</dimen>
     <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
     <dimen name="_0dp">0dp</dimen>
     <dimen name="_4dp">4dp</dimen>
     <dimen name="_5dp">5dp</dimen>
     <dimen name="_10dp">10dp</dimen>
     <dimen name="_12dp">12dp</dimen>
+    <dimen name="_13dp">13dp</dimen>
     <dimen name="_14dp">14dp</dimen>
     <dimen name="_15dp">15dp</dimen>
     <dimen name="_16dp">16dp</dimen>
