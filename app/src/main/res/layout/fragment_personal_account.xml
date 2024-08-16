@@ -59,12 +59,22 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/full_name_pattern" />
 
+            <Button
+                android:id="@+id/editing_user_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:text="Редактировать"
+                android:textSize="@dimen/text_size_12"
+                android:textColor="@color/gray_2"
+                app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/full_name_tv"/>
 
             <LinearLayout
                 android:id="@+id/login_ll"
                 android:layout_width="0dp"
                 android:layout_height="58dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/gray_6"
                 android:enabled="false"
                 android:gravity="center_vertical"
@@ -73,7 +83,7 @@
                 app:cornerRadius="0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/full_name_tv">
+                app:layout_constraintTop_toBottomOf="@+id/editing_user_btn">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -382,7 +392,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/orange"
-                android:text="@string/logout"
+                android:text="@string/logout_from_account"
                 android:textColor="@color/white"
                 app:cornerRadius="0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"

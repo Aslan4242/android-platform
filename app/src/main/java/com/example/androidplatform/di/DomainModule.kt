@@ -9,24 +9,28 @@ import com.example.androidplatform.data.network.clients.RepositoryClientsImpl
 import com.example.androidplatform.data.network.logout.RepositoryLogoutImpl
 import com.example.androidplatform.data.network.registration.RepositoryRegistrationImpl
 import com.example.androidplatform.data.network.restoration_password.RepositoryRestorePasswordImpl
+import com.example.androidplatform.data.network.update_client.RepositoryUpdateClientImpl
 import com.example.androidplatform.domain.RepositoryAuthentication
 import com.example.androidplatform.domain.RepositoryChangePassword
 import com.example.androidplatform.domain.RepositoryClients
 import com.example.androidplatform.domain.RepositoryLogout
 import com.example.androidplatform.domain.RepositoryRegistration
 import com.example.androidplatform.domain.RepositoryRestorePassword
+import com.example.androidplatform.domain.RepositoryUpdateClient
 import com.example.androidplatform.domain.api.AuthenticationInteractor
 import com.example.androidplatform.domain.api.ChangePasswordInteractor
 import com.example.androidplatform.domain.api.ClientInteractor
 import com.example.androidplatform.domain.api.LogoutInteractor
 import com.example.androidplatform.domain.api.RegistrationInteractor
 import com.example.androidplatform.domain.api.RestorePasswordInteractor
+import com.example.androidplatform.domain.api.UpdateClientInteractor
 import com.example.androidplatform.domain.impl.authentication.AuthenticationInteractorImpl
 import com.example.androidplatform.domain.impl.change_password.ChangePasswordInteractorImpl
 import com.example.androidplatform.domain.impl.clients.ClientInteractorImpl
 import com.example.androidplatform.domain.impl.logout.LogoutInteractorImpl
 import com.example.androidplatform.domain.impl.registration.RegistrationInteractorImpl
 import com.example.androidplatform.domain.impl.restore.RestorePasswordInteractorImpl
+import com.example.androidplatform.domain.impl.update_client.UpdateClientInteractorImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -77,6 +81,14 @@ val domainModule = module {
 
     single<RepositoryChangePassword> {
         RepositoryChangePasswordImpl(get())
+    }
+
+    single<UpdateClientInteractor> {
+        UpdateClientInteractorImpl(get())
+    }
+
+    single<RepositoryUpdateClient> {
+        RepositoryUpdateClientImpl(get())
     }
 
     single<SharedPreferences> {

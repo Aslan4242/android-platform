@@ -123,6 +123,28 @@ class RetrofitNetworkClient(
         return response
     }
 
+    override suspend fun updateClient(client: Client): Result<Void> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val token = sharedPreferences.getString("token", "") ?: ""
+                val result = service.updateClient(token, client)
+                if (result.isSuccessful) {
+                    Result.success(Void.TYPE.cast(null))
+                } else {
+                    Result.failure(HttpException(result))
+                }
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
+
     override suspend fun restorePassword(
         login: String
     ): Result<Void> {

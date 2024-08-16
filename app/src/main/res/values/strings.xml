@@ -2,6 +2,7 @@
     <string name="app_name">Android Platform</string>
     <string name="authorization">Авторизация</string>
     <string name="registration">Регистрация</string>
+    <string name="updating_user">Изменение данных пользователя</string>
     <string name="personal_account">Личный кабинет</string>
     <string name="hint_login">Введите логин</string>
     <string name="hint_phone">Номер телефона</string>
@@ -17,7 +18,8 @@
     <string name="hint_input_sms_code">Введите код из СМС</string>
     <string name="enter">Войти</string>
     <string name="register">Зарегистрироваться</string>
-    <string name="logout">Выйти из аккаунта</string>
+    <string name="confirm_changes">Подтвердить изменения</string>
+    <string name="logout_from_account">Выйти из аккаунта</string>
     <string name="restore_password">Восстановить пароль</string>
     <string name="password_restoration">Восстановление пароля</string>
     <string name="password_change">Изменение пароля</string>
@@ -50,6 +52,8 @@
     <string name="empty">Не удалось получить клиентов</string>
     <string name="auth_error">Ошибка аутентификации</string>
     <string name="do_you_want_exit">Вы точно хотите выйти?</string>
+    <string name="cancel">Отмена</string>
+    <string name="logout">Выйти</string>
     <string name="email">Email</string>
     <string name="invalid_credentials">Некорректные учетные данные</string>
     <string name="successful_registration">Вы успешно зарегистрированы!</string>
@@ -59,6 +63,7 @@
     <string name="new_password">Новый пароль</string>
     <string name="new_password_repeat">Повторите новый пароль</string>
     <string name="change_password">Обновите пароль</string>
+    <string name="update_data">Обновить данные</string>
     <string name="login_error">Некорректный логин</string>
     <string name="code_error">Код должен содержать 4 цифры</string>
     <string name="send_code_error">Некорректный код</string>
@@ -70,4 +75,6 @@
     <string name="change">Изменить</string>
     <string name="password_was_reset">Пароль был сброшен на %s</string>
     <string name="required_field">Обязательное поле</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

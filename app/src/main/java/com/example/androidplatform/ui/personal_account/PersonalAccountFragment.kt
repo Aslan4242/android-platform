@@ -54,14 +54,19 @@ class PersonalAccountFragment : Fragment() {
 
         confirmDialog = MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.do_you_want_exit)
-            .setNeutralButton("Отмена") { _, _ ->
+            .setNeutralButton(R.string.cancel) { _, _ ->
                 // ничего не делаем
-            }.setNegativeButton("Выйти") { _, _ ->
+            }.setNegativeButton(R.string.logout) { _, _ ->
                 viewModel.logout()
             }
 
         binding.logoutBtn.setOnClickListener {
             confirmDialog.show()
+        }
+
+        binding.editingUserBtn.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_personalAccountFragment_to_updateUserFragment)
         }
     }
 
@@ -69,6 +74,7 @@ class PersonalAccountFragment : Fragment() {
         when (state) {
             is ScreenStateClients.Content -> {
                 showContent(state.client)
+                setListeners()
             }
 
 //            is ScreenStateClients.Empty -> {
@@ -88,6 +94,14 @@ class PersonalAccountFragment : Fragment() {
 //            }
 
             else -> {}
+        }
+    }
+
+    private fun setListeners() {
+        binding.loginLl.setOnClickListener {
+            confirmDialog = MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Изменить логин?")
+
         }
     }
 
