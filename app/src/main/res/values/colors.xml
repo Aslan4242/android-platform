@@ -12,4 +12,8 @@
     <color name="orange">#F2994A</color>
     <color name="red">#BD0000</color>
     <color name="red_2">#FF7272</color>
+    <color name="green">#81C784</color>
+    <color name="transparent">#00000000</color>
+    <color name="overlay_color">#99000000</color>
+    <color name="grey_background">#E6E8EB</color>
 </resources>

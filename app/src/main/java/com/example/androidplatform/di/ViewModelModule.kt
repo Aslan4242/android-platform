@@ -2,9 +2,13 @@ package com.example.androidplatform.di
 
 import android.app.Application
 import com.example.androidplatform.presentation.authentication.viewmodel.AuthenticationViewModel
+import com.example.androidplatform.presentation.cards.viewmodel.CardsViewModel
 import com.example.androidplatform.presentation.change_password.ChangePasswordViewModel
 import com.example.androidplatform.presentation.dashboard.viewmodel.DashBoardViewModel
+import com.example.androidplatform.presentation.history.viewmodel.HistoryViewModel
+import com.example.androidplatform.presentation.transaction_info.viewmodel.TransactionInfoViewModel
 import com.example.androidplatform.presentation.personal_account.viewmodel.PersonalAccountViewModel
+import com.example.androidplatform.presentation.personal_data_by_card_ordering.viewmodel.PersonalDataByCardOrderingViewModel
 import com.example.androidplatform.presentation.registration.RegistrationViewModel
 import com.example.androidplatform.presentation.restoration_password.RestorePasswordViewModel
 import com.example.androidplatform.presentation.update_user.UpdateUserViewModel
@@ -33,7 +37,22 @@ val viewModelModule = module {
     }
 
     viewModel {
-        DashBoardViewModel()
+        PersonalDataByCardOrderingViewModel(
+            clientInteractor = get(),
+            launchOperationInteractor = get(),
+            proceedOperationInteractor = get(),
+            confirmOperationInteractor = get()
+        )
+    }
+
+    viewModel {
+        DashBoardViewModel(
+            cardsInteractor = get()
+        )
+    }
+
+    viewModel {
+        CardsViewModel()
     }
 
     viewModel {
@@ -55,6 +74,18 @@ val viewModelModule = module {
         UpdateUserViewModel(
             updateUserInteractor = get(),
             clientInteractor = get(),
+        )
+    }
+
+    viewModel {
+        HistoryViewModel(
+            historyInteractor = get()
+        )
+    }
+
+    viewModel {
+        TransactionInfoViewModel(
+            historyInteractor = get()
         )
     }
 }

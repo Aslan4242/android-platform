@@ -9,7 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.androidplatform.R
 import com.example.androidplatform.databinding.FragmentDashboardBinding
-import com.example.androidplatform.presentation.dashboard.models.DashboardState
+import com.example.androidplatform.domain.models.cards.Card
+import com.example.androidplatform.presentation.dashboard.models.ScreenStateCards
 import com.example.androidplatform.presentation.dashboard.viewmodel.DashBoardViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -19,7 +20,7 @@ class DashboardFragment : Fragment()  {
     private val binding get() = _binding!!
     private val viewModel by viewModel<DashBoardViewModel>()
     lateinit var confirmDialog: MaterialAlertDialogBuilder
-
+    private var listData: List<Card> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,13 +34,25 @@ class DashboardFragment : Fragment()  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getCards()
+
+        val swipeRefreshLayout = binding.dashboardSrl
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getCards()
+            swipeRefreshLayout.isRefreshing = false
+        }
+
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
             backPressedCallback
         )
 
-        viewModel.screenState().observe(viewLifecycleOwner) {
-            render(it)
+        viewModel.cardsScreenState().observe(viewLifecycleOwner) {
+            renderCards(it)
+        }
+
+        binding.orderCardBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_cardsFragment)
         }
 
         confirmDialog = MaterialAlertDialogBuilder(requireContext())
@@ -51,10 +64,15 @@ class DashboardFragment : Fragment()  {
             }
     }
 
-    private fun render(state: DashboardState) {
+    private fun renderCards(state: ScreenStateCards) {
         when (state) {
-            is DashboardState.Content -> {
+            is ScreenStateCards.Content -> {
+                listData = state.cards
+                val expandableListView = binding.cardsNlv
+                val adapter = CardsExpandableListAdapter(requireContext(), resources.getString(R.string.cards), listData)
+                expandableListView.setAdapter(adapter)
             }
+
             else -> {}
         }
     }

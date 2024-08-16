@@ -26,6 +26,13 @@
     <string name="fill_fields">Заполните поля</string>
     <string name="fill_field">Заполните поле</string>
     <string name="cards">Карты</string>
+    <string name="bank_card">Банковские карты</string>
+    <string name="debit_card">Дебетовые</string>
+    <string name="debit_card_title">Дебетовая карта</string>
+    <string name="debit_card_description">Дебетовая карта — финансовый инструмент для безналичных расчетов.</string>
+    <string name="credit_card">Кредитные</string>
+    <string name="credit_card_title">Кредитная карта</string>
+    <string name="credit_card_description">Кредитная карта — это платежная карта, на которой лежат деньги банка. Если оплачиваете что-то кредитной картой, берете у банка в долг — эти деньги нужно вернуть.</string>
     <string name="accounts">Счета</string>
     <string name="order_card">Заказать карту</string>
     <string name="open_account">Открыть счет</string>
@@ -75,6 +82,33 @@
     <string name="change">Изменить</string>
     <string name="password_was_reset">Пароль был сброшен на %s</string>
     <string name="required_field">Обязательное поле</string>
+    <string name="order">Заказать</string>
+    <string name="personal_data">Персональные данные</string>
+    <string name="passport_data">Паспортные данные</string>
+    <string name="birthdate_pattern">01.01.2000</string>
+    <string name="card_ordered_successfully">Заказ оформлен,\nдождитесь звонка от менеджера</string>
+    <string name="back_to_dashboard">Вернуться в мой банк</string>
+    <string name="program_type">Программа выпуска</string>
+    <string name="mir">МИР</string>
+    <string name="visa">Visa</string>
+    <string name="mastercard">Mastercard</string>
+    <string name="maestro">Maestro</string>
+    <string name="transaction">Транзакция</string>
+    <string name="account_number">Счёт отправителя:</string>
+    <string name="account_number_receiver">Счёт получателя:</string>
+    <string name="account_name">Название счёта:</string>
+    <string name="transaction_date">Время выполнения:</string>
+    <string name="transaction_amount">Сумма:</string>
+    <string name="transaction_comment">Комментарий:</string>
+    <string name="transaction_reason">Причина:</string>
+    <string name="transaction_state">Статус:</string>
+    <string name="transaction_state_hold">Удержание</string>
+    <string name="transaction_state_completed">Завершено</string>
+    <string name="transaction_state_canceled">Отменено</string>
+    <string name="transaction_type">Тип:</string>
+    <string name="transaction_type_income">Доходы</string>
+    <string name="transaction_type_expense">Расходы</string>
+    <string name="unknown">Неизвестно</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
