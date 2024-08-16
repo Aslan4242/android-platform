@@ -10,16 +10,16 @@ import kotlinx.coroutines.flow.flow
 class RepositoryStoriesImpl : RepositoryStories {
 
     private val storiesList = listOf(
-        Story(0, "News", "The latest news update.", R.drawable.ic_launcher_background),
-        Story(1, "Update", "New feature added.", R.drawable.ic_launcher_background),
-        Story(2, "Reminder", "Don't forget to save your work.", R.drawable.ic_launcher_background),
-        Story(3, "Alert", "System needs maintenance.", R.drawable.ic_launcher_background),
-        Story(4, "Notice", "Server will be down for maintenance.", R.drawable.ic_launcher_background),
-        Story(5, "Tutorial", "How to use the new feature.", R.drawable.ic_launcher_background),
-        Story(6, "FAQ", "Frequently asked questions about the app.", R.drawable.ic_launcher_background),
-        Story(7, "Tip", "Shortcut to quickly open settings.", R.drawable.ic_launcher_background),
-        Story(8, "Announcement", "Upcoming changes to the platform.", R.drawable.ic_launcher_background),
-        Story(9, "Warning", "Security update required.", R.drawable.ic_launcher_background)
+        Story(0, "News", "The latest news update.", R.drawable.story_background_1),
+        Story(1, "Update", "New feature added.", R.drawable.story_background_2),
+        Story(2, "Reminder", "Don't forget to save your work.", R.drawable.story_background_3),
+        Story(3, "Alert", "System needs maintenance.", R.drawable.story_background_2),
+        Story(4, "Notice", "Server will be down for maintenance.", R.drawable.story_background_1),
+        Story(5, "Tutorial", "How to use the new feature.", R.drawable.story_background_3),
+        Story(6, "FAQ", "Frequently asked questions about the app.", R.drawable.story_background_2),
+        Story(7, "Tip", "Shortcut to quickly open settings.", R.drawable.story_background_3),
+        Story(8, "Announcement", "Upcoming changes to the platform.", R.drawable.story_background_1),
+        Story(9, "Warning", "Security update required.", R.drawable.story_background_3)
     )
 
     override suspend fun getStories(): Flow<SearchResultData<List<Story>>> = flow {

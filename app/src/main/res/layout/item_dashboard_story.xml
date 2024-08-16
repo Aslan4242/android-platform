@@ -18,7 +18,7 @@
             android:layout_width="@dimen/_100dp"
             android:layout_height="@dimen/_100dp"
             android:scaleType="centerCrop"
-            tools:src="@drawable/ic_launcher_background" />
+            tools:src="@drawable/story_background_1" />
 
         <TextView
             android:id="@+id/story_label"
@@ -29,8 +29,9 @@
             android:layout_alignEnd="@id/story_drawable"
             android:layout_margin="@dimen/_10dp"
             android:textSize="@dimen/text_size_10"
-            android:textColor="@color/gray_2"
+            android:textColor="@color/white"
+            android:background="@color/overlay_color"
             android:fontFamily="@font/inter_medium"
-            tools:text="Текст истории" />
+            tools:text="Текст" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
