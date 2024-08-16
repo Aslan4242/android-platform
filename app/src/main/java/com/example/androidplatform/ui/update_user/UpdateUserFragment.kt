@@ -37,7 +37,7 @@ class UpdateUserFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         observeViewModel()
-        binding.registerBtn.setOnClickListener {
+        binding.updateBtn.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
             viewModel.updateUser(collectData())
         }
@@ -67,7 +67,7 @@ class UpdateUserFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.isButtonEnabled.observe(viewLifecycleOwner) {
-            binding.registerBtn.apply {
+            binding.updateBtn.apply {
                 isEnabled = it
                 if (it)
                     setBackgroundColor(resources.getColor(R.color.orange))
@@ -92,7 +92,7 @@ class UpdateUserFragment : Fragment() {
             }
         }
         viewModel.updateUserState.observe(viewLifecycleOwner) {
-            binding.registerBtn.apply {
+            binding.updateBtn.apply {
                 isEnabled = false
                 setBackgroundColor(resources.getColor(R.color.gray_2))
             }
