@@ -90,14 +90,14 @@ class UpdateUserViewModel(
         _isButtonEnabled.value = tempClient != oldClient
                 && tempClient.login.isNotEmpty() == true
                 && tempClient.email.isNotEmpty() == true
-                && tempClient.birthdate.isNotEmpty() == true
     }
 
     fun getDateTime(birthdate: String): String {
         val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+        val tempDateStr = birthdate.split('T')
         return LocalDate.parse(
-            birthdate,
-            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+            tempDateStr[0],
+            DateTimeFormatter.ofPattern("yyyy-MM-dd")
         )
             .atStartOfDay()
             .format(formatter)

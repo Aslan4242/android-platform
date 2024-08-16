@@ -105,8 +105,7 @@ class UpdateUserFragment : Fragment() {
                     showToast("Произошла ошибка!")
                 }
             }
-            findNavController()
-                .navigate(R.id.action_updateUserFragment_to_personalAccountFragment)
+            findNavController().popBackStack(R.id.updateUserFragment, true)
         }
         viewModel.showToastMessage.observe(viewLifecycleOwner) {
             showToast(it)
@@ -162,10 +161,10 @@ class UpdateUserFragment : Fragment() {
     private fun selectGender(sex: String) {
         when (sex) {
             requireContext().resources.getString(R.string.male_eng) ->
-                binding.maleRadioButton.isSelected = true
+                binding.maleRadioButton.isChecked = true
 
             requireContext().resources.getString(R.string.female_eng) ->
-                binding.femaleRadioButton.isSelected = true
+                binding.femaleRadioButton.isChecked = true
         }
     }
 

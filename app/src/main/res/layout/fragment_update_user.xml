@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.update_user.UpdateUserFragment">
 
     <TextView
@@ -12,11 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="24dp"
         android:fontFamily="@font/inter_bold"
         android:text="@string/updating_user"
         android:textSize="@dimen/text_size_16"
-        app:layout_constraintBottom_toTopOf="@+id/fill_fields_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,11 +23,11 @@
         android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
+        android:layout_marginTop="48dp"
         android:layout_marginBottom="6dp"
         android:text="@string/fill_fields"
         android:textColor="@color/gray_2"
         android:textSize="@dimen/text_size_12"
-        app:layout_constraintBottom_toTopOf="@+id/registration_data_sv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/update_data_tv" />
@@ -63,195 +60,195 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/login_til"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+                app:errorEnabled="true"
                 app:helperText="@string/required_field"
                 app:helperTextTextAppearance="@style/HelperTextFieldStyle"
-                style="@style/TextInputLayoutStyle"
-                app:errorEnabled="true"
-                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_et"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:paddingVertical="@dimen/_12dp"
+                    android:hint="@string/login"
                     android:maxLines="1"
-                    android:textSize="@dimen/text_size_12"
-                    android:hint="@string/login" />
+                    android:paddingVertical="@dimen/_12dp"
+                    android:textSize="@dimen/text_size_12" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phone_number_til"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
-                style="@style/TextInputLayoutStyle"
                 app:errorEnabled="true"
-                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/login_til">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phone_number_et"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:paddingVertical="@dimen/_12dp"
+                    android:hint="@string/hint_phone"
                     android:maxLines="1"
-                    android:textSize="@dimen/text_size_12"
-                    android:hint="@string/hint_phone" />
+                    android:paddingVertical="@dimen/_12dp"
+                    android:textSize="@dimen/text_size_12" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/email_til"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
-                style="@style/TextInputLayoutStyle"
+                app:errorEnabled="true"
                 app:helperText="@string/required_field"
                 app:helperTextTextAppearance="@style/HelperTextFieldStyle"
-                app:errorEnabled="true"
-                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/phone_number_til">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email_et"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:paddingVertical="@dimen/_12dp"
+                    android:hint="@string/email"
                     android:maxLines="1"
-                    android:textSize="@dimen/text_size_12"
-                    android:hint="@string/email" />
+                    android:paddingVertical="@dimen/_12dp"
+                    android:textSize="@dimen/text_size_12" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/lastname_til"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
-                style="@style/TextInputLayoutStyle"
                 app:errorEnabled="true"
-                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/email_til">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/lastname_et"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:paddingVertical="@dimen/_12dp"
+                    android:hint="@string/surname_pattern"
                     android:maxLines="1"
-                    android:textSize="@dimen/text_size_12"
-                    android:hint="@string/surname_pattern" />
+                    android:paddingVertical="@dimen/_12dp"
+                    android:textSize="@dimen/text_size_12" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/firstname_til"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
-                style="@style/TextInputLayoutStyle"
                 app:errorEnabled="true"
-                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/lastname_til">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/firstname_et"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:paddingVertical="@dimen/_12dp"
+                    android:hint="@string/name_pattern"
                     android:maxLines="1"
-                    android:textSize="@dimen/text_size_12"
-                    android:hint="@string/name_pattern" />
+                    android:paddingVertical="@dimen/_12dp"
+                    android:textSize="@dimen/text_size_12" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/middlename_til"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
-                style="@style/TextInputLayoutStyle"
                 app:errorEnabled="true"
-                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/firstname_til">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/middlename_et"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:paddingVertical="@dimen/_12dp"
+                    android:hint="@string/patronymic_pattern"
                     android:maxLines="1"
-                    android:textSize="@dimen/text_size_12"
-                    android:hint="@string/patronymic_pattern" />
+                    android:paddingVertical="@dimen/_12dp"
+                    android:textSize="@dimen/text_size_12" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/birthdate_til"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
-                style="@style/TextInputLayoutStyle"
+                app:errorEnabled="true"
                 app:helperText="@string/required_field"
                 app:helperTextTextAppearance="@style/HelperTextFieldStyle"
-                app:errorEnabled="true"
-                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/middlename_til">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/birthdate_et"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:paddingVertical="@dimen/_12dp"
-                    android:maxLines="1"
-                    android:inputType="date"
-                    android:focusable="false"
                     android:clickable="true"
                     android:drawableEnd="@drawable/calendar_month_24"
-                    android:textSize="@dimen/text_size_12"
-                    android:hint="@string/birthdate_hint" />
+                    android:focusable="false"
+                    android:hint="@string/birthdate_hint"
+                    android:inputType="date"
+                    android:maxLines="1"
+                    android:paddingVertical="@dimen/_12dp"
+                    android:textSize="@dimen/text_size_12" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/address_til"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
-                style="@style/TextInputLayoutStyle"
                 app:errorEnabled="true"
-                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                app:layout_constraintStart_toEndOf="@+id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/birthdate_til">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/address_et"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:paddingVertical="@dimen/_12dp"
+                    android:hint="@string/address"
                     android:maxLines="1"
-                    android:textSize="@dimen/text_size_12"
-                    android:hint="@string/address" />
+                    android:paddingVertical="@dimen/_12dp"
+                    android:textSize="@dimen/text_size_12" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
