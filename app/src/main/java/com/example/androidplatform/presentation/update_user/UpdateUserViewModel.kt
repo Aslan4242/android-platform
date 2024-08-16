@@ -1,6 +1,5 @@
 package com.example.androidplatform.presentation.update_user
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -33,19 +32,6 @@ class UpdateUserViewModel(
     val showToastMessage: LiveData<String> = _showToastMessage
 
     private lateinit var oldClient: Client
-    var curClient: Client? = null
-
-    private val _passwordRepeat = MutableLiveData<String?>()
-    val passwordRepeat: LiveData<String?>
-        get() = _passwordRepeat
-
-    private val _errorInputPassword1 = MutableLiveData<Boolean>()
-    val errorInputPassword1: LiveData<Boolean>
-        get() = _errorInputPassword1
-
-    private val _errorInputPassword2 = MutableLiveData<Boolean>()
-    val errorInputPassword2: LiveData<Boolean>
-        get() = _errorInputPassword2
 
     private val _isButtonEnabled = MutableLiveData<Boolean>()
     val isButtonEnabled: LiveData<Boolean>
@@ -59,7 +45,6 @@ class UpdateUserViewModel(
                     when (data) {
                         is SearchResultData.Data -> {
                             oldClient = data.value!!
-                            curClient = oldClient
                             _screenState.value = ScreenStateClients.Content(data.value)
                         }
 
