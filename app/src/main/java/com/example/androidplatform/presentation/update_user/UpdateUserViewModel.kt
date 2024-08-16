@@ -102,12 +102,10 @@ class UpdateUserViewModel(
     }
 
     fun checkEnteredText(tempClient: Client) {
-        Log.i("Hello1", _isButtonEnabled.value.toString())
         _isButtonEnabled.value = tempClient != oldClient
                 && tempClient.login.isNotEmpty() == true
                 && tempClient.email.isNotEmpty() == true
                 && tempClient.birthdate.isNotEmpty() == true
-        Log.i("Hello2", _isButtonEnabled.value.toString())
     }
 
     fun getDateTime(birthdate: String): String {
