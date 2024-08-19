@@ -65,11 +65,11 @@ class PersonalDataByAccountOpeningViewModel(
                             requestId,
                             arrayListOf(
                                 ProceedOperationRequestItem(
-                                    "AccountType",
+                                    ACCOUNT_TYPE,
                                     accountType.description
                                 ),
                                 ProceedOperationRequestItem(
-                                    "Currency",
+                                    CURRENCY,
                                     currencyType
                                 )
                             )
@@ -139,5 +139,10 @@ class PersonalDataByAccountOpeningViewModel(
             is SearchResultData.NoInternet -> OperationState.NoInternet(data.message)
             is SearchResultData.Empty -> OperationState.Empty(data.message)
         }
+    }
+
+    companion object {
+        private const val ACCOUNT_TYPE = "AccountType"
+        private const val CURRENCY = "Currency"
     }
 }

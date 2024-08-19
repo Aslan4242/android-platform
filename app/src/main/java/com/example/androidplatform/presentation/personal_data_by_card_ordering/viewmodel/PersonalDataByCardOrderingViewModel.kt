@@ -66,11 +66,11 @@ class PersonalDataByCardOrderingViewModel(
                             requestId,
                             arrayListOf(
                                 ProceedOperationRequestItem(
-                                    "Product",
+                                    PRODUCT,
                                     cardProduct.description
                                 ),
                                 ProceedOperationRequestItem(
-                                    "ProgramType",
+                                    PROGRAM_TYPE,
                                     cardProgramType.description
                                 )
                             )
@@ -149,5 +149,10 @@ class PersonalDataByCardOrderingViewModel(
             is SearchResultData.NoInternet -> OperationState.NoInternet(data.message)
             is SearchResultData.Empty -> OperationState.Empty(data.message)
         }
+    }
+
+    companion object {
+        const val PRODUCT = "Product"
+        const val PROGRAM_TYPE = "ProgramType"
     }
 }
