@@ -10,14 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.androidplatform.databinding.FragmentSingleStoryBinding
 import com.example.androidplatform.domain.models.stories.Story
-import com.example.androidplatform.presentation.stories.models.StoriesScreenState
-import com.example.androidplatform.presentation.stories.viewmodel.StoriesViewModel
+import com.example.androidplatform.presentation.stories.models.SingleStoryScreenState
+import com.example.androidplatform.presentation.stories.viewmodel.SingleStoryViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SingleStoryFragment : Fragment() {
     private var _binding: FragmentSingleStoryBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by viewModel<StoriesViewModel>()
+    private val viewModel by viewModel<SingleStoryViewModel>()
     private var touchEventTime = 0L
 
     override fun onCreateView(
@@ -35,6 +35,8 @@ class SingleStoryFragment : Fragment() {
         viewModel.screenState().observe(viewLifecycleOwner) {
             render(it)
         }
+
+        viewModel.setStoryViewed(arguments?.getInt("page")!!)
     }
 
     override fun onDestroyView() {
@@ -42,9 +44,9 @@ class SingleStoryFragment : Fragment() {
         _binding = null
     }
 
-    private fun render(state: StoriesScreenState) {
+    private fun render(state: SingleStoryScreenState) {
         when (state) {
-            is StoriesScreenState.Content -> showContent(state.story)
+            is SingleStoryScreenState.Content -> showContent(state.story)
             else -> {}
         }
     }

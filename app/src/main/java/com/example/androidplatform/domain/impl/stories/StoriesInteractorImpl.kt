@@ -14,4 +14,10 @@ class StoriesInteractorImpl(private val storiesRepository: RepositoryStories) : 
     override suspend fun getStoryById(storyId: Int): Flow<SearchResultData<Story>> {
         return storiesRepository.getStoryById(storyId)
     }
+
+    override fun getUnviewedStories(): List<Int> = storiesRepository.getUnviewedStories()
+
+    override fun setStoryViewed(storyId: Int) {
+        storiesRepository.setStoryViewed(storyId)
+    }
 }

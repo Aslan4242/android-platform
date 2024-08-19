@@ -1,12 +1,18 @@
 package com.example.androidplatform.ui.dashboard
 
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Rect
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.example.androidplatform.R
 import com.example.androidplatform.databinding.FragmentDashboardBinding
 import com.example.androidplatform.domain.models.cards.Card
@@ -24,6 +30,7 @@ class DashboardFragment : Fragment() {
     lateinit var confirmDialog: MaterialAlertDialogBuilder
     lateinit var storiesAdapter: StoriesAdapter
     private var listData: List<Card> = emptyList()
+    private var unviewedStories: List<Int> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +45,7 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getCards()
+        unviewedStories = viewModel.getUnviewedStories()
 
         storiesAdapter = StoriesAdapter { storyPosition, storiesCount ->
             findNavController().navigate(
@@ -48,6 +56,7 @@ class DashboardFragment : Fragment() {
             )
         }
         binding.rvStories.adapter = storiesAdapter
+        setItemDecoration()
         viewModel.getStories()
 
         val swipeRefreshLayout = binding.dashboardSrl
@@ -97,6 +106,40 @@ class DashboardFragment : Fragment() {
 
             else -> {}
         }
+    }
+
+    private fun setItemDecoration() {
+        binding.rvStories.addItemDecoration(object : ItemDecoration() {
+            private var mBounds = Rect()
+            private val borderMarginDp = TypedValue
+                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 7f, resources.displayMetrics)
+            private val borderCornerRadius = TypedValue
+                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 12f, resources.displayMetrics)
+            private val borderPaint = Paint().apply {
+                color = resources.getColor(R.color.orange)
+                style = Paint.Style.STROKE
+                strokeWidth = 5f
+                isAntiAlias = true
+            }
+
+            override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+                super.onDraw(c, parent, state)
+                for (i in 0 until parent.childCount) {
+                    val child = parent.getChildAt(i)
+                    if (parent.getChildAdapterPosition(child) !in unviewedStories) continue
+                    parent.getDecoratedBoundsWithMargins(child, mBounds)
+                    c.drawRoundRect(
+                        mBounds.left + borderMarginDp,
+                        mBounds.top + borderMarginDp,
+                        mBounds.right - borderMarginDp,
+                        mBounds.bottom - borderMarginDp,
+                        borderCornerRadius,
+                        borderCornerRadius,
+                        borderPaint
+                    )
+                }
+            }
+        })
     }
 
     private fun render(state: StoriesListState) {

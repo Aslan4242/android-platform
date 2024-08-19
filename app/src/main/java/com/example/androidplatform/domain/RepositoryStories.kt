@@ -7,4 +7,6 @@ import kotlinx.coroutines.flow.Flow
 interface RepositoryStories {
     suspend fun getStories(): Flow<SearchResultData<List<Story>>>
     suspend fun getStoryById(storyId: Int): Flow<SearchResultData<Story>>
+    fun getUnviewedStories(): List<Int>
+    fun setStoryViewed(storyId: Int)
 }

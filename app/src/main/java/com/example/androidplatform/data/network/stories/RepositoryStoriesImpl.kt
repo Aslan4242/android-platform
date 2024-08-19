@@ -21,6 +21,7 @@ class RepositoryStoriesImpl : RepositoryStories {
         Story(8, "Announcement", "Upcoming changes to the platform.", R.drawable.story_background_1),
         Story(9, "Warning", "Security update required.", R.drawable.story_background_3)
     )
+    private val unviewedStories = storiesList.map { it.id }.toMutableList()
 
     override suspend fun getStories(): Flow<SearchResultData<List<Story>>> = flow {
         emit(SearchResultData.Data(storiesList))
@@ -28,5 +29,11 @@ class RepositoryStoriesImpl : RepositoryStories {
 
     override suspend fun getStoryById(storyId: Int): Flow<SearchResultData<Story>> = flow {
         emit(SearchResultData.Data(storiesList[storyId]))
+    }
+
+    override fun getUnviewedStories(): List<Int> = unviewedStories
+
+    override fun setStoryViewed(storyId: Int) {
+        unviewedStories.remove(storyId)
     }
 }

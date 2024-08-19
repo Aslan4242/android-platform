@@ -6,17 +6,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.androidplatform.domain.api.StoriesInteractor
 import com.example.androidplatform.domain.models.SearchResultData
-import com.example.androidplatform.presentation.stories.models.StoriesScreenState
+import com.example.androidplatform.presentation.stories.models.SingleStoryScreenState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class StoriesViewModel(
+class SingleStoryViewModel(
     private val storiesInteractor: StoriesInteractor
 ) : ViewModel() {
 
-    private var _screenState = MutableLiveData<StoriesScreenState>()
-    fun screenState(): LiveData<StoriesScreenState> = _screenState
+    private var _screenState = MutableLiveData<SingleStoryScreenState>()
+    fun screenState(): LiveData<SingleStoryScreenState> = _screenState
 
     fun getStoryById(storyId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -25,19 +25,21 @@ class StoriesViewModel(
                 withContext(Dispatchers.Main) {
                     when (data) {
                         is SearchResultData.Data -> _screenState.value =
-                            StoriesScreenState.Content(data.value!!)
+                            SingleStoryScreenState.Content(data.value!!)
 
                         is SearchResultData.ErrorServer -> _screenState.value =
-                            StoriesScreenState.Error(data.message)
+                            SingleStoryScreenState.Error(data.message)
 
                         is SearchResultData.NoInternet -> _screenState.value =
-                            StoriesScreenState.Error(data.message)
+                            SingleStoryScreenState.Error(data.message)
 
                         is SearchResultData.Empty -> _screenState.value =
-                            StoriesScreenState.Empty(data.message)
+                            SingleStoryScreenState.Empty(data.message)
                     }
                 }
             }
         }
     }
+
+    fun setStoryViewed(storyId: Int) = storiesInteractor.setStoryViewed(storyId)
 }

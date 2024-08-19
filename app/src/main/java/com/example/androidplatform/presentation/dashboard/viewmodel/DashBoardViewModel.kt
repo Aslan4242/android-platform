@@ -69,4 +69,6 @@ class DashBoardViewModel(
             }
         }
     }
+
+    fun getUnviewedStories() = storiesInteractor.getUnviewedStories()
 }
