@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.androidplatform.R
 import com.example.androidplatform.databinding.FragmentDashboardBinding
+import com.example.androidplatform.domain.models.account.Account
 import com.example.androidplatform.domain.models.cards.Card
+import com.example.androidplatform.presentation.dashboard.models.ScreenStateAccounts
 import com.example.androidplatform.presentation.dashboard.models.ScreenStateCards
 import com.example.androidplatform.presentation.dashboard.viewmodel.DashBoardViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -20,7 +22,8 @@ class DashboardFragment : Fragment()  {
     private val binding get() = _binding!!
     private val viewModel by viewModel<DashBoardViewModel>()
     lateinit var confirmDialog: MaterialAlertDialogBuilder
-    private var listData: List<Card> = emptyList()
+    private var cardsListData: List<Card> = emptyList()
+    private var accountsListData: List<Account> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,10 +38,12 @@ class DashboardFragment : Fragment()  {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getCards()
+        viewModel.getAccounts()
 
         val swipeRefreshLayout = binding.dashboardSrl
         swipeRefreshLayout.setOnRefreshListener {
             viewModel.getCards()
+            viewModel.getAccounts()
             swipeRefreshLayout.isRefreshing = false
         }
 
@@ -51,8 +56,16 @@ class DashboardFragment : Fragment()  {
             renderCards(it)
         }
 
+        viewModel.accountsScreenState().observe(viewLifecycleOwner) {
+            renderAccounts(it)
+        }
+
         binding.orderCardBtn.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_cardsFragment)
+        }
+
+        binding.openAccountBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_accountsFragment)
         }
 
         confirmDialog = MaterialAlertDialogBuilder(requireContext())
@@ -67,9 +80,22 @@ class DashboardFragment : Fragment()  {
     private fun renderCards(state: ScreenStateCards) {
         when (state) {
             is ScreenStateCards.Content -> {
-                listData = state.cards
+                cardsListData = state.cards
                 val expandableListView = binding.cardsNlv
-                val adapter = CardsExpandableListAdapter(requireContext(), resources.getString(R.string.cards), listData)
+                val adapter = CardsExpandableListAdapter(requireContext(), resources.getString(R.string.cards), cardsListData)
+                expandableListView.setAdapter(adapter)
+            }
+
+            else -> {}
+        }
+    }
+
+    private fun renderAccounts(state: ScreenStateAccounts) {
+        when (state) {
+            is ScreenStateAccounts.Content -> {
+                accountsListData = state.accounts
+                val expandableListView = binding.accountsNlv
+                val adapter = AccountsExpandableListAdapter( resources.getString(R.string.accounts), accountsListData)
                 expandableListView.setAdapter(adapter)
             }
 

@@ -8,6 +8,7 @@ import com.example.androidplatform.data.network.launch_operation.LaunchOperation
 import com.example.androidplatform.data.network.proceed_operation.ProceedOperationRequestItem
 import com.example.androidplatform.data.network.registration.RegistrationRequest
 import com.example.androidplatform.data.network.restoration_password.RestoreCodeRequest
+import com.example.androidplatform.domain.models.account.Account
 import com.example.androidplatform.domain.models.cards.Card
 import com.example.androidplatform.domain.models.clients.Client
 import com.example.androidplatform.domain.models.history.Transaction
@@ -76,4 +77,7 @@ interface ITesterApi {
 
     @GET("cards")
     suspend fun getCards(@Header("Authorization") token: String): List<Card>
+
+    @GET("accounts")
+    suspend fun getAccounts(@Header("Authorization") token: String): List<Account>
 }
