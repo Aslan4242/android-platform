@@ -88,7 +88,7 @@ class PersonalDataByAccountOpeningFragment : Fragment() {
                 )
 
                 "CURRENT_ACCOUNT" -> viewModel.openAccount(
-                    AccountType.CURRENCY_ACCOUNT,
+                    AccountType.CURRENT_ACCOUNT,
                     currencyType
                 )
             }
