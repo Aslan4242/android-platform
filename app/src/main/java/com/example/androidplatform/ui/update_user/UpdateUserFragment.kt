@@ -38,6 +38,10 @@ class UpdateUserFragment : Fragment() {
 
         observeViewModel()
         binding.updateBtn.setOnClickListener {
+            binding.updateBtn.apply {
+                isEnabled = false
+                setBackgroundColor(resources.getColor(R.color.gray_2))
+            }
             binding.progressBar.visibility = View.VISIBLE
             viewModel.updateUser(collectData())
         }
@@ -92,10 +96,6 @@ class UpdateUserFragment : Fragment() {
             }
         }
         viewModel.updateUserState.observe(viewLifecycleOwner) {
-            binding.updateBtn.apply {
-                isEnabled = false
-                setBackgroundColor(resources.getColor(R.color.gray_2))
-            }
             when (it) {
                 is UpdateState.Content -> {
                     showToast("Данные пользователя успешно обновлены")
@@ -155,7 +155,6 @@ class UpdateUserFragment : Fragment() {
             addressEt.setText(client.address)
         }
         selectGender(client.sex)
-
     }
 
     private fun selectGender(sex: String) {

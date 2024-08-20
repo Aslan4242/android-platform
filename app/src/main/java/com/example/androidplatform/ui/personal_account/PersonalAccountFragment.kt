@@ -72,7 +72,6 @@ class PersonalAccountFragment : Fragment() {
         when (state) {
             is ScreenStateClients.Content -> {
                 showContent(state.client)
-                setListeners()
             }
 
 //            is ScreenStateClients.Empty -> {
@@ -92,14 +91,6 @@ class PersonalAccountFragment : Fragment() {
 //            }
 
             else -> {}
-        }
-    }
-
-    private fun setListeners() {
-        binding.loginLl.setOnClickListener {
-            confirmDialog = MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Изменить логин?")
-
         }
     }
 

@@ -33,7 +33,7 @@ class UpdateUserViewModel(
 
     private lateinit var oldClient: Client
 
-    private val _isButtonEnabled = MutableLiveData<Boolean>()
+    private val _isButtonEnabled = MutableLiveData(false)
     val isButtonEnabled: LiveData<Boolean>
         get() = _isButtonEnabled
 

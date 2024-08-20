@@ -31,6 +31,11 @@ class RootActivity : AppCompatActivity() {
                 R.id.transactionInfoFragment -> {
                     bottomNavigationView.visibility = View.GONE
                 }
+
+                R.id.updateUserFragment -> {
+                    bottomNavigationView.visibility = View.GONE
+                }
+
                 else -> {
                     bottomNavigationView.visibility = View.VISIBLE
                 }
