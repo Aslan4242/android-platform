@@ -145,14 +145,14 @@ class UpdateUserFragment : Fragment() {
 
     private fun showContent(client: Client) {
         with(binding) {
-            loginEt.setText(client.login)
-            phoneNumberEt.setText(client.phoneNumber)
-            emailEt.setText(client.email)
-            lastnameEt.setText(client.lastName)
-            firstnameEt.setText(client.firstName)
-            middlenameEt.setText(client.middleName)
+            loginEt.append(client.login)
+            phoneNumberEt.append(client.phoneNumber)
+            emailEt.append(client.email)
+            lastnameEt.append(client.lastName)
+            firstnameEt.append(client.firstName)
+            middlenameEt.append(client.middleName)
             birthdateEt.setText(viewModel.getDateTime(client.birthdate))
-            addressEt.setText(client.address)
+            addressEt.append(client.address)
         }
         selectGender(client.sex)
     }
