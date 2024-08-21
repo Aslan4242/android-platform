@@ -129,7 +129,8 @@ class SingleStoryFragment : Fragment() {
                     }
 
                     override fun onSlideClosed(): Boolean {
-                        requireActivity().onBackPressedDispatcher.onBackPressed()
+                        requireActivity().finish()
+                        requireActivity().overridePendingTransition(0, 0)
                         return true
                     }
                 })
