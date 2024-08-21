@@ -35,6 +35,7 @@
         </activity>
 
         <activity android:name=".ui.stories.StoriesActivity"
+            android:theme="@style/Theme.AndroidPlatform.Translucent"
             android:exported="true">
 
         </activity>

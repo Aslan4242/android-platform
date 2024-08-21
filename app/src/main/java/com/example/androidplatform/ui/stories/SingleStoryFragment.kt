@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.androidplatform.R
 import com.example.androidplatform.databinding.FragmentSingleStoryBinding
 import com.example.androidplatform.domain.models.stories.Story
 import com.example.androidplatform.presentation.stories.models.SingleStoryScreenState
@@ -64,7 +65,9 @@ class SingleStoryFragment : Fragment() {
             tvDescription.text = story.text
             ivBackground.setImageResource(story.image)
             pbStory.setOnProgressEndListener {
-                (requireParentFragment() as StoriesFragment).switchStory(1)
+                if (isAdded) {
+                    (requireParentFragment() as StoriesFragment).switchStory(1)
+                }
             }
             ivBackground.setOnTouchListener { v, event ->
                 if (event.action == MotionEvent.ACTION_DOWN) {
@@ -73,9 +76,13 @@ class SingleStoryFragment : Fragment() {
                 } else if (event.action == MotionEvent.ACTION_UP) {
                     if (event.eventTime - touchEventTime < 200L) {
                         if (event.x > binding.ivBackground.width / 2) {
-                            (requireParentFragment() as StoriesFragment).switchStory(1)
+                            if (isAdded) {
+                                (parentFragment as? StoriesFragment)?.switchStory(1)
+                            }
                         } else {
-                            (requireParentFragment() as StoriesFragment).switchStory(-1)
+                            if (isAdded) {
+                                (parentFragment as? StoriesFragment)?.switchStory(-1)
+                            }
                         }
                     } else {
                         binding.pbStory.resume()
