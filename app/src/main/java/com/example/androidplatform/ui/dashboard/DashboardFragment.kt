@@ -1,5 +1,6 @@
 package com.example.androidplatform.ui.dashboard
 
+import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
@@ -20,6 +21,8 @@ import com.example.androidplatform.presentation.dashboard.adapter.StoriesAdapter
 import com.example.androidplatform.presentation.dashboard.models.ScreenStateCards
 import com.example.androidplatform.presentation.dashboard.models.StoriesListState
 import com.example.androidplatform.presentation.dashboard.viewmodel.DashBoardViewModel
+import com.example.androidplatform.ui.stories.StoriesActivity
+import com.example.androidplatform.ui.stories.StoriesFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -48,12 +51,10 @@ class DashboardFragment : Fragment() {
         unviewedStories = viewModel.getUnviewedStories()
 
         storiesAdapter = StoriesAdapter { storyPosition, storiesCount ->
-            findNavController().navigate(
-                DashboardFragmentDirections.actionDashboardFragmentToStoriesFragment(
-                    storiesCount,
-                    storyPosition
-                )
-            )
+            val intent = Intent(requireContext(), StoriesActivity::class.java)
+                .putExtra("storyPosition", storyPosition)
+                .putExtra("storiesCount", storiesCount)
+            startActivity(intent)
         }
         binding.rvStories.adapter = storiesAdapter
         setItemDecoration()

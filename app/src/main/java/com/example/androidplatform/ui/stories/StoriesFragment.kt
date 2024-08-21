@@ -1,9 +1,12 @@
 package com.example.androidplatform.ui.stories
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.constraintlayout.motion.widget.MotionLayout.TransitionListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -14,9 +17,10 @@ import com.example.androidplatform.databinding.FragmentStoriesBinding
 class StoriesFragment : Fragment() {
     private var _binding: FragmentStoriesBinding? = null
     private val binding get() = _binding!!
-    private val navArgs: StoriesFragmentArgs by navArgs()
     private lateinit var adapter: StoryViewPagerAdapter
     private lateinit var onPageScrollStateChangeCallback: () -> Unit
+
+    private val TAG = "TAG"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,10 +37,10 @@ class StoriesFragment : Fragment() {
         val adapter = StoryViewPagerAdapter(
             fragmentManager = childFragmentManager,
             lifecycle = lifecycle,
-            itemCount = navArgs.storiesCount
+            itemCount = requireArguments().getInt("storiesCount")
         )
         binding.vpStories.adapter = adapter
-        binding.vpStories.setCurrentItem(navArgs.storyPosition, false)
+        binding.vpStories.setCurrentItem(requireArguments().getInt("storyPosition"), false)
         binding.vpStories.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageScrolled(
                 position: Int,
@@ -67,9 +71,6 @@ class StoriesFragment : Fragment() {
     }
 
     fun switchStory(diff: Int) = with(binding.vpStories) {
-        if (currentItem + diff >= navArgs.storiesCount || currentItem + diff < 0) {
-            findNavController().navigateUp()
-        }
         setCurrentItem(currentItem + diff)
     }
 

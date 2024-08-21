@@ -12,13 +12,19 @@ import com.example.androidplatform.databinding.FragmentSingleStoryBinding
 import com.example.androidplatform.domain.models.stories.Story
 import com.example.androidplatform.presentation.stories.models.SingleStoryScreenState
 import com.example.androidplatform.presentation.stories.viewmodel.SingleStoryViewModel
+import com.r0adkll.slidr.Slidr
+import com.r0adkll.slidr.model.SlidrConfig
+import com.r0adkll.slidr.model.SlidrInterface
+import com.r0adkll.slidr.model.SlidrPosition
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SingleStoryFragment : Fragment() {
     private var _binding: FragmentSingleStoryBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<SingleStoryViewModel>()
-    private var touchEventTime = 0L
+    private var slidrInterface: SlidrInterface? = null
+
+    private val TAG = "TAG"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,6 +59,7 @@ class SingleStoryFragment : Fragment() {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun showContent(story: Story) {
+        var touchEventTime = 0L
         with(binding) {
             tvDescription.text = story.text
             ivBackground.setImageResource(story.image)
@@ -89,6 +96,10 @@ class SingleStoryFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        if (slidrInterface == null) slidrInterface = Slidr.replace(
+            binding.contentContainer,
+            SlidrConfig.Builder().position(SlidrPosition.TOP).build()
+        )
         (requireParentFragment() as StoriesFragment).setUpPageSelectedCallback {
             binding.pbStory.start()
         }

@@ -33,6 +33,11 @@
             android:windowSoftInputMode="adjustResize"
             >
         </activity>
+
+        <activity android:name=".ui.stories.StoriesActivity"
+            android:exported="true">
+
+        </activity>
     </application>
 
 </manifest>
