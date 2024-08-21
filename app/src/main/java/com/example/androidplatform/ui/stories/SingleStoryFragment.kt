@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.androidplatform.R
 import com.example.androidplatform.databinding.FragmentSingleStoryBinding
 import com.example.androidplatform.domain.models.stories.Story
 import com.example.androidplatform.presentation.stories.models.SingleStoryScreenState
@@ -16,7 +15,9 @@ import com.example.androidplatform.presentation.stories.viewmodel.SingleStoryVie
 import com.r0adkll.slidr.Slidr
 import com.r0adkll.slidr.model.SlidrConfig
 import com.r0adkll.slidr.model.SlidrInterface
+import com.r0adkll.slidr.model.SlidrListener
 import com.r0adkll.slidr.model.SlidrPosition
+import com.r0adkll.slidr.util.ViewDragHelper
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SingleStoryFragment : Fragment() {
@@ -66,7 +67,7 @@ class SingleStoryFragment : Fragment() {
             ivBackground.setImageResource(story.image)
             pbStory.setOnProgressEndListener {
                 if (isAdded) {
-                    (requireParentFragment() as StoriesFragment).switchStory(1)
+                    (requireParentFragment() as? StoriesFragment)?.switchStory(1)
                 }
             }
             ivBackground.setOnTouchListener { v, event ->
@@ -105,7 +106,34 @@ class SingleStoryFragment : Fragment() {
         super.onResume()
         if (slidrInterface == null) slidrInterface = Slidr.replace(
             binding.contentContainer,
-            SlidrConfig.Builder().position(SlidrPosition.TOP).build()
+            SlidrConfig.Builder()
+                .listener(object : SlidrListener {
+                    override fun onSlideStateChanged(state: Int) {
+                        if (state == ViewDragHelper.STATE_DRAGGING) {
+                            if (isAdded) {
+                                (parentFragment as? StoriesFragment)?.disablePagerSwipe()
+                            }
+                        } else if (state == ViewDragHelper.STATE_IDLE) {
+                            if (isAdded) {
+                                (parentFragment as? StoriesFragment)?.enablePagerSwipe()
+                            }
+                        }
+                    }
+
+                    override fun onSlideChange(percent: Float) {
+                        // nothing
+                    }
+
+                    override fun onSlideOpened() {
+                        binding.pbStory.resume()
+                    }
+
+                    override fun onSlideClosed(): Boolean {
+                        requireActivity().onBackPressedDispatcher.onBackPressed()
+                        return true
+                    }
+                })
+                .position(SlidrPosition.TOP).build()
         )
         (requireParentFragment() as StoriesFragment).setUpPageSelectedCallback {
             binding.pbStory.start()

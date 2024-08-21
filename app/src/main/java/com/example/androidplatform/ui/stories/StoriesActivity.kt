@@ -1,12 +1,12 @@
 package com.example.androidplatform.ui.stories
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentActivity
 import com.example.androidplatform.R
 import com.example.androidplatform.databinding.ActivityStoriesBinding
 
-class StoriesActivity : FragmentActivity() {
+class StoriesActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityStoriesBinding.inflate(layoutInflater) }
 

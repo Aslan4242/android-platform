@@ -22,7 +22,6 @@ import com.example.androidplatform.presentation.dashboard.models.ScreenStateCard
 import com.example.androidplatform.presentation.dashboard.models.StoriesListState
 import com.example.androidplatform.presentation.dashboard.viewmodel.DashBoardViewModel
 import com.example.androidplatform.ui.stories.StoriesActivity
-import com.example.androidplatform.ui.stories.StoriesFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

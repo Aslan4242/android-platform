@@ -1,15 +1,10 @@
 package com.example.androidplatform.ui.stories
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.constraintlayout.motion.widget.MotionLayout.TransitionListener
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.androidplatform.databinding.FragmentStoriesBinding
@@ -17,10 +12,7 @@ import com.example.androidplatform.databinding.FragmentStoriesBinding
 class StoriesFragment : Fragment() {
     private var _binding: FragmentStoriesBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: StoryViewPagerAdapter
     private lateinit var onPageScrollStateChangeCallback: () -> Unit
-
-    private val TAG = "TAG"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -76,5 +68,13 @@ class StoriesFragment : Fragment() {
 
     fun setUpPageSelectedCallback(callback: () -> Unit) {
         onPageScrollStateChangeCallback = callback
+    }
+
+    fun disablePagerSwipe() {
+        binding.vpStories.isUserInputEnabled = false
+    }
+
+    fun enablePagerSwipe() {
+        binding.vpStories.isUserInputEnabled = true
     }
 }
