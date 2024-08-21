@@ -3,6 +3,7 @@ package com.example.androidplatform.di
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
+import com.example.androidplatform.data.network.accounts.RepositoryAccountsImpl
 import com.example.androidplatform.data.network.auth.RepositoryAuthenticationImpl
 import com.example.androidplatform.data.network.cards.RepositoryCardsImpl
 import com.example.androidplatform.data.network.change_password.RepositoryChangePasswordImpl
@@ -14,6 +15,7 @@ import com.example.androidplatform.data.network.logout.RepositoryLogoutImpl
 import com.example.androidplatform.data.network.proceed_operation.RepositoryProceedOperationImpl
 import com.example.androidplatform.data.network.registration.RepositoryRegistrationImpl
 import com.example.androidplatform.data.network.restoration_password.RepositoryRestorePasswordImpl
+import com.example.androidplatform.domain.RepositoryAccounts
 import com.example.androidplatform.data.network.stories.RepositoryStoriesImpl
 import com.example.androidplatform.domain.RepositoryAuthentication
 import com.example.androidplatform.domain.RepositoryCards
@@ -26,6 +28,7 @@ import com.example.androidplatform.domain.RepositoryLogout
 import com.example.androidplatform.domain.RepositoryProceedOperation
 import com.example.androidplatform.domain.RepositoryRegistration
 import com.example.androidplatform.domain.RepositoryRestorePassword
+import com.example.androidplatform.domain.api.AccountsInteractor
 import com.example.androidplatform.domain.RepositoryStories
 import com.example.androidplatform.domain.api.AuthenticationInteractor
 import com.example.androidplatform.domain.api.CardsInteractor
@@ -39,6 +42,7 @@ import com.example.androidplatform.domain.api.ProceedOperationInteractor
 import com.example.androidplatform.domain.api.RegistrationInteractor
 import com.example.androidplatform.domain.api.RestorePasswordInteractor
 import com.example.androidplatform.domain.api.StoriesInteractor
+import com.example.androidplatform.domain.impl.accounts.AccountsInteractorImpl
 import com.example.androidplatform.domain.impl.authentication.AuthenticationInteractorImpl
 import com.example.androidplatform.domain.impl.cards.CardsInteractorImpl
 import com.example.androidplatform.domain.impl.change_password.ChangePasswordInteractorImpl
@@ -159,5 +163,13 @@ val domainModule = module {
 
     factory<CardsInteractor> {
         CardsInteractorImpl(get())
+    }
+
+    single<RepositoryAccounts> {
+        RepositoryAccountsImpl(get())
+    }
+
+    factory<AccountsInteractor> {
+        AccountsInteractorImpl(get())
     }
 }

@@ -8,6 +8,7 @@ import com.example.androidplatform.presentation.dashboard.viewmodel.DashBoardVie
 import com.example.androidplatform.presentation.history.viewmodel.HistoryViewModel
 import com.example.androidplatform.presentation.transaction_info.viewmodel.TransactionInfoViewModel
 import com.example.androidplatform.presentation.personal_account.viewmodel.PersonalAccountViewModel
+import com.example.androidplatform.presentation.personal_data_by_account_opening.viemodel.PersonalDataByAccountOpeningViewModel
 import com.example.androidplatform.presentation.personal_data_by_card_ordering.viewmodel.PersonalDataByCardOrderingViewModel
 import com.example.androidplatform.presentation.registration.RegistrationViewModel
 import com.example.androidplatform.presentation.restoration_password.RestorePasswordViewModel
@@ -46,9 +47,19 @@ val viewModelModule = module {
     }
 
     viewModel {
+        PersonalDataByAccountOpeningViewModel(
+            clientInteractor = get(),
+            launchOperationInteractor = get(),
+            proceedOperationInteractor = get(),
+            confirmOperationInteractor = get()
+        )
+    }
+
+    viewModel {
         DashBoardViewModel(
-            storiesInteractor = get(),
-            cardsInteractor = get()
+            cardsInteractor = get(),
+            accountsInteractor = get(),
+            storiesInteractor = get()
         )
     }
 

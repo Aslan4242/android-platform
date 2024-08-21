@@ -1,4 +1,4 @@
-package com.example.androidplatform.ui.personal_data_by_card_ordering
+package com.example.androidplatform.ui.personal_data_by_account_opening
 
 import android.os.Bundle
 import android.text.Editable
@@ -10,29 +10,29 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.androidplatform.R
-import com.example.androidplatform.data.network.proceed_operation.card_ordering.CardProduct
-import com.example.androidplatform.databinding.FragmentPersonalDataByCardOrderingBinding
+import com.example.androidplatform.data.network.proceed_operation.account_opening.AccountType
+import com.example.androidplatform.databinding.FragmentPersonalDataByAccountOpeningBinding
 import com.example.androidplatform.domain.models.clients.Client
 import com.example.androidplatform.presentation.personal_account.models.ScreenStateClients
+import com.example.androidplatform.presentation.personal_data_by_account_opening.viemodel.PersonalDataByAccountOpeningViewModel
 import com.example.androidplatform.presentation.personal_data_by_card_ordering.models.OperationState
-import com.example.androidplatform.presentation.personal_data_by_card_ordering.viewmodel.PersonalDataByCardOrderingViewModel
 import com.example.androidplatform.ui.root.RootActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class PersonalDataByCardOrderingFragment : Fragment() {
-    private var _binding: FragmentPersonalDataByCardOrderingBinding? = null
+class PersonalDataByAccountOpeningFragment : Fragment() {
+    private var _binding: FragmentPersonalDataByAccountOpeningBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by viewModel<PersonalDataByCardOrderingViewModel>()
+    private val viewModel by viewModel<PersonalDataByAccountOpeningViewModel>()
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
-    private lateinit var programType: String
+    private lateinit var currencyType: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPersonalDataByCardOrderingBinding.inflate(inflater, container, false)
+        _binding = FragmentPersonalDataByAccountOpeningBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -51,7 +51,7 @@ class PersonalDataByCardOrderingFragment : Fragment() {
         }
         viewModel.operationState().observe(viewLifecycleOwner) { state ->
             if (state is OperationState.Content) {
-                binding.cardOrderedSuccessfullyLl.visibility = View.VISIBLE
+                binding.accountOpenedSuccessfullyLl.visibility = View.VISIBLE
             }
         }
     }
@@ -60,7 +60,7 @@ class PersonalDataByCardOrderingFragment : Fragment() {
         setupBottomSheet()
         setupButtonListeners()
         setupProgramTypeSelection()
-        binding.programTypeEt.addTextChangedListener(createTextWatcher())
+        binding.accountCurrencyEt.addTextChangedListener(createTextWatcher())
     }
 
     private fun setupBottomSheet() {
@@ -77,38 +77,38 @@ class PersonalDataByCardOrderingFragment : Fragment() {
 
     private fun setupButtonListeners() {
         binding.backToDashboardBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_personalDataByCardOrderingFragment_to_dashBoardFragment)
+            findNavController().navigate(R.id.action_personalDataByAccountOpeningFragment_to_dashBoardFragment)
         }
 
-        binding.orderCardBtn.setOnClickListener {
-            when (arguments?.getString("cardProduct")) {
-                "DEBIT_CARD" -> viewModel.orderCard(
-                    CardProduct.DEBIT_CARD,
-                    viewModel.getPaymentType(programType)
+        binding.openAccountBtn.setOnClickListener {
+            when (arguments?.getString("accountType")) {
+                "SAVING_ACCOUNT" -> viewModel.openAccount(
+                    AccountType.SAVING_ACCOUNT,
+                    currencyType
                 )
 
-                "CREDIT_CARD" -> viewModel.orderCard(
-                    CardProduct.CREDIT_CARD,
-                    viewModel.getPaymentType(programType)
+                "CURRENT_ACCOUNT" -> viewModel.openAccount(
+                    AccountType.CURRENT_ACCOUNT,
+                    currencyType
                 )
             }
         }
     }
 
     private fun setupProgramTypeSelection() {
-        binding.programTypeEt.setOnClickListener {
+        binding.accountCurrencyEt.setOnClickListener {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
-        val programTypeMap = mapOf(
-            binding.mirCardLl to R.string.mir,
-            binding.visaCardLl to R.string.visa,
-            binding.mastercardCardLl to R.string.mastercard,
-            binding.maestroCardLl to R.string.maestro
+        val currencyTypeMap = mapOf(
+            binding.rubleLl to R.string.ruble,
+            binding.dollarLl to R.string.dollar,
+            binding.euroLl to R.string.euro,
+            binding.yuanLl to R.string.yuan
         )
-        programTypeMap.forEach { (view, stringResId) ->
+        currencyTypeMap.forEach { (view, stringResId) ->
             view.setOnClickListener {
-                binding.programTypeEt.setText(stringResId)
-                programType = getString(stringResId)
+                binding.accountCurrencyEt.setText(stringResId)
+                currencyType = getString(stringResId)
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
             }
         }
@@ -145,8 +145,8 @@ class PersonalDataByCardOrderingFragment : Fragment() {
     }
 
     private fun updateOrderButton() {
-        with(binding.orderCardBtn) {
-            isEnabled = binding.programTypeEt.text?.isNotEmpty() == true
+        with(binding.openAccountBtn) {
+            isEnabled = binding.accountCurrencyEt.text?.isNotEmpty() == true
             setBackgroundColor(resources.getColor(if (isEnabled) R.color.orange else R.color.gray_2))
         }
     }

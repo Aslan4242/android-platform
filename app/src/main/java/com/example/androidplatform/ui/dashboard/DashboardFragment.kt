@@ -16,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.example.androidplatform.R
 import com.example.androidplatform.databinding.FragmentDashboardBinding
+import com.example.androidplatform.domain.models.account.Account
 import com.example.androidplatform.domain.models.cards.Card
+import com.example.androidplatform.presentation.dashboard.models.ScreenStateAccounts
 import com.example.androidplatform.presentation.dashboard.adapter.StoriesAdapter
 import com.example.androidplatform.presentation.dashboard.models.ScreenStateCards
 import com.example.androidplatform.presentation.dashboard.models.StoriesListState
@@ -30,6 +32,8 @@ class DashboardFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel by viewModel<DashBoardViewModel>()
     lateinit var confirmDialog: MaterialAlertDialogBuilder
+    private var cardsListData: List<Card> = emptyList()
+    private var accountsListData: List<Account> = emptyList()
     lateinit var storiesAdapter: StoriesAdapter
     private var listData: List<Card> = emptyList()
     private var unviewedStories: List<Int> = emptyList()
@@ -47,6 +51,7 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getCards()
+        viewModel.getAccounts()
         unviewedStories = viewModel.getUnviewedStories()
 
         storiesAdapter = StoriesAdapter { storyPosition, storiesCount ->
@@ -62,6 +67,7 @@ class DashboardFragment : Fragment() {
         val swipeRefreshLayout = binding.dashboardSrl
         swipeRefreshLayout.setOnRefreshListener {
             viewModel.getCards()
+            viewModel.getAccounts()
             swipeRefreshLayout.isRefreshing = false
         }
 
@@ -74,8 +80,16 @@ class DashboardFragment : Fragment() {
             renderCards(it)
         }
 
+        viewModel.accountsScreenState().observe(viewLifecycleOwner) {
+            renderAccounts(it)
+        }
+
         binding.orderCardBtn.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_cardsFragment)
+        }
+
+        binding.openAccountBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_accountsFragment)
         }
 
         viewModel.storiesListState().observe(viewLifecycleOwner) {
@@ -94,13 +108,22 @@ class DashboardFragment : Fragment() {
     private fun renderCards(state: ScreenStateCards) {
         when (state) {
             is ScreenStateCards.Content -> {
-                listData = state.cards
+                cardsListData = state.cards
                 val expandableListView = binding.cardsNlv
-                val adapter = CardsExpandableListAdapter(
-                    requireContext(),
-                    resources.getString(R.string.cards),
-                    listData
-                )
+                val adapter = CardsExpandableListAdapter(requireContext(), resources.getString(R.string.cards), cardsListData)
+                expandableListView.setAdapter(adapter)
+            }
+
+            else -> {}
+        }
+    }
+
+    private fun renderAccounts(state: ScreenStateAccounts) {
+        when (state) {
+            is ScreenStateAccounts.Content -> {
+                accountsListData = state.accounts
+                val expandableListView = binding.accountsNlv
+                val adapter = AccountsExpandableListAdapter( resources.getString(R.string.accounts), accountsListData)
                 expandableListView.setAdapter(adapter)
             }
 

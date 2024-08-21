@@ -1,19 +1,17 @@
 package com.example.androidplatform.ui.dashboard
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
-import android.widget.ImageView
 import android.widget.TextView
 import com.example.androidplatform.R
-import com.example.androidplatform.domain.models.cards.Card
+import com.example.androidplatform.domain.models.account.Account
+import com.example.androidplatform.util.toCurrencyMoneyFormat
 
-class CardsExpandableListAdapter(
-    private val context: Context,
+class AccountsExpandableListAdapter(
     private val listGroupTitle: String,
-    private val listItems: List<Card>
+    private val listItems: List<Account>
 ) : BaseExpandableListAdapter() {
 
     override fun getGroupCount(): Int {
@@ -68,34 +66,17 @@ class CardsExpandableListAdapter(
     ): View? {
         var view = convertView
         if (view == null) {
-            view = LayoutInflater.from(parent?.context).inflate(R.layout.card_view, null)
+            view = LayoutInflater.from(parent?.context).inflate(R.layout.account_view, null)
         }
-        val cardImage = view?.findViewById<ImageView>(R.id.cardImage)
-        val cardNumber = view?.findViewById<TextView>(R.id.cardNumber)
-        val month = view?.findViewById<TextView>(R.id.month)
-        val year = view?.findViewById<TextView>(R.id.year)
-        val card = getChild(groupPosition, childPosition) as Card
-        cardImage?.setImageResource(getCardImage(card.cardProgram))
-        cardNumber?.text = card.number
-        month?.text = card.month
-        year?.text = card.year
+        val accountNumber = view?.findViewById<TextView>(R.id.accountNumber)
+        val balance = view?.findViewById<TextView>(R.id.balance_tv)
+        val account = getChild(groupPosition, childPosition) as Account
+        accountNumber?.text = account.number
+        balance?.text = account.balance.toString().toCurrencyMoneyFormat(account.currency)
         return view
     }
 
     override fun isChildSelectable(groupPosition: Int, childPosition: Int): Boolean {
         return true
-    }
-
-    private fun getCardImage(cardProgram: String): Int {
-        context.resources.apply {
-            return when (cardProgram) {
-                getString(R.string.mir) -> R.drawable.mir
-                getString(R.string.visa) -> R.drawable.visa
-                getString(R.string.maestro) -> R.drawable.maestro
-                getString(R.string.mastercard) -> R.drawable.mastercard
-                else -> 0
-            }
-        }
-
     }
 }

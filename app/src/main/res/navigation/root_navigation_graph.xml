@@ -55,6 +55,9 @@
             android:id="@+id/action_dashboardFragment_to_cardsFragment"
             app:destination="@id/cardsFragment" />
         <action
+            android:id="@+id/action_dashboardFragment_to_accountsFragment"
+            app:destination="@id/accountsFragment" />
+        <action
             android:id="@+id/action_pop_back"
             app:destination="@id/authorizationFragment"
             app:popUpTo="@id/authorizationFragment"
@@ -119,6 +122,23 @@
         android:label="PersonalDataByCardOrderingFragment" >
         <action
             android:id="@+id/action_personalDataByCardOrderingFragment_to_dashBoardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/accountsFragment"
+        android:name="com.example.androidplatform.ui.accounts.AccountsFragment"
+        android:label="AccountsFragment" >
+        <action
+            android:id="@+id/action_accounts_fragment_to_personal_data_by_account_opening_fragment"
+            app:destination="@id/personalDataByAccountOpeningFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personalDataByAccountOpeningFragment"
+        android:name="com.example.androidplatform.ui.personal_data_by_account_opening.PersonalDataByAccountOpeningFragment"
+        android:label="PersonalDataByAccountOpeningFragment" >
+        <action
+            android:id="@+id/action_personalDataByAccountOpeningFragment_to_dashBoardFragment"
             app:destination="@id/dashboardFragment" />
     </fragment>
 </navigation>

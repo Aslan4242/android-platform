@@ -82,8 +82,10 @@
     <string name="passport_data">Паспортные данные</string>
     <string name="birthdate_pattern">01.01.2000</string>
     <string name="card_ordered_successfully">Заказ оформлен,\nдождитесь звонка от менеджера</string>
+    <string name="account_opened_successfully">Счет открыт</string>
     <string name="back_to_dashboard">Вернуться в мой банк</string>
     <string name="program_type">Программа выпуска</string>
+    <string name="account_currency">Валюта счёта</string>
     <string name="mir">МИР</string>
     <string name="visa">Visa</string>
     <string name="mastercard">Mastercard</string>
@@ -104,4 +106,15 @@
     <string name="transaction_type_income">Доходы</string>
     <string name="transaction_type_expense">Расходы</string>
     <string name="unknown">Неизвестно</string>
+    <string name="current_account">Текущий</string>
+    <string name="current_account_title">Текущий счет</string>
+    <string name="saving_account">Накопительный</string>
+    <string name="saving_account_title">Накопительный счёт</string>
+    <string name="current_account_description">Текущий счет позволяет не только хранить на нем деньги, но и оплачивать с него покупки и услуги, делать переводы людям и организациям.</string>
+    <string name="saving_account_description">Накопительный счет — банковский продукт, подразумевающий передачу денег на хранение в банк под проценты. Он отличается от классического денежного депозита сроком размещения и условиями начисления процентов, но дает больше возможностей управления собственными средствами.</string>
+    <string name="open">Открыть</string>
+    <string name="ruble">Российский Рубль</string>
+    <string name="dollar">Доллар США</string>
+    <string name="euro">Евро</string>
+    <string name="yuan">Китайский Юань</string>
 </resources>

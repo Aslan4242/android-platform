@@ -1,4 +1,4 @@
-package com.example.androidplatform.presentation.personal_data_by_card_ordering.viewmodel
+package com.example.androidplatform.presentation.personal_data_by_account_opening.viemodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,9 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.androidplatform.R
 import com.example.androidplatform.data.network.launch_operation.OperationCode
-import com.example.androidplatform.data.network.proceed_operation.card_ordering.CardProduct
-import com.example.androidplatform.data.network.proceed_operation.card_ordering.CardProgramType
 import com.example.androidplatform.data.network.proceed_operation.ProceedOperationRequestItem
+import com.example.androidplatform.data.network.proceed_operation.account_opening.AccountType
 import com.example.androidplatform.domain.api.ClientInteractor
 import com.example.androidplatform.domain.api.ConfirmOperationInteractor
 import com.example.androidplatform.domain.api.LaunchOperationInteractor
@@ -27,7 +26,7 @@ import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeFormatterBuilder
 import java.time.temporal.ChronoField
 
-class PersonalDataByCardOrderingViewModel(
+class PersonalDataByAccountOpeningViewModel(
     private val clientInteractor: ClientInteractor,
     private val launchOperationInteractor: LaunchOperationInteractor,
     private val proceedOperationInteractor: ProceedOperationInteractor,
@@ -54,10 +53,10 @@ class PersonalDataByCardOrderingViewModel(
         }
     }
 
-    fun orderCard(cardProduct: CardProduct, cardProgramType: CardProgramType) {
+    fun openAccount(accountType: AccountType, currencyType: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val launchOperationResult =
-                launchOperationInteractor.launchOperation(OperationCode.CARD_ORDER)
+                launchOperationInteractor.launchOperation(OperationCode.ACCOUNT_OPEN)
             launchOperationResult.collect { data ->
                 when (data) {
                     is SearchResultData.Data -> {
@@ -66,12 +65,12 @@ class PersonalDataByCardOrderingViewModel(
                             requestId,
                             arrayListOf(
                                 ProceedOperationRequestItem(
-                                    PRODUCT,
-                                    cardProduct.description
+                                    ACCOUNT_TYPE,
+                                    accountType.description
                                 ),
                                 ProceedOperationRequestItem(
-                                    PROGRAM_TYPE,
-                                    cardProgramType.description
+                                    CURRENCY,
+                                    currencyType
                                 )
                             )
                         )
@@ -96,15 +95,6 @@ class PersonalDataByCardOrderingViewModel(
                     }
                 }
             }
-        }
-    }
-
-    fun getPaymentType(paymentType: String): CardProgramType {
-        return when (paymentType) {
-            "МИР" -> CardProgramType.MIR
-            "Visa" -> CardProgramType.VISA
-            "Maestro" -> CardProgramType.MAESTRO
-            else -> CardProgramType.MASTERCARD
         }
     }
 
@@ -152,7 +142,7 @@ class PersonalDataByCardOrderingViewModel(
     }
 
     companion object {
-        const val PRODUCT = "Product"
-        const val PROGRAM_TYPE = "ProgramType"
+        private const val ACCOUNT_TYPE = "AccountType"
+        private const val CURRENCY = "Currency"
     }
 }
