@@ -18,8 +18,8 @@ import com.example.androidplatform.R
 import com.example.androidplatform.databinding.FragmentDashboardBinding
 import com.example.androidplatform.domain.models.account.Account
 import com.example.androidplatform.domain.models.cards.Card
-import com.example.androidplatform.presentation.dashboard.models.ScreenStateAccounts
 import com.example.androidplatform.presentation.dashboard.adapter.StoriesAdapter
+import com.example.androidplatform.presentation.dashboard.models.ScreenStateAccounts
 import com.example.androidplatform.presentation.dashboard.models.ScreenStateCards
 import com.example.androidplatform.presentation.dashboard.models.StoriesListState
 import com.example.androidplatform.presentation.dashboard.viewmodel.DashBoardViewModel
@@ -98,9 +98,9 @@ class DashboardFragment : Fragment() {
 
         confirmDialog = MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.do_you_want_exit)
-            .setNeutralButton("Отмена") { dialog, which ->
+            .setNeutralButton(R.string.cancel) { dialog, which ->
                 // ничего не делаем
-            }.setNegativeButton("Выйти") { dialog, which ->
+            }.setNegativeButton(R.string.logout) { dialog, which ->
                 findNavController().navigate(R.id.action_pop_back)
             }
     }

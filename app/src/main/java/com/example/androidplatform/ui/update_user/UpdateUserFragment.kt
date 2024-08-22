@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.androidplatform.R
@@ -17,6 +19,7 @@ import com.example.androidplatform.domain.models.clients.Client
 import com.example.androidplatform.presentation.personal_account.models.ScreenStateClients
 import com.example.androidplatform.presentation.update_user.UpdateUserViewModel
 import com.example.androidplatform.presentation.update_user.model.UpdateState
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Calendar
 
@@ -24,6 +27,7 @@ class UpdateUserFragment : Fragment() {
     private var _binding: FragmentUpdateUserBinding? = null
     private val binding: FragmentUpdateUserBinding get() = _binding!!
     private val viewModel: UpdateUserViewModel by viewModel<UpdateUserViewModel>()
+    lateinit var confirmDialog: MaterialAlertDialogBuilder
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,12 +39,22 @@ class UpdateUserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        confirmDialog = MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.do_you_want_exit)
+            .setMessage(R.string.unsaved_changes)
+            .setNeutralButton(R.string.cancel) { _, _ ->
+                // ничего не делаем
+            }.setNegativeButton(R.string.logout) { _, _ ->
+                findNavController().popBackStack(R.id.updateUserFragment, true)
+            }
 
         observeViewModel()
         binding.updateBtn.setOnClickListener {
             binding.updateBtn.apply {
                 isEnabled = false
-                setBackgroundColor(resources.getColor(R.color.gray_2))
+                setBackgroundColor(
+                    ContextCompat.getColor(requireContext(), R.color.gray_2)
+                )
             }
             binding.progressBar.visibility = View.VISIBLE
             viewModel.updateUser(collectData())
@@ -67,6 +81,11 @@ class UpdateUserFragment : Fragment() {
             datePickerDialog.show()
         }
         viewModel.getClients()
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            backPressedCallback
+        )
     }
 
     private fun observeViewModel() {
@@ -74,9 +93,13 @@ class UpdateUserFragment : Fragment() {
             binding.updateBtn.apply {
                 isEnabled = it
                 if (it)
-                    setBackgroundColor(resources.getColor(R.color.orange))
+                    setBackgroundColor(
+                        ContextCompat.getColor(requireContext(), R.color.orange)
+                    )
                 else
-                    setBackgroundColor(resources.getColor(R.color.gray_2))
+                    setBackgroundColor(
+                        ContextCompat.getColor(requireContext(), R.color.gray_2)
+                    )
             }
         }
         viewModel.screenState().observe(viewLifecycleOwner) {
@@ -195,6 +218,16 @@ class UpdateUserFragment : Fragment() {
                 sex = getGender(genderRadioGroup),
                 isMustChangePassword = false
             )
+        }
+    }
+
+    private val backPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (viewModel.isButtonEnabled.value == true) {
+                confirmDialog.show()
+            } else {
+                findNavController().popBackStack(R.id.updateUserFragment, true)
+            }
         }
     }
 

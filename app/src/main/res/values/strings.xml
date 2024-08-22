@@ -59,6 +59,7 @@
     <string name="empty">Не удалось получить клиентов</string>
     <string name="auth_error">Ошибка аутентификации</string>
     <string name="do_you_want_exit">Вы точно хотите выйти?</string>
+    <string name="unsaved_changes">Несохранённые изменения будут потеряны.</string>
     <string name="cancel">Отмена</string>
     <string name="logout">Выйти</string>
     <string name="email">Email</string>
