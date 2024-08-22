@@ -93,6 +93,9 @@
             app:destination="@id/authorizationFragment"
             app:popUpTo="@id/authorizationFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_personalAccountFragment_to_updateUserFragment"
+            app:destination="@id/updateUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
@@ -141,4 +144,14 @@
             android:id="@+id/action_personalDataByAccountOpeningFragment_to_dashBoardFragment"
             app:destination="@id/dashboardFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/updateUserFragment"
+        android:name="com.example.androidplatform.ui.update_user.UpdateUserFragment"
+        android:label="fragment_update_user"
+        tools:layout="@layout/fragment_update_user" >
+        <action
+            android:id="@+id/action_updateUserFragment_to_personalAccountFragment"
+            app:destination="@id/personalAccountFragment" />
+    </fragment>
+
 </navigation>

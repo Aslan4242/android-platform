@@ -26,6 +26,7 @@ interface NetworkClient {
         address: String,
         sex: String
     ): Result<Void>
+    suspend fun updateClient(client: Client): Result<Void>
     suspend fun restorePassword(login: String): Result<Void>
     suspend fun changePassword(password: String): Result<Void>
     suspend fun getHistory(): Result<List<Transaction>>

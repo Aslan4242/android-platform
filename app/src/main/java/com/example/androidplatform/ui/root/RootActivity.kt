@@ -32,6 +32,11 @@ class RootActivity : AppCompatActivity() {
                 R.id.storiesFragment -> {
                     bottomNavigationView.visibility = View.GONE
                 }
+
+                R.id.updateUserFragment -> {
+                    bottomNavigationView.visibility = View.GONE
+                }
+
                 else -> {
                     bottomNavigationView.visibility = View.VISIBLE
                 }
