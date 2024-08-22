@@ -30,6 +30,10 @@ class RestorePasswordViewModel(
     val showToastMessage: LiveData<String>
         get() = _showToastMessage
 
+    private val _showNotificationMessage = SingleLiveEvent<String>()
+    val showNotificationMessage: LiveData<String>
+        get() = _showNotificationMessage
+
     private val _formattedTime = MutableLiveData<String>()
     val formattedTime: LiveData<String>
         get() = _formattedTime
@@ -93,6 +97,7 @@ class RestorePasswordViewModel(
             _isSendCode.value = true
             _isChangeCode.value = false
             enableButton(false)
+            _showNotificationMessage.postValue(DEFAULT_CODE)
             startTimer()
         }
     }
@@ -112,6 +117,7 @@ class RestorePasswordViewModel(
 
     fun restartTimer() {
         startTimer()
+        _showNotificationMessage.postValue(DEFAULT_CODE)
     }
 
     private fun restoreCode(login: String?, code: String?) {

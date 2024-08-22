@@ -16,6 +16,7 @@ import com.example.androidplatform.databinding.FragmentRestorePasswordBinding
 import com.example.androidplatform.presentation.restoration_password.RestorePasswordViewModel
 import com.example.androidplatform.presentation.restoration_password.RestorePasswordViewModel.Companion.DEFAULT_PASSWORD
 import com.example.androidplatform.presentation.restoration_password.models.RestorePasswordState
+import com.example.androidplatform.services.NotificationManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -103,6 +104,9 @@ class RestorePasswordFragment : Fragment() {
         viewModel.showToastMessage.observe(viewLifecycleOwner) {
             showToast(it)
         }
+        viewModel.showNotificationMessage.observe(viewLifecycleOwner) {
+            showPush(it)
+        }
     }
 
     private fun addTextChangeListeners() {
@@ -136,6 +140,15 @@ class RestorePasswordFragment : Fragment() {
 
     private fun showToast(text: String) {
         Toast.makeText(requireContext(), text, Toast.LENGTH_LONG).show()
+    }
+
+    private fun showPush(text: String) {
+        NotificationManager.showNotification(
+            getString(R.string.notification_code),
+            text,
+            requireActivity().application
+        )
+        binding.smsCodeEt.setText(text)
     }
 
     private fun createDialog() {
