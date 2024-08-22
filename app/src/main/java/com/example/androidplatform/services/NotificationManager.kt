@@ -1,6 +1,5 @@
 package com.example.androidplatform.services
 
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -34,7 +33,7 @@ object NotificationManager {
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setContentTitle(title)
             .setLargeIcon(
-                BitmapFactory.decodeResource(context.resources, R.drawable.image)
+                BitmapFactory.decodeResource(context.resources, R.drawable.notification_large_icon)
             )
             .setAutoCancel(true)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
