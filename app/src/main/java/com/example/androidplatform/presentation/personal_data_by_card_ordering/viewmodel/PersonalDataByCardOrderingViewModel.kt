@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.androidplatform.R
 import com.example.androidplatform.data.network.launch_operation.OperationCode
-import com.example.androidplatform.data.network.proceed_operation.CardProduct
-import com.example.androidplatform.data.network.proceed_operation.CardProgramType
+import com.example.androidplatform.data.network.proceed_operation.card_ordering.CardProduct
+import com.example.androidplatform.data.network.proceed_operation.card_ordering.CardProgramType
 import com.example.androidplatform.data.network.proceed_operation.ProceedOperationRequestItem
 import com.example.androidplatform.domain.api.ClientInteractor
 import com.example.androidplatform.domain.api.ConfirmOperationInteractor
@@ -66,11 +66,11 @@ class PersonalDataByCardOrderingViewModel(
                             requestId,
                             arrayListOf(
                                 ProceedOperationRequestItem(
-                                    "Product",
+                                    PRODUCT,
                                     cardProduct.description
                                 ),
                                 ProceedOperationRequestItem(
-                                    "ProgramType",
+                                    PROGRAM_TYPE,
                                     cardProgramType.description
                                 )
                             )
@@ -149,5 +149,10 @@ class PersonalDataByCardOrderingViewModel(
             is SearchResultData.NoInternet -> OperationState.NoInternet(data.message)
             is SearchResultData.Empty -> OperationState.Empty(data.message)
         }
+    }
+
+    companion object {
+        const val PRODUCT = "Product"
+        const val PROGRAM_TYPE = "ProgramType"
     }
 }

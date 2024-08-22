@@ -4,6 +4,7 @@ import com.example.androidplatform.data.network.auth.AuthRequest
 import com.example.androidplatform.data.network.auth.AuthResponse
 import com.example.androidplatform.data.network.launch_operation.OperationCode
 import com.example.androidplatform.data.network.proceed_operation.ProceedOperationRequestItem
+import com.example.androidplatform.domain.models.account.Account
 import com.example.androidplatform.domain.models.cards.Card
 import com.example.androidplatform.domain.models.clients.Client
 import com.example.androidplatform.domain.models.history.Transaction
@@ -39,4 +40,5 @@ interface NetworkClient {
         requestId: Int,
     ): Result<OperationItem>
     suspend fun getCards(): Result<List<Card>>
+    suspend fun getAccounts(): Result<List<Account>>
 }

@@ -8,9 +8,11 @@ import com.example.androidplatform.presentation.dashboard.viewmodel.DashBoardVie
 import com.example.androidplatform.presentation.history.viewmodel.HistoryViewModel
 import com.example.androidplatform.presentation.transaction_info.viewmodel.TransactionInfoViewModel
 import com.example.androidplatform.presentation.personal_account.viewmodel.PersonalAccountViewModel
+import com.example.androidplatform.presentation.personal_data_by_account_opening.viemodel.PersonalDataByAccountOpeningViewModel
 import com.example.androidplatform.presentation.personal_data_by_card_ordering.viewmodel.PersonalDataByCardOrderingViewModel
 import com.example.androidplatform.presentation.registration.RegistrationViewModel
 import com.example.androidplatform.presentation.restoration_password.RestorePasswordViewModel
+import com.example.androidplatform.presentation.stories.viewmodel.SingleStoryViewModel
 import com.example.androidplatform.presentation.update_user.UpdateUserViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -46,8 +48,19 @@ val viewModelModule = module {
     }
 
     viewModel {
+        PersonalDataByAccountOpeningViewModel(
+            clientInteractor = get(),
+            launchOperationInteractor = get(),
+            proceedOperationInteractor = get(),
+            confirmOperationInteractor = get()
+        )
+    }
+
+    viewModel {
         DashBoardViewModel(
-            cardsInteractor = get()
+            cardsInteractor = get(),
+            accountsInteractor = get(),
+            storiesInteractor = get()
         )
     }
 
@@ -86,6 +99,12 @@ val viewModelModule = module {
     viewModel {
         TransactionInfoViewModel(
             historyInteractor = get()
+        )
+    }
+
+    viewModel {
+        SingleStoryViewModel(
+            storiesInteractor = get()
         )
     }
 }

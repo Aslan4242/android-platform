@@ -37,6 +37,17 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
+        android:id="@+id/storiesFragment"
+        android:name="com.example.androidplatform.ui.stories.StoriesFragment"
+        android:label="StroriesFragment">
+        <argument
+            android:name="storiesCount"
+            app:argType="integer" />
+        <argument
+            android:name="storyPosition"
+            app:argType="integer" />
+    </fragment>
+    <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.example.androidplatform.ui.dashboard.DashboardFragment"
         android:label="DashboardFragment" >
@@ -44,10 +55,16 @@
             android:id="@+id/action_dashboardFragment_to_cardsFragment"
             app:destination="@id/cardsFragment" />
         <action
+            android:id="@+id/action_dashboardFragment_to_accountsFragment"
+            app:destination="@id/accountsFragment" />
+        <action
             android:id="@+id/action_pop_back"
             app:destination="@id/authorizationFragment"
             app:popUpTo="@id/authorizationFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_dashboardFragment_to_storiesFragment"
+            app:destination="@id/storiesFragment"/>
     </fragment>
     <fragment
         android:id="@+id/transactionInfoFragment"
@@ -108,6 +125,23 @@
         android:label="PersonalDataByCardOrderingFragment" >
         <action
             android:id="@+id/action_personalDataByCardOrderingFragment_to_dashBoardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/accountsFragment"
+        android:name="com.example.androidplatform.ui.accounts.AccountsFragment"
+        android:label="AccountsFragment" >
+        <action
+            android:id="@+id/action_accounts_fragment_to_personal_data_by_account_opening_fragment"
+            app:destination="@id/personalDataByAccountOpeningFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personalDataByAccountOpeningFragment"
+        android:name="com.example.androidplatform.ui.personal_data_by_account_opening.PersonalDataByAccountOpeningFragment"
+        android:label="PersonalDataByAccountOpeningFragment" >
+        <action
+            android:id="@+id/action_personalDataByAccountOpeningFragment_to_dashBoardFragment"
             app:destination="@id/dashboardFragment" />
     </fragment>
     <fragment

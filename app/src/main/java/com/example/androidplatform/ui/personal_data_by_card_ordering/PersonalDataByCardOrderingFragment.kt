@@ -10,7 +10,7 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.androidplatform.R
-import com.example.androidplatform.data.network.proceed_operation.CardProduct
+import com.example.androidplatform.data.network.proceed_operation.card_ordering.CardProduct
 import com.example.androidplatform.databinding.FragmentPersonalDataByCardOrderingBinding
 import com.example.androidplatform.domain.models.clients.Client
 import com.example.androidplatform.presentation.personal_account.models.ScreenStateClients

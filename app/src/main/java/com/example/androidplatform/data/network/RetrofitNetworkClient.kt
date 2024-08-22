@@ -10,6 +10,7 @@ import com.example.androidplatform.data.network.launch_operation.OperationCode
 import com.example.androidplatform.data.network.proceed_operation.ProceedOperationRequestItem
 import com.example.androidplatform.data.network.registration.RegistrationRequest
 import com.example.androidplatform.data.network.restoration_password.RestoreCodeRequest
+import com.example.androidplatform.domain.models.account.Account
 import com.example.androidplatform.domain.models.cards.Card
 import com.example.androidplatform.domain.models.clients.Client
 import com.example.androidplatform.domain.models.history.Transaction
@@ -307,6 +308,24 @@ class RetrofitNetworkClient(
             try {
                 val token = sharedPreferences.getString("token", "") ?: ""
                 val result = service.getCards(token)
+                Result.success(result)
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
+
+    override suspend fun getAccounts(): Result<List<Account>> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val token = sharedPreferences.getString("token", "") ?: ""
+                val result = service.getAccounts(token)
                 Result.success(result)
             } catch (e: HttpException) {
                 Result.failure(e)

@@ -52,7 +52,7 @@ class CardsExpandableListAdapter(
     ): View? {
         var view = convertView
         if (view == null) {
-            view = LayoutInflater.from(parent?.context).inflate(R.layout.card_header_view, null)
+            view = LayoutInflater.from(parent?.context).inflate(R.layout.list_header_view, null)
         }
         val textView = view?.findViewById<TextView>(R.id.header_tv)
         textView?.text = getGroup(groupPosition) as String
