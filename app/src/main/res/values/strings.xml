@@ -13,6 +13,7 @@
     <string name="birthdate_hint">День рождения</string>
     <string name="password_masked">********</string>
     <string name="hint_password">Введите пароль</string>
+    <string name="notification_code">Ваш код</string>
     <string name="hint_repeat_password">Повторно введите пароль</string>
     <string name="hint_input_sms_code">Введите код из СМС</string>
     <string name="enter">Войти</string>
