@@ -98,9 +98,9 @@ class DashboardFragment : Fragment() {
 
         confirmDialog = MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.do_you_want_exit)
-            .setNeutralButton("Отмена") { dialog, which ->
+            .setNeutralButton(R.string.cancel) { dialog, which ->
                 // ничего не делаем
-            }.setNegativeButton("Выйти") { dialog, which ->
+            }.setNegativeButton(R.string.logout) { dialog, which ->
                 findNavController().navigate(R.id.action_pop_back)
             }
     }

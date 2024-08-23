@@ -38,6 +38,12 @@ interface ITesterApi {
     @PUT("clients")
     suspend fun createClient(@Body request: RegistrationRequest): Response<Void>
 
+    @PATCH("clients")
+    suspend fun updateClient(
+        @Header("Authorization") token: String,
+        @Body request: Client
+    ): Response<Void>
+
     @PATCH("authorization/restore")
     suspend fun restorePassword(@Body restoreCodeRequest: RestoreCodeRequest): Response<Void>
 
