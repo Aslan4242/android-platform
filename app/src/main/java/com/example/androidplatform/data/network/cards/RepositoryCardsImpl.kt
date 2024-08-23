@@ -129,4 +129,33 @@ class RepositoryCardsImpl(
             }
         }
     }
+
+    override suspend fun activateCardById(cardId: Int, cardRequest: ActivateCardRequest): Flow<SearchResultData<Card>> = flow {
+        val searchResult = client.activateCardById(cardId, cardRequest)
+        val data = searchResult.getOrNull()
+        val error = searchResult.exceptionOrNull()
+
+        when {
+            data != null -> {
+                emit(SearchResultData.Data(data))
+            }
+
+            error is ConnectException -> {
+                emit(SearchResultData.NoInternet(R.string.no_internet))
+            }
+
+            error is SocketTimeoutException -> {
+                emit(SearchResultData.NoInternet(R.string.no_internet))
+            }
+
+            error is HttpException -> {
+                emit(
+                    SearchResultData.ErrorServer(
+                        R.string.server_error,
+                        error.response()?.errorBody()?.string() ?: ""
+                    )
+                )
+            }
+        }
+    }
 }

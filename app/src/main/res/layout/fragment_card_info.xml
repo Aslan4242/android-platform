@@ -237,6 +237,15 @@
         </androidx.cardview.widget.CardView>
 
         <Button
+            android:id="@+id/activate_card_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_45dp"
+            android:visibility="gone"
+            app:cornerRadius="@dimen/_16dp"
+            tools:text="Активировать"/>
+
+        <Button
             android:id="@+id/block_card_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

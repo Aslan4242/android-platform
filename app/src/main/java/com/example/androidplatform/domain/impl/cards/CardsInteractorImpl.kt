@@ -1,5 +1,6 @@
 package com.example.androidplatform.domain.impl.cards
 
+import com.example.androidplatform.data.network.cards.ActivateCardRequest
 import com.example.androidplatform.domain.RepositoryCards
 import com.example.androidplatform.domain.api.CardsInteractor
 import com.example.androidplatform.domain.models.SearchResultData
@@ -21,5 +22,9 @@ class CardsInteractorImpl(private val cardsRepository: RepositoryCards): CardsIn
 
     override suspend fun unlockCardById(cardId: Int): Flow<SearchResultData<Card>> {
         return cardsRepository.unlockCardById(cardId)
+    }
+
+    override suspend fun activateCardById(cardId: Int, cardRequest: ActivateCardRequest): Flow<SearchResultData<Card>> {
+        return cardsRepository.activateCardById(cardId, cardRequest)
     }
 }

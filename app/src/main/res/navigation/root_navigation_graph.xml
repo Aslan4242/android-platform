@@ -48,12 +48,23 @@
             app:argType="integer" />
     </fragment>
     <fragment
+        android:id="@+id/pinCodeFragment"
+        android:name="com.example.androidplatform.ui.pin_code.PinCodeFragment"
+        android:label="PinCodeFragment">
+        <argument
+            android:name="cardId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
         android:id="@+id/cardInfoFragment"
         android:name="com.example.androidplatform.ui.card_info.CardInfoFragment"
         android:label="CardInfoFragment">
         <argument
             android:name="cardId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_cardInfoFragment_to_pinCodeFragment"
+            app:destination="@id/pinCodeFragment"/>
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"

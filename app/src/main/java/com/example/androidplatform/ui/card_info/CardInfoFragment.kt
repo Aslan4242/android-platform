@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.androidplatform.R
 import com.example.androidplatform.databinding.FragmentCardInfoBinding
@@ -84,7 +85,14 @@ class CardInfoFragment : Fragment() {
         }
         cardName.text = card.account.name
         when(card.state) {
-            CardState.CREATED.value,
+            CardState.CREATED.value -> with (blockCardButton) {
+                setText(R.string.activate_card)
+                visibility = View.VISIBLE
+                setOnClickListener {
+                    findNavController().navigate(CardInfoFragmentDirections
+                        .actionCardInfoFragmentToPinCodeFragment(navArgs.cardId))
+                }
+            }
             CardState.ACTIVE.value -> with (blockCardButton) {
                 setText(R.string.block_card)
                 setOnClickListener { showDialog(

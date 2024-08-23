@@ -30,6 +30,7 @@ class RootActivity : AppCompatActivity() {
                 R.id.changePasswordFragment,
                 R.id.transactionInfoFragment,
                 R.id.cardInfoFragment,
+                R.id.pinCodeFragment,
                 R.id.storiesFragment -> {
                     bottomNavigationView.visibility = View.GONE
                 }
