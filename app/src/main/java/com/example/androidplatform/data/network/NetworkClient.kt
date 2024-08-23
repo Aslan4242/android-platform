@@ -40,4 +40,7 @@ interface NetworkClient {
     ): Result<OperationItem>
     suspend fun getCards(): Result<List<Card>>
     suspend fun getAccounts(): Result<List<Account>>
+    suspend fun getCardCvc(cardId: Int): Result<Int>
+    suspend fun lockCardById(cardId: Int): Result<Card>
+    suspend fun unlockCardById(cardId: Int): Result<Card>
 }

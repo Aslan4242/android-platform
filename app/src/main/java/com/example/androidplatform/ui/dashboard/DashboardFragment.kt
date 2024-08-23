@@ -18,8 +18,8 @@ import com.example.androidplatform.R
 import com.example.androidplatform.databinding.FragmentDashboardBinding
 import com.example.androidplatform.domain.models.account.Account
 import com.example.androidplatform.domain.models.cards.Card
-import com.example.androidplatform.presentation.dashboard.models.ScreenStateAccounts
 import com.example.androidplatform.presentation.dashboard.adapter.StoriesAdapter
+import com.example.androidplatform.presentation.dashboard.models.ScreenStateAccounts
 import com.example.androidplatform.presentation.dashboard.models.ScreenStateCards
 import com.example.androidplatform.presentation.dashboard.models.StoriesListState
 import com.example.androidplatform.presentation.dashboard.viewmodel.DashBoardViewModel
@@ -110,7 +110,15 @@ class DashboardFragment : Fragment() {
             is ScreenStateCards.Content -> {
                 cardsListData = state.cards
                 val expandableListView = binding.cardsNlv
-                val adapter = CardsExpandableListAdapter(requireContext(), resources.getString(R.string.cards), cardsListData)
+                val adapter = CardsExpandableListAdapter(
+                    context = requireContext(),
+                    listGroupTitle = resources.getString(R.string.cards),
+                    listItems = cardsListData,
+                    onCardClickListener = { cardId ->
+                        findNavController().navigate(DashboardFragmentDirections
+                            .actionDashboardFragmentToCardInfoFragment(cardId))
+                    }
+                )
                 expandableListView.setAdapter(adapter)
             }
 
@@ -123,7 +131,10 @@ class DashboardFragment : Fragment() {
             is ScreenStateAccounts.Content -> {
                 accountsListData = state.accounts
                 val expandableListView = binding.accountsNlv
-                val adapter = AccountsExpandableListAdapter( resources.getString(R.string.accounts), accountsListData)
+                val adapter = AccountsExpandableListAdapter(
+                    resources.getString(R.string.accounts),
+                    accountsListData
+                )
                 expandableListView.setAdapter(adapter)
             }
 

@@ -10,4 +10,16 @@ class CardsInteractorImpl(private val cardsRepository: RepositoryCards): CardsIn
     override suspend fun getCards(): Flow<SearchResultData<List<Card>>> {
         return cardsRepository.getCards()
     }
+
+    override suspend fun getCardCvc(cardId: Int): Flow<SearchResultData<Int>> {
+        return cardsRepository.getCardCvc(cardId)
+    }
+
+    override suspend fun lockCardById(cardId: Int): Flow<SearchResultData<Card>> {
+        return cardsRepository.lockCardById(cardId)
+    }
+
+    override suspend fun unlockCardById(cardId: Int): Flow<SearchResultData<Card>> {
+        return cardsRepository.unlockCardById(cardId)
+    }
 }
