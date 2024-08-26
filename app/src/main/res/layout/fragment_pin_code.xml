@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/input_pin_code"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_13dp"/>
+
+    <com.chaos.view.PinView
+        android:id="@+id/pinCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_13dp"
+        android:cursorVisible="true"
+        android:gravity="center"
+        android:inputType="number"
+        style="@style/PinWidget.PinView"
+        app:hideLineWhenFilled="false"
+        app:itemCount="4"
+        app:itemRadius="10dp" />
+
+    <Button
+        android:id="@+id/submitPinCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_45dp"
+        android:text="@string/pin_code_continue"/>
+
+</LinearLayout>

@@ -3,6 +3,7 @@ package com.example.androidplatform.data.network
 
 import com.example.androidplatform.data.network.auth.AuthRequest
 import com.example.androidplatform.data.network.auth.AuthResponse
+import com.example.androidplatform.data.network.cards.ActivateCardRequest
 import com.example.androidplatform.data.network.change_password.ChangePasswordRequest
 import com.example.androidplatform.data.network.launch_operation.LaunchOperationRequest
 import com.example.androidplatform.data.network.proceed_operation.ProceedOperationRequestItem
@@ -86,4 +87,29 @@ interface ITesterApi {
 
     @GET("accounts")
     suspend fun getAccounts(@Header("Authorization") token: String): List<Account>
+
+    @GET("cards/{cardId}/cvc")
+    suspend fun getCardCvc(
+        @Header("Authorization") token: String,
+        @Path("cardId") cardId: Int
+    ): Int
+
+    @PATCH("cards/activate/{cardId}")
+    suspend fun activateCardById(
+        @Header("Authorization") token: String,
+        @Body activateCardRequest: ActivateCardRequest,
+        @Path("cardId") cardId: Int
+    ): Card
+
+    @PATCH("cards/lock/{cardId}")
+    suspend fun lockCardById(
+        @Header("Authorization") token: String,
+        @Path("cardId") cardId: Int
+    ): Card
+
+    @PATCH("cards/unlock/{cardId}")
+    suspend fun unlockCardById(
+        @Header("Authorization") token: String,
+        @Path("cardId") cardId: Int
+    ): Card
 }

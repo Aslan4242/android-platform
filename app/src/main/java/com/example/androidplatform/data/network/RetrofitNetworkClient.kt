@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.androidplatform.data.network.auth.AuthRequest
 import com.example.androidplatform.data.network.auth.AuthResponse
+import com.example.androidplatform.data.network.cards.ActivateCardRequest
 import com.example.androidplatform.data.network.change_password.ChangePasswordRequest
 import com.example.androidplatform.data.network.launch_operation.LaunchOperationRequest
 import com.example.androidplatform.data.network.launch_operation.OperationCode
@@ -326,6 +327,78 @@ class RetrofitNetworkClient(
             try {
                 val token = sharedPreferences.getString("token", "") ?: ""
                 val result = service.getAccounts(token)
+                Result.success(result)
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
+
+    override suspend fun getCardCvc(cardId: Int): Result<Int> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val token = sharedPreferences.getString("token", "") ?: ""
+                val result = service.getCardCvc(token, cardId)
+                Result.success(result)
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
+
+    override suspend fun lockCardById(cardId: Int): Result<Card> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val token = sharedPreferences.getString("token", "") ?: ""
+                val result = service.lockCardById(token, cardId)
+                Result.success(result)
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
+
+    override suspend fun unlockCardById(cardId: Int): Result<Card> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val token = sharedPreferences.getString("token", "") ?: ""
+                val result = service.unlockCardById(token, cardId)
+                Result.success(result)
+            } catch (e: HttpException) {
+                Result.failure(e)
+            } catch (e: SocketTimeoutException) {
+                Result.failure(e)
+            }
+        }
+        return response
+    }
+
+    override suspend fun activateCardById(cardId: Int, cardRequest: ActivateCardRequest): Result<Card> {
+        if (!isConnected(context)) {
+            return Result.failure(ConnectException())
+        }
+        val response = withContext(Dispatchers.IO) {
+            try {
+                val token = sharedPreferences.getString("token", "") ?: ""
+                val result = service.activateCardById(token, cardRequest, cardId)
                 Result.success(result)
             } catch (e: HttpException) {
                 Result.failure(e)

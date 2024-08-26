@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.androidplatform.R
@@ -13,7 +14,8 @@ import com.example.androidplatform.domain.models.cards.Card
 class CardsExpandableListAdapter(
     private val context: Context,
     private val listGroupTitle: String,
-    private val listItems: List<Card>
+    private val listItems: List<Card>,
+    private val onCardClickListener: (cardId: Int) -> Unit
 ) : BaseExpandableListAdapter() {
 
     override fun getGroupCount(): Int {
@@ -70,11 +72,13 @@ class CardsExpandableListAdapter(
         if (view == null) {
             view = LayoutInflater.from(parent?.context).inflate(R.layout.card_view, null)
         }
+        val cardContainer = view?.findViewById<FrameLayout>(R.id.cardContainer)
         val cardImage = view?.findViewById<ImageView>(R.id.cardImage)
         val cardNumber = view?.findViewById<TextView>(R.id.cardNumber)
         val month = view?.findViewById<TextView>(R.id.month)
         val year = view?.findViewById<TextView>(R.id.year)
         val card = getChild(groupPosition, childPosition) as Card
+        cardContainer?.setOnClickListener { onCardClickListener.invoke(card.id) }
         cardImage?.setImageResource(getCardImage(card.cardProgram))
         cardNumber?.text = card.number
         month?.text = card.month

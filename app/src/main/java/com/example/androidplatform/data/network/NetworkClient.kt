@@ -2,6 +2,7 @@ package com.example.androidplatform.data.network
 
 import com.example.androidplatform.data.network.auth.AuthRequest
 import com.example.androidplatform.data.network.auth.AuthResponse
+import com.example.androidplatform.data.network.cards.ActivateCardRequest
 import com.example.androidplatform.data.network.launch_operation.OperationCode
 import com.example.androidplatform.data.network.proceed_operation.ProceedOperationRequestItem
 import com.example.androidplatform.domain.models.account.Account
@@ -41,4 +42,8 @@ interface NetworkClient {
     ): Result<OperationItem>
     suspend fun getCards(): Result<List<Card>>
     suspend fun getAccounts(): Result<List<Account>>
+    suspend fun getCardCvc(cardId: Int): Result<Int>
+    suspend fun lockCardById(cardId: Int): Result<Card>
+    suspend fun unlockCardById(cardId: Int): Result<Card>
+    suspend fun activateCardById(cardId: Int, cardRequest: ActivateCardRequest): Result<Card>
 }
