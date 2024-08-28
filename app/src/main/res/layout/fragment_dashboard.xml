@@ -130,6 +130,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_medium"
                         android:text="@string/replenish"
+                        android:visibility="gone"
                         android:textColor="@color/gray_3"
                         android:textSize="@dimen/text_size_12" />
                 </LinearLayout>

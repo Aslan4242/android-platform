@@ -119,8 +119,10 @@ class DashboardFragment : Fragment() {
                     listGroupTitle = resources.getString(R.string.cards),
                     listItems = cardsListData,
                     onCardClickListener = { cardId ->
-                        findNavController().navigate(DashboardFragmentDirections
-                            .actionDashboardFragmentToCardInfoFragment(cardId))
+                        findNavController().navigate(
+                            DashboardFragmentDirections
+                                .actionDashboardFragmentToCardInfoFragment(cardId)
+                        )
                     }
                 )
                 expandableListView.setAdapter(adapter)
@@ -139,11 +141,16 @@ class DashboardFragment : Fragment() {
                     listGroupTitle = resources.getString(R.string.accounts),
                     listItems = accountsListData,
                     onAccountClickListener = { accountId ->
-                        findNavController().navigate(DashboardFragmentDirections
-                            .actionDashboardFragmentToAccountInfoFragment(accountId))
+                        findNavController().navigate(
+                            DashboardFragmentDirections
+                                .actionDashboardFragmentToAccountInfoFragment(accountId)
+                        )
                     }
                 )
                 expandableListView.setAdapter(adapter)
+                if (accountsListData.isNotEmpty()) {
+                    binding.replenishAccountTv.visibility = View.VISIBLE
+                }
             }
 
             else -> {}
