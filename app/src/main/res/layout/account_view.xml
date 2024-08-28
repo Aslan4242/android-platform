@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/accountContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:foreground="?selectableItemBackground"
+    android:clickable="true"
     android:orientation="horizontal">
 
     <ImageView
@@ -46,7 +49,6 @@
                 android:layout_weight="1"
                 android:maxLines ="1"
                 tools:text="1000$" />
-
 
         </LinearLayout>
 

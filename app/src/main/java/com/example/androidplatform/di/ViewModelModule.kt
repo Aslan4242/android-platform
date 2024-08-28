@@ -1,10 +1,15 @@
 package com.example.androidplatform.di
 
 import android.app.Application
+import com.example.androidplatform.presentation.account_info.viewmodel.AccountInfoViewModel
+import com.example.androidplatform.presentation.account_refill.viewmodel.AccountRefillViewModel
+import com.example.androidplatform.presentation.account_transfer.viemodel.AccountTransferViewModel
 import com.example.androidplatform.presentation.authentication.viewmodel.AuthenticationViewModel
 import com.example.androidplatform.presentation.card_info.viewmodel.CardInfoViewModel
 import com.example.androidplatform.presentation.cards.viewmodel.CardsViewModel
 import com.example.androidplatform.presentation.change_password.ChangePasswordViewModel
+import com.example.androidplatform.presentation.confirm_refill_operation.viewmodel.ConfirmRefillOperationViewModel
+import com.example.androidplatform.presentation.confirm_transfer_operation.viewmodel.ConfirmTransferOperationViewModel
 import com.example.androidplatform.presentation.dashboard.viewmodel.DashBoardViewModel
 import com.example.androidplatform.presentation.history.viewmodel.HistoryViewModel
 import com.example.androidplatform.presentation.personal_account.viewmodel.PersonalAccountViewModel
@@ -119,6 +124,44 @@ val viewModelModule = module {
     viewModel {
         PinCodeViewModel(
             cardsInteractor = get()
+        )
+    }
+
+    viewModel {
+        AccountInfoViewModel(
+            accountInteractor = get()
+        )
+    }
+
+    viewModel {
+        AccountTransferViewModel(
+            accountInteractor = get(),
+            accountsInteractor = get()
+        )
+    }
+
+    viewModel {
+        ConfirmTransferOperationViewModel(
+            application = androidContext() as Application,
+            launchOperationInteractor = get(),
+            proceedOperationInteractor = get(),
+            confirmOperationInteractor = get()
+        )
+    }
+
+    viewModel {
+        ConfirmRefillOperationViewModel(
+            application = androidContext() as Application,
+            launchOperationInteractor = get(),
+            proceedOperationInteractor = get(),
+            confirmOperationInteractor = get()
+        )
+    }
+
+    viewModel {
+        AccountRefillViewModel(
+            accountInteractor = get(),
+            accountsInteractor = get()
         )
     }
 }

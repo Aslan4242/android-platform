@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/_33dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/_33dp" />
+
+        <TextView
+            android:id="@+id/account_transfer_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_50dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/replenish_number"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toTopOf="@+id/card_num_til"
+            app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+            app:layout_constraintStart_toEndOf="@+id/left_guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/card_num_til"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16dp"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+            app:layout_constraintStart_toEndOf="@+id/left_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/account_transfer_title_tv">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/card_num_et"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_48dp"
+                android:hint="@string/card_num_hint"
+                android:inputType="number"
+                android:maxLines="1"
+                android:maxLength="16"
+                android:paddingVertical="@dimen/_12dp"
+                android:textColor="@color/gray_3"
+                android:textSize="@dimen/text_size_12" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/recipient_account_tv"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12dp"
+            android:layout_marginBottom="@dimen/_4dp"
+            android:text="@string/recipient_account"
+            android:textColor="@color/gray_3"
+            android:textSize="@dimen/text_size_12"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/left_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/card_num_til" />
+
+        <LinearLayout
+            android:id="@+id/recipient_account_ll"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="@dimen/_50dp"
+
+            android:background="@color/gray_6"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+            app:layout_constraintStart_toEndOf="@+id/left_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/card_num_til">
+
+            <TextView
+                android:id="@+id/recipient_account_hint_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_15dp"
+                android:text="@string/recipient_account"
+                android:textColor="@color/gray_3"
+                android:textSize="@dimen/text_size_12" />
+
+            <ImageView
+                android:id="@+id/recipient_account_iv"
+                android:layout_width="@dimen/_45dp"
+                android:layout_height="@dimen/_28dp"
+                android:layout_marginVertical="@dimen/_10dp"
+                android:layout_marginStart="@dimen/_15dp"
+                android:layout_marginEnd="@dimen/_15dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bank_account"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/recipient_account_info_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginEnd="@dimen/_44dp"
+                android:layout_marginBottom="@dimen/_5dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/recipient_account_number_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_regular"
+                    android:maxLines="1"
+                    android:textSize="@dimen/text_size_12"
+                    tools:text="Account number" />
+
+                <TextView
+                    android:id="@+id/recipient_balance_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textSize="@dimen/text_size_12"
+                    tools:text="1000$" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/recipient_arrow_down_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_20dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/arrow_down" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sum_til"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16dp"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+            app:layout_constraintStart_toEndOf="@+id/left_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/recipient_account_ll">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/sum_et"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_48dp"
+                android:hint="@string/sum"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingVertical="@dimen/_12dp"
+                android:textColor="@color/gray_3"
+                android:textSize="@dimen/text_size_12" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/next_btn"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="@dimen/_50dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/orange"
+            android:fontFamily="@font/inter_regular"
+            android:text="@string/next"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:cornerRadius="@dimen/_0dp"
+            app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+            app:layout_constraintStart_toEndOf="@+id/left_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/sum_til"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/overlay_color"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/bottom_sheet_ll"
+        style="@style/BottomSheetStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="300dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <View
+            style="@style/BottomSheetRectangleStyle"
+            android:layout_width="@dimen/_50dp"
+            android:layout_height="@dimen/_4dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10dp"
+            android:background="@drawable/bottom_sheet_rectangle" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/accounts_list_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            android:scrollbars="vertical"
+            android:visibility="visible"
+            tools:itemCount="4"
+            tools:listitem="@layout/accounts_list" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

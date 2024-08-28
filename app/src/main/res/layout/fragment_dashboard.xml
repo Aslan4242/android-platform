@@ -104,19 +104,35 @@
                     app:layout_constraintStart_toEndOf="@+id/left_guideline"
                     app:layout_constraintTop_toBottomOf="@+id/order_card_btn" />
 
-                <TextView
-                    android:id="@+id/accounts_tv"
+
+                <LinearLayout
+                    android:id="@+id/accounts_ll"
                     android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15dp"
                     android:layout_marginBottom="@dimen/_10dp"
-                    android:fontFamily="@font/inter_medium"
-                    android:text="@string/accounts"
-                    android:textColor="@color/gray_3"
-                    android:textSize="@dimen/text_size_12"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                     app:layout_constraintStart_toEndOf="@+id/left_guideline"
-                    app:layout_constraintTop_toBottomOf="@+id/cards_nlv" />
+                    app:layout_constraintTop_toBottomOf="@+id/cards_nlv">
+                    <TextView
+                        android:id="@+id/accounts_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/accounts"
+                        android:textColor="@color/gray_3"
+                        android:textSize="@dimen/text_size_12" />
+                    <TextView
+                        android:id="@+id/replenish_account_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/replenish"
+                        android:textColor="@color/gray_3"
+                        android:textSize="@dimen/text_size_12" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/open_account_btn"
@@ -131,7 +147,7 @@
                     app:cornerRadius="@dimen/_0dp"
                     app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                     app:layout_constraintStart_toEndOf="@+id/left_guideline"
-                    app:layout_constraintTop_toBottomOf="@+id/accounts_tv">
+                    app:layout_constraintTop_toBottomOf="@+id/accounts_ll">
 
                     <ImageView
                         android:layout_width="@dimen/_28dp"

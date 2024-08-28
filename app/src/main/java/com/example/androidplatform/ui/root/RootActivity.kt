@@ -24,23 +24,15 @@ class RootActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.authorizationFragment,
-                R.id.restorePasswordFragment,
-                R.id.registrationFragment,
-                R.id.changePasswordFragment,
-                R.id.transactionInfoFragment,
-                R.id.cardInfoFragment,
-                R.id.pinCodeFragment,
-                R.id.storiesFragment -> {
-                    bottomNavigationView.visibility = View.GONE
-                }
-
-                R.id.updateUserFragment -> {
-                    bottomNavigationView.visibility = View.GONE
+                R.id.dashboardFragment,
+                R.id.historyFragment,
+                R.id.personalAccountFragment,
+                -> {
+                    bottomNavigationView.visibility = View.VISIBLE
                 }
 
                 else -> {
-                    bottomNavigationView.visibility = View.VISIBLE
+                    bottomNavigationView.visibility = View.GONE
                 }
             }
         }

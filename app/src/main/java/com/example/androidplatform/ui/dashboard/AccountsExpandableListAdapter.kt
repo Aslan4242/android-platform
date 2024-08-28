@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
+import android.widget.FrameLayout
 import android.widget.TextView
 import com.example.androidplatform.R
 import com.example.androidplatform.domain.models.account.Account
@@ -11,7 +12,8 @@ import com.example.androidplatform.util.toCurrencyMoneyFormat
 
 class AccountsExpandableListAdapter(
     private val listGroupTitle: String,
-    private val listItems: List<Account>
+    private val listItems: List<Account>,
+    private val onAccountClickListener: (cardId: Int) -> Unit
 ) : BaseExpandableListAdapter() {
 
     override fun getGroupCount(): Int {
@@ -68,11 +70,13 @@ class AccountsExpandableListAdapter(
         if (view == null) {
             view = LayoutInflater.from(parent?.context).inflate(R.layout.account_view, null)
         }
+        val accountContainer = view?.findViewById<FrameLayout>(R.id.accountContainer)
         val accountNumber = view?.findViewById<TextView>(R.id.accountNumber)
         val balance = view?.findViewById<TextView>(R.id.balance_tv)
         val account = getChild(groupPosition, childPosition) as Account
         accountNumber?.text = account.number
         balance?.text = account.balance.toString().toCurrencyMoneyFormat(account.currency)
+        accountContainer?.setOnClickListener { onAccountClickListener.invoke(account.id) }
         return view
     }
 
