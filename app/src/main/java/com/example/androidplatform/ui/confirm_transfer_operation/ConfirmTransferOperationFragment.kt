@@ -62,7 +62,11 @@ class ConfirmTransferOperationFragment : Fragment() {
                         NavOptions.Builder().setPopUpTo(R.id.accountInfoFragment, true).build()
                     )
                 }
-                Toast.makeText(requireContext(), getString(R.string.operation_successfully_completed), Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.operation_successfully_completed),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }

@@ -24,7 +24,7 @@ class ConfirmTransferOperationViewModel(
     private val launchOperationInteractor: LaunchOperationInteractor,
     private val proceedOperationInteractor: ProceedOperationInteractor,
     private val confirmOperationInteractor: ConfirmOperationInteractor
-) : AndroidViewModel(application)  {
+) : AndroidViewModel(application) {
 
     private val _screenState = MutableLiveData<ConfirmTransferOperationState>()
     fun screenState(): LiveData<ConfirmTransferOperationState> = _screenState
@@ -37,9 +37,15 @@ class ConfirmTransferOperationViewModel(
 
     fun transfer(writeOffAccountNumber: String, recipientAccountNumber: String, sum: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val launchOperationResult = launchOperationInteractor.launchOperation(OperationCode.ACCOUNT_TRANSFER)
+            val launchOperationResult =
+                launchOperationInteractor.launchOperation(OperationCode.ACCOUNT_TRANSFER)
             launchOperationResult.collect { data ->
-                handleLaunchOperationResult(data, writeOffAccountNumber, recipientAccountNumber, sum)
+                handleLaunchOperationResult(
+                    data,
+                    writeOffAccountNumber,
+                    recipientAccountNumber,
+                    sum
+                )
             }
         }
     }
@@ -51,7 +57,13 @@ class ConfirmTransferOperationViewModel(
         sum: String
     ) {
         when (data) {
-            is SearchResultData.Data -> proceedOperation(data.value!!.requestId, writeOffAccountNumber, recipientAccountNumber, sum)
+            is SearchResultData.Data -> proceedOperation(
+                data.value!!.requestId,
+                writeOffAccountNumber,
+                recipientAccountNumber,
+                sum
+            )
+
             else -> handleError(data)
         }
     }
@@ -78,7 +90,10 @@ class ConfirmTransferOperationViewModel(
         }
     }
 
-    private suspend fun handleProceedOperationResult(proceedData: SearchResultData<OperationItem>, requestId: Int) {
+    private suspend fun handleProceedOperationResult(
+        proceedData: SearchResultData<OperationItem>,
+        requestId: Int
+    ) {
         when (proceedData) {
             is SearchResultData.Data -> confirmOperation(requestId)
             else -> handleError(proceedData)
