@@ -11,7 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_20dp"
-        android:layout_marginBottom="@dimen/_20dp"
         android:layout_weight="1"
         android:fontFamily="@font/inter_bold"
         android:text="@string/personal_account"
@@ -25,7 +24,7 @@
         android:id="@+id/client_data_sv"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_0dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="@dimen/_10dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/personal_account_tv">
@@ -48,6 +47,17 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_end="@dimen/_45dp" />
 
+            <ImageView
+                android:id="@+id/avatar_iv"
+                android:layout_width="@dimen/_100dp"
+                android:layout_height="@dimen/_100dp"
+                android:layout_marginTop="@dimen/_10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_face"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/full_name_tv"
                 android:layout_width="wrap_content"
@@ -56,7 +66,7 @@
                 android:textSize="@dimen/text_size_12"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/avatar_iv"
                 tools:text="@string/full_name_pattern" />
 
             <Button
@@ -390,6 +400,7 @@
                 android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_24dp"
+                android:layout_marginBottom="@dimen/_24dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/orange"
                 android:text="@string/logout_from_account"
@@ -397,7 +408,8 @@
                 app:cornerRadius="@dimen/_0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/address_ll" />
+                app:layout_constraintTop_toBottomOf="@+id/address_ll"
+                app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
