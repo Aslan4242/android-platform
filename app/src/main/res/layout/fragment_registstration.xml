@@ -270,7 +270,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/_16dp"
-                    android:layout_marginEnd="@dimen/_55dp"
                     android:text="@string/gender"
                     android:textColor="@color/gray_3"
                     android:textSize="@dimen/text_size_12"
@@ -280,9 +279,12 @@
 
                 <RadioGroup
                     android:id="@+id/gender_radio_group"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
                     android:orientation="horizontal"
+                    android:layout_marginEnd="@dimen/_16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/gender_label"
@@ -371,7 +373,8 @@
                 android:id="@+id/register_btn"
                 android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/_30dp"
+                android:layout_marginBottom="@dimen/_30dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/gray_2"
                 android:enabled="false"
@@ -380,7 +383,8 @@
                 app:cornerRadius="@dimen/_0dp"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintStart_toEndOf="@+id/left_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/password_repeat_til" />
+                app:layout_constraintTop_toBottomOf="@+id/password_repeat_til"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
