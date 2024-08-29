@@ -51,7 +51,14 @@ class PersonalDataByAccountOpeningFragment : Fragment() {
         }
         viewModel.operationState().observe(viewLifecycleOwner) { state ->
             if (state is OperationState.Content) {
+                binding.openAccountBtn.apply {
+                    isEnabled = false
+                    setBackgroundColor(resources.getColor(R.color.gray_2))
+                }
                 binding.accountOpenedSuccessfullyLl.visibility = View.VISIBLE
+                binding.personalDataSv.post {
+                    binding.personalDataSv.smoothScrollTo(0, binding.backToDashboardBtn.top)
+                }
             }
         }
     }

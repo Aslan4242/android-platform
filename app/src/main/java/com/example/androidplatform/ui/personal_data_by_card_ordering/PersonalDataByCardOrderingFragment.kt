@@ -51,7 +51,14 @@ class PersonalDataByCardOrderingFragment : Fragment() {
         }
         viewModel.operationState().observe(viewLifecycleOwner) { state ->
             if (state is OperationState.Content) {
+                binding.orderCardBtn.apply {
+                    isEnabled = false
+                    setBackgroundColor(resources.getColor(R.color.gray_2))
+                }
                 binding.cardOrderedSuccessfullyLl.visibility = View.VISIBLE
+                binding.personalDataSv.post {
+                    binding.personalDataSv.smoothScrollTo(0, binding.backToDashboardBtn.top)
+                }
             }
         }
     }

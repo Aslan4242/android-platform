@@ -176,7 +176,7 @@
                 android:id="@+id/sum_et"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_48dp"
-                android:hint="@string/sum"
+                android:hint="@string/sum_hint"
                 android:inputType="number"
                 android:maxLines="1"
                 android:paddingVertical="@dimen/_12dp"

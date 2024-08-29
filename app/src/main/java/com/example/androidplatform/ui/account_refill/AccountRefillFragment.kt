@@ -2,6 +2,7 @@ package com.example.androidplatform.ui.account_refill
 
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputFilter
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import com.example.androidplatform.presentation.account_info.models.AccountInfoS
 import com.example.androidplatform.presentation.account_refill.viewmodel.AccountRefillViewModel
 import com.example.androidplatform.presentation.account_transfer.models.AccountTransferScreenState
 import com.example.androidplatform.ui.account_transfer.BottomSheetAdapter
+import com.example.androidplatform.util.MinMaxFilter
 import com.example.androidplatform.util.toCurrencyMoneyFormat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -46,6 +48,8 @@ class AccountRefillFragment : Fragment() {
         viewModel.isButtonVisible.observe(viewLifecycleOwner) {
             binding.nextBtn.isVisible = it
         }
+
+        binding.sumEt.filters = arrayOf<InputFilter>(MinMaxFilter(1, 1000000000))
 
         if (navArgs.accountId != 0) {
             viewModel.getAccount(navArgs.accountId)

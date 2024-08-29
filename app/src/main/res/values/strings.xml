@@ -169,7 +169,7 @@
     <string name="write_off_account">Счет списания</string>
     <string name="recipient_account">Счет зачисления</string>
     <string name="replenishment_sum">Сумма зачисления</string>
-    <string name="sum">Сумма</string>
+    <string name="sum_hint">Сумма, от 1  до 1000000000</string>
     <string name="next">Далее</string>
     <string name="confirm_operation">Подтвердите оперцию</string>
     <string name="confirm">Подтвердить</string>
