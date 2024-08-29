@@ -96,6 +96,10 @@ class DashboardFragment : Fragment() {
             render(it)
         }
 
+        binding.replenishAccountTv.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_accountReplenishmentFragment)
+        }
+
         confirmDialog = MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.do_you_want_exit)
             .setNeutralButton(R.string.cancel) { dialog, which ->
@@ -115,8 +119,10 @@ class DashboardFragment : Fragment() {
                     listGroupTitle = resources.getString(R.string.cards),
                     listItems = cardsListData,
                     onCardClickListener = { cardId ->
-                        findNavController().navigate(DashboardFragmentDirections
-                            .actionDashboardFragmentToCardInfoFragment(cardId))
+                        findNavController().navigate(
+                            DashboardFragmentDirections
+                                .actionDashboardFragmentToCardInfoFragment(cardId)
+                        )
                     }
                 )
                 expandableListView.setAdapter(adapter)
@@ -132,10 +138,19 @@ class DashboardFragment : Fragment() {
                 accountsListData = state.accounts
                 val expandableListView = binding.accountsNlv
                 val adapter = AccountsExpandableListAdapter(
-                    resources.getString(R.string.accounts),
-                    accountsListData
+                    listGroupTitle = resources.getString(R.string.accounts),
+                    listItems = accountsListData,
+                    onAccountClickListener = { accountId ->
+                        findNavController().navigate(
+                            DashboardFragmentDirections
+                                .actionDashboardFragmentToAccountInfoFragment(accountId)
+                        )
+                    }
                 )
                 expandableListView.setAdapter(adapter)
+                if (accountsListData.isNotEmpty()) {
+                    binding.replenishAccountTv.visibility = View.VISIBLE
+                }
             }
 
             else -> {}

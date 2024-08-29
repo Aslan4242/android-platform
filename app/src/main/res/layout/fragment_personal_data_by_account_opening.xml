@@ -309,7 +309,8 @@
                         android:id="@+id/back_to_dashboard_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="@dimen/_30dp"
+                        android:layout_marginBottom="@dimen/_30dp"
                         android:backgroundTint="@color/orange"
                         android:enabled="true"
                         android:fontFamily="@font/inter_regular"
@@ -349,7 +350,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:behavior_hideable="true"
-        app:behavior_peekHeight="180dp"
+        app:behavior_peekHeight="@dimen/_250dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <View

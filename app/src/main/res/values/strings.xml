@@ -128,6 +128,7 @@
     <string name="yuan">Китайский Юань</string>
     <string name="card_info">Информация о карте</string>
     <string name="card_number">Номер карты:</string>
+    <string name="card_num_hint">Номер карты, 16 цифр</string>
     <string name="card_number_hiden">**** **** **** %s</string>
     <string name="card_expiration_date">До:</string>
     <string name="card_expiration_delimeter">\ /\ </string>
@@ -153,4 +154,25 @@
     <string name="no">Нет</string>
     <string name="pin_code_continue">Продолжить</string>
     <string name="incorrect_pin_code">Неправильный пин-код</string>
+    <string name="account_number_title">Номер счета:</string>
+    <string name="replenish_number">Пополнить счет</string>
+    <string name="replenish">Пополнить</string>
+    <string name="account_state">Статус счета:</string>
+    <string name="account_state_active">Активна</string>
+    <string name="account_state_blocked">Заблокирована</string>
+    <string name="block_account">Заблокировать счет</string>
+    <string name="dialog_block_account_message">Вы хотите заблокировать счет?</string>
+    <string name="unblock_account">Разблокировать счет</string>
+    <string name="dialog_unblock_account_message">Вы хотите разблокировать счет?</string>
+    <string name="replenish_account_by_own_account">Со своего счета</string>
+    <string name="replenish_account_from_another_bank_card">С карты другого банка</string>
+    <string name="write_off_account">Счет списания</string>
+    <string name="recipient_account">Счет зачисления</string>
+    <string name="replenishment_sum">Сумма зачисления</string>
+    <string name="sum_hint">Сумма, от 1  до 1000000000</string>
+    <string name="next">Далее</string>
+    <string name="confirm_operation">Подтвердите оперцию</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="operation_successfully_completed">Перевод успешно выполнен</string>
+    <string name="write_off_card">Карта списания</string>
 </resources>

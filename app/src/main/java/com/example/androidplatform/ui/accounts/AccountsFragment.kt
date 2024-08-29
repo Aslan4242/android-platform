@@ -12,7 +12,7 @@ import com.example.androidplatform.presentation.cards.viewmodel.CardsViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AccountsFragment : Fragment()  {
+class AccountsFragment : Fragment() {
     private var _binding: FragmentAccountsBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<CardsViewModel>()
@@ -37,12 +37,13 @@ class AccountsFragment : Fragment()  {
 
         binding.accountViewPager.adapter = AccountsViewPagerAdapter(childFragmentManager, lifecycle)
 
-        tabLayoutMediator = TabLayoutMediator(binding.accountTabLayout, binding.accountViewPager) { tab, position ->
-            when(position) {
-                0 -> tab.text = getString(R.string.saving_account)
-                1 -> tab.text = getString(R.string.current_account)
+        tabLayoutMediator =
+            TabLayoutMediator(binding.accountTabLayout, binding.accountViewPager) { tab, position ->
+                when (position) {
+                    0 -> tab.text = getString(R.string.saving_account)
+                    1 -> tab.text = getString(R.string.current_account)
+                }
             }
-        }
         tabLayoutMediator.attach()
     }
 
@@ -50,6 +51,7 @@ class AccountsFragment : Fragment()  {
         when (state) {
             is CardsState.Content -> {
             }
+
             else -> {}
         }
     }

@@ -9,7 +9,7 @@
         android:id="@+id/authorizationFragment"
         android:name="com.example.androidplatform.ui.authorization.AuthorizationFragment"
         android:label="fragment_authorization"
-        tools:layout="@layout/fragment_authorization" >
+        tools:layout="@layout/fragment_authorization">
         <action
             android:id="@+id/action_authorizationFragment_to_restorePasswordFragment"
             app:destination="@id/restorePasswordFragment" />
@@ -29,7 +29,7 @@
         android:id="@+id/restorePasswordFragment"
         android:name="com.example.androidplatform.ui.restoration_password.RestorePasswordFragment"
         android:label="fragment_restore_password"
-        tools:layout="@layout/fragment_restore_password" >
+        tools:layout="@layout/fragment_restore_password">
         <action
             android:id="@+id/action_restorePasswordFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment"
@@ -64,12 +64,12 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_cardInfoFragment_to_pinCodeFragment"
-            app:destination="@id/pinCodeFragment"/>
+            app:destination="@id/pinCodeFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.example.androidplatform.ui.dashboard.DashboardFragment"
-        android:label="DashboardFragment" >
+        android:label="DashboardFragment">
         <action
             android:id="@+id/action_dashboardFragment_to_cardsFragment"
             app:destination="@id/cardsFragment" />
@@ -83,7 +83,16 @@
             android:id="@+id/action_pop_back"
             app:destination="@id/authorizationFragment"
             app:popUpTo="@id/authorizationFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_storiesFragment"
+            app:destination="@id/storiesFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_accountInfoFragment"
+            app:destination="@id/accountInfoFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_accountReplenishmentFragment"
+            app:destination="@id/accountReplenishmentFragment" />
     </fragment>
     <fragment
         android:id="@+id/transactionInfoFragment"
@@ -101,17 +110,17 @@
         tools:layout="@layout/fragment_history">
         <action
             android:id="@+id/action_historyFragment_to_transactionInfoFragment"
-            app:destination="@+id/transactionInfoFragment"/>
+            app:destination="@+id/transactionInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/personalAccountFragment"
         android:name="com.example.androidplatform.ui.personal_account.PersonalAccountFragment"
-        android:label="PersonalAccountFragment" >
+        android:label="PersonalAccountFragment">
         <action
             android:id="@+id/action_logout_pop_back"
             app:destination="@id/authorizationFragment"
             app:popUpTo="@id/authorizationFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_personalAccountFragment_to_updateUserFragment"
             app:destination="@id/updateUserFragment" />
@@ -119,7 +128,7 @@
     <fragment
         android:id="@+id/changePasswordFragment"
         android:name="com.example.androidplatform.ui.change_password.ChangePasswordFragment"
-        android:label="ChangePasswordFragment" >
+        android:label="ChangePasswordFragment">
         <argument
             android:name="login"
             app:argType="string"
@@ -128,10 +137,10 @@
     <fragment
         android:id="@+id/cardsFragment"
         android:name="com.example.androidplatform.ui.cards.CardsFragment"
-        android:label="CardsFragment" >
-    <action
-        android:id="@+id/action_cards_fragment_to_personal_data_by_card_ordering_fragment"
-        app:destination="@id/personalDataByCardOrderingFragment" />
+        android:label="CardsFragment">
+        <action
+            android:id="@+id/action_cards_fragment_to_personal_data_by_card_ordering_fragment"
+            app:destination="@id/personalDataByCardOrderingFragment" />
     </fragment>
     <fragment
         android:id="@+id/debitCardsFragment"
@@ -141,7 +150,7 @@
     <fragment
         android:id="@+id/personalDataByCardOrderingFragment"
         android:name="com.example.androidplatform.ui.personal_data_by_card_ordering.PersonalDataByCardOrderingFragment"
-        android:label="PersonalDataByCardOrderingFragment" >
+        android:label="PersonalDataByCardOrderingFragment">
         <action
             android:id="@+id/action_personalDataByCardOrderingFragment_to_dashBoardFragment"
             app:destination="@id/dashboardFragment" />
@@ -150,7 +159,7 @@
     <fragment
         android:id="@+id/accountsFragment"
         android:name="com.example.androidplatform.ui.accounts.AccountsFragment"
-        android:label="AccountsFragment" >
+        android:label="AccountsFragment">
         <action
             android:id="@+id/action_accounts_fragment_to_personal_data_by_account_opening_fragment"
             app:destination="@id/personalDataByAccountOpeningFragment" />
@@ -158,7 +167,7 @@
     <fragment
         android:id="@+id/personalDataByAccountOpeningFragment"
         android:name="com.example.androidplatform.ui.personal_data_by_account_opening.PersonalDataByAccountOpeningFragment"
-        android:label="PersonalDataByAccountOpeningFragment" >
+        android:label="PersonalDataByAccountOpeningFragment">
         <action
             android:id="@+id/action_personalDataByAccountOpeningFragment_to_dashBoardFragment"
             app:destination="@id/dashboardFragment" />
@@ -167,10 +176,114 @@
         android:id="@+id/updateUserFragment"
         android:name="com.example.androidplatform.ui.update_user.UpdateUserFragment"
         android:label="fragment_update_user"
-        tools:layout="@layout/fragment_update_user" >
+        tools:layout="@layout/fragment_update_user">
         <action
             android:id="@+id/action_updateUserFragment_to_personalAccountFragment"
             app:destination="@id/personalAccountFragment" />
     </fragment>
-
+    <fragment
+        android:id="@+id/accountInfoFragment"
+        android:name="com.example.androidplatform.ui.account_info.AccountInfoFragment"
+        android:label="accountInfoFragment"
+        tools:layout="@layout/fragment_account_info">
+        <action
+            android:id="@+id/action_accountInfoFragment_to_accountReplenishmentFragment"
+            app:destination="@id/accountReplenishmentFragment" />
+        <argument
+            android:name="accountId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+    </fragment>
+    <fragment
+        android:id="@+id/accountReplenishmentFragment"
+        android:name="com.example.androidplatform.ui.account_replenishment.AccountReplenishmentFragment"
+        android:label="accountReplenishmentFragment"
+        tools:layout="@layout/fragment_account_replenishment">
+        <action
+            android:id="@+id/action_accountReplenishmentFragment_to_accountTransferFragment"
+            app:destination="@id/accountTransferFragment" />
+        <action
+            android:id="@+id/action_accountReplenishmentFragment_to_accountRefillFragment"
+            app:destination="@id/accountRefillFragment" />
+        <argument
+            android:name="accountId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+    </fragment>
+    <fragment
+        android:id="@+id/accountTransferFragment"
+        android:name="com.example.androidplatform.ui.account_transfer.AccountTransferFragment"
+        android:label="accountTransferFragment"
+        tools:layout="@layout/fragment_account_transfer">
+        <action
+            android:id="@+id/action_accountTransferFragment_to_confirmTransferOperationFragment"
+            app:destination="@id/confirmTransferOperationFragment" />
+        <argument
+            android:name="accountId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+    </fragment>
+    <fragment
+        android:id="@+id/accountRefillFragment"
+        android:name="com.example.androidplatform.ui.account_refill.AccountRefillFragment"
+        android:label="accountRefillFragment"
+        tools:layout="@layout/fragment_account_refill">
+        <action
+            android:id="@+id/action_accountRefillFragment_to_confirmRefillOperationFragment"
+            app:destination="@id/confirmRefillOperationFragment" />
+        <argument
+            android:name="accountId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+    </fragment>
+    <fragment
+        android:id="@+id/confirmTransferOperationFragment"
+        android:name="com.example.androidplatform.ui.confirm_transfer_operation.ConfirmTransferOperationFragment"
+        android:label="confirmTransferOperationFragment"
+        tools:layout="@layout/fragment_confirm_transfer_operation">
+        <argument
+            android:name="writeOffAccountNumber"
+            app:argType="string" />
+        <argument
+            android:name="recipientAccountNumber"
+            app:argType="string" />
+        <argument
+            android:name="sum"
+            app:argType="string" />
+        <argument
+            android:name="accountId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+        <action
+            android:id="@+id/action_confirmTransferOperationFragment_to_accountInfoFragment"
+            app:destination="@id/accountInfoFragment" />
+        <action
+            android:id="@+id/action_confirmTransferOperationFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmRefillOperationFragment"
+        android:name="com.example.androidplatform.ui.confirm_refill_account.ConfirmRefillOperationFragment"
+        android:label="confirmRefillOperationFragment"
+        tools:layout="@layout/fragment_confirm_refill_operation">
+        <argument
+            android:name="cardNum"
+            app:argType="string" />
+        <argument
+            android:name="recipientAccountNumber"
+            app:argType="string" />
+        <argument
+            android:name="sum"
+            app:argType="string" />
+        <argument
+            android:name="accountId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+        <action
+            android:id="@+id/action_confirmRefillOperationFragment_to_accountInfoFragment"
+            app:destination="@id/accountInfoFragment" />
+        <action
+            android:id="@+id/action_confirmRefillOperationFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
 </navigation>

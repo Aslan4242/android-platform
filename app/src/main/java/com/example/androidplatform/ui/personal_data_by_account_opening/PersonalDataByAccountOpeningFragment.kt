@@ -51,7 +51,14 @@ class PersonalDataByAccountOpeningFragment : Fragment() {
         }
         viewModel.operationState().observe(viewLifecycleOwner) { state ->
             if (state is OperationState.Content) {
+                binding.openAccountBtn.apply {
+                    isEnabled = false
+                    setBackgroundColor(resources.getColor(R.color.gray_2))
+                }
                 binding.accountOpenedSuccessfullyLl.visibility = View.VISIBLE
+                binding.personalDataSv.post {
+                    binding.personalDataSv.smoothScrollTo(0, binding.backToDashboardBtn.top)
+                }
             }
         }
     }
@@ -116,10 +123,8 @@ class PersonalDataByAccountOpeningFragment : Fragment() {
 
     private fun getBottomSheetCallback() = object : BottomSheetBehavior.BottomSheetCallback() {
         override fun onStateChanged(bottomSheet: View, newState: Int) {
-            val isHidden = newState == BottomSheetBehavior.STATE_HIDDEN
-            binding.overlay.visibility = if (isHidden) View.GONE else View.VISIBLE
-            (activity as? RootActivity)?.findViewById<View>(R.id.bottomNavigationView)?.visibility =
-                if (isHidden) View.VISIBLE else View.GONE
+            binding.overlay.visibility =
+                if (newState == BottomSheetBehavior.STATE_HIDDEN) View.GONE else View.VISIBLE
         }
 
         override fun onSlide(bottomSheet: View, slideOffset: Float) {}

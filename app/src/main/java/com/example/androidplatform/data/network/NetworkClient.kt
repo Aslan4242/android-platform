@@ -46,4 +46,7 @@ interface NetworkClient {
     suspend fun lockCardById(cardId: Int): Result<Card>
     suspend fun unlockCardById(cardId: Int): Result<Card>
     suspend fun activateCardById(cardId: Int, cardRequest: ActivateCardRequest): Result<Card>
+    suspend fun getAccount(accountId: Int): Result<Account>
+    suspend fun lockAccountById(accountId: Int): Result<Account>
+    suspend fun unlockAccountById(accountId: Int): Result<Account>
 }

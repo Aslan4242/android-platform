@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:padding="@dimen/_8dp"
+    android:foreground="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/recipient_account_iv"
+        android:layout_width="@dimen/_45dp"
+        android:layout_height="@dimen/_28dp"
+        android:layout_marginVertical="@dimen/_10dp"
+        android:layout_marginStart="@dimen/_15dp"
+        android:layout_marginEnd="@dimen/_15dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/bank_account"
+        tools:ignore="ContentDescription"/>
+
+    <TextView
+        android:id="@+id/account_number_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_5dp"
+        android:textColor="@color/gray_3"
+        android:textSize="@dimen/text_size_12"
+        android:fontFamily="@font/inter_regular"
+        android:layout_toEndOf = "@+id/recipient_account_iv" />
+
+    <TextView
+        android:id="@+id/balance_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/text_size_12"
+        android:layout_below="@id/account_number_tv"
+        android:layout_toEndOf = "@+id/recipient_account_iv" />
+
+</RelativeLayout>

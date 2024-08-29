@@ -112,4 +112,22 @@ interface ITesterApi {
         @Header("Authorization") token: String,
         @Path("cardId") cardId: Int
     ): Card
+
+    @GET("accounts/{accountId}")
+    suspend fun getAccount(
+        @Header("Authorization") token: String,
+        @Path("accountId") accountId: Int
+    ): Account
+
+    @PATCH("accounts/lock/{accountId}")
+    suspend fun lockAccountById(
+        @Header("Authorization") token: String,
+        @Path("accountId") accountId: Int
+    ): Account
+
+    @PATCH("accounts/unlock/{accountId}")
+    suspend fun unlockAccountById(
+        @Header("Authorization") token: String,
+        @Path("accountId") accountId: Int
+    ): Account
 }
