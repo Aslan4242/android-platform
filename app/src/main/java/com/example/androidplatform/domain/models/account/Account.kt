@@ -9,6 +9,6 @@ data class Account(
     val currency: Int,
     val number: String,
     val name: String,
-    val balance: Int,
+    val balance: Long,
     val state: String
 )
