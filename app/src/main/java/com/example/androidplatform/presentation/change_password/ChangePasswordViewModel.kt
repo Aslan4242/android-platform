@@ -10,6 +10,7 @@ import com.example.androidplatform.domain.api.AuthenticationInteractor
 import com.example.androidplatform.domain.api.ChangePasswordInteractor
 import com.example.androidplatform.domain.models.SearchResultData
 import com.example.androidplatform.presentation.change_password.models.ChangePasswordState
+import com.example.androidplatform.presentation.registration.RegistrationViewModel
 import com.example.androidplatform.presentation.restoration_password.RestorePasswordViewModel.Companion.DEFAULT_PASSWORD
 import com.example.androidplatform.util.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +43,11 @@ class ChangePasswordViewModel(
     val isButtonEnabled: LiveData<Boolean>
         get() = _isButtonEnabled
 
+    private val _password = MutableLiveData<String?>()
+
+    private val _passwordRepeat = MutableLiveData<String?>()
+
+
     private fun changePasswordRequest(
         password: String,
         login: String? = null
@@ -49,21 +55,26 @@ class ChangePasswordViewModel(
         _screenState.value = ChangePasswordState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             login?.let {
-                val token = authenticationInteractor.authentication(AuthRequest(login, DEFAULT_PASSWORD))
+                val token =
+                    authenticationInteractor.authentication(AuthRequest(login, DEFAULT_PASSWORD))
                 token.collect { data ->
                     withContext(Dispatchers.Main) {
                         when (data) {
-                            is SearchResultData.Data -> _screenState.value = ChangePasswordState.ContentAuth(
-                                data.value?.authenticationItem!!
-                            )
+                            is SearchResultData.Data -> _screenState.value =
+                                ChangePasswordState.ContentAuth(
+                                    data.value?.authenticationItem!!
+                                )
+
                             is SearchResultData.ErrorServer -> {
                                 _screenState.value = ChangePasswordState.Error(data.message)
                                 _showToastMessage.postValue("Нет интернета")
                             }
+
                             is SearchResultData.NoInternet -> {
                                 _screenState.value = ChangePasswordState.Error(data.message)
                                 _showToastMessage.postValue("Нет интернета")
                             }
+
                             is SearchResultData.Empty -> {
                                 _screenState.value = ChangePasswordState.Error(data.message)
                                 _showToastMessage.postValue("Нет интернета")
@@ -83,13 +94,23 @@ class ChangePasswordViewModel(
                             _screenState.value = ChangePasswordState.Error(data.message)
                             _showToastMessage.postValue(data.description)
                         }
+
                         is SearchResultData.NoInternet -> {
                             _screenState.value = ChangePasswordState.Error(data.message)
-                            _showToastMessage.postValue(getApplication<Application>().resources.getString(data.message))
+                            _showToastMessage.postValue(
+                                getApplication<Application>().resources.getString(
+                                    data.message
+                                )
+                            )
                         }
+
                         is SearchResultData.Empty -> {
                             _screenState.value = ChangePasswordState.Error(data.message)
-                            _showToastMessage.postValue(getApplication<Application>().resources.getString(data.message))
+                            _showToastMessage.postValue(
+                                getApplication<Application>().resources.getString(
+                                    data.message
+                                )
+                            )
                         }
                     }
                 }
@@ -155,22 +176,36 @@ class ChangePasswordViewModel(
     }
 
     fun changePassword1(password: String?) {
+        _password.value = password
         val password = parseField(password)
         resetErrorInputPassword()
 
-        _isButtonEnabled.value = password.isNotEmpty() && _errorInputPassword2.value != true
+        _isButtonEnabled.value =
+            _errorInputPassword2.value != true && validatePasswordLength(password = password)
     }
 
     fun changePassword2(password: String?) {
+        _passwordRepeat.value = password
         val password = parseField(password)
         resetErrorInputPassword()
 
-        _isButtonEnabled.value = password.isNotEmpty() && _errorInputPassword1.value != true
+        _isButtonEnabled.value =
+            _errorInputPassword1.value != true && validatePasswordLength(passwordRepeat = password)
+    }
+
+    private fun validatePasswordLength(
+        password: String? = _password.value,
+        passwordRepeat: String? = _passwordRepeat.value
+    ): Boolean {
+        return (password?.length in MIN_LENGTH..MAX_LENGTH) &&
+                (passwordRepeat?.length in MIN_LENGTH..MAX_LENGTH)
     }
 
     companion object {
         private const val PASSWORD_REGEX =
             "^(?=.*[a-z])(?=.*[A-Z])(?=.*)(?=.*[@$!%*?&])[A-Za-z@$!%*?&]{6,10}$"
+        private const val MIN_LENGTH = 8
+        private const val MAX_LENGTH = 29
     }
 }
 

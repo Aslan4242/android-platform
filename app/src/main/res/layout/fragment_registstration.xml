@@ -295,7 +295,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/radio_button_tint"
-                        android:checked="true"
                         android:text="@string/male"
                         android:textColor="@color/gray_3"
                         android:textSize="@dimen/text_size_12" />
@@ -321,7 +320,6 @@
                 android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                 style="@style/TextInputLayoutStyle"
                 app:passwordToggleEnabled="true"
-                app:helperText="@string/required_field"
                 app:helperTextTextAppearance="@style/HelperTextFieldStyle"
                 app:errorTextAppearance="@style/ErrorTextFieldStyle"
                 app:errorEnabled="true"
@@ -349,7 +347,6 @@
                 android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                 style="@style/TextInputLayoutStyle"
                 app:passwordToggleEnabled="true"
-                app:helperText="@string/required_field"
                 app:helperTextTextAppearance="@style/HelperTextFieldStyle"
                 app:errorTextAppearance="@style/ErrorTextFieldStyle"
                 app:errorEnabled="true"

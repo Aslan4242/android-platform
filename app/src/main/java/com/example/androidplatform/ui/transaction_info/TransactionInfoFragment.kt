@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.androidplatform.R
 import com.example.androidplatform.databinding.FragmentTransactionInfoBinding
+import com.example.androidplatform.domain.models.account.Account
 import com.example.androidplatform.domain.models.history.Transaction
 import com.example.androidplatform.domain.models.history.TransactionState
 import com.example.androidplatform.domain.models.history.TransactionType

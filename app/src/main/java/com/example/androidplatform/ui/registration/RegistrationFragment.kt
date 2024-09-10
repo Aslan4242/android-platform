@@ -15,6 +15,7 @@ import com.example.androidplatform.R
 import com.example.androidplatform.databinding.FragmentRegiststrationBinding
 import com.example.androidplatform.presentation.registration.RegistrationViewModel
 import com.example.androidplatform.presentation.registration.models.RegistrationState
+import com.example.androidplatform.ui.change_password.ChangePasswordFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Calendar
 
@@ -34,7 +35,7 @@ class RegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var gender = requireContext().resources.getString(R.string.male_eng)
+        var gender = "Unknown"
 
         binding.genderRadioGroup.setOnCheckedChangeListener { group, _ ->
             gender = getGender(group)
@@ -64,6 +65,19 @@ class RegistrationFragment : Fragment() {
             datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
             datePickerDialog.show()
         }
+
+        listOf(
+            binding.passwordTil,
+            binding.passwordRepeatTil
+        ).forEach { textInputLayout ->
+            textInputLayout.helperText = getString(R.string.required_field) + ". " +
+                    String.format(
+                        getString(R.string.password_length_range),
+                        MIN_LENGTH,
+                        MAX_LENGTH
+                    )
+        }
+
     }
 
     private fun getGender(group: RadioGroup): String {
@@ -71,7 +85,7 @@ class RegistrationFragment : Fragment() {
             R.id.male_radio_button -> requireContext().resources.getString(R.string.male_eng)
             R.id.female_radio_button -> requireContext().resources.getString(R.string.female_eng)
             else -> {
-                "Не указан"
+                "Unknown"
             }
         }
     }
@@ -170,5 +184,10 @@ class RegistrationFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val MIN_LENGTH = 8
+        const val MAX_LENGTH = 29
     }
 }

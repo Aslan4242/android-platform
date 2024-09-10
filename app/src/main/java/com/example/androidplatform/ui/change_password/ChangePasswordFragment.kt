@@ -39,6 +39,14 @@ class ChangePasswordFragment : Fragment() {
         observeViewModel()
         setClickListeners()
         addTextChangeListeners()
+
+        listOf(
+            binding.tilNewPassword,
+            binding.tilRepeatPassword
+        ).forEach { textInputLayout ->
+            textInputLayout.helperText =
+                String.format(getString(R.string.password_length_range), MIN_LENGTH, MAX_LENGTH)
+        }
     }
 
     private fun setClickListeners() {
@@ -62,18 +70,21 @@ class ChangePasswordFragment : Fragment() {
             binding.enterBtn.isEnabled = it
         }
         viewModel.screenState.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is ChangePasswordState.Loading -> {
                     binding.progressBar.visibility = VISIBLE
                 }
+
                 is ChangePasswordState.Content -> {
                     binding.progressBar.visibility = GONE
                     showToast(getString(R.string.password_change_successful))
                     findNavController().popBackStack()
                 }
+
                 is ChangePasswordState.ContentAuth -> {
 
                 }
+
                 is ChangePasswordState.Error -> {
                     binding.progressBar.visibility = GONE
                     showToast(context?.resources?.getString(it.message) ?: "")
@@ -118,5 +129,10 @@ class ChangePasswordFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val MIN_LENGTH = 8
+        const val MAX_LENGTH = 29
     }
 }
