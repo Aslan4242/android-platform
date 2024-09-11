@@ -51,7 +51,6 @@ class RestorePasswordFragment : Fragment() {
             viewModel.sendRestoreCode(login, code)
         }
         binding.tvTimer.setOnClickListener {
-            showToast(getString(R.string.code_was_resent))
             binding.smsCodeEt.setText("")
             viewModel.restartTimer()
         }
@@ -106,6 +105,11 @@ class RestorePasswordFragment : Fragment() {
         }
         viewModel.showNotificationMessage.observe(viewLifecycleOwner) {
             showPush(it)
+        }
+        viewModel.showWaitSmsInfo.observe(viewLifecycleOwner) {
+            val visibility = if(it) VISIBLE else GONE
+            binding.ivWaitTimer.visibility = visibility
+            binding.tvWaitTimer.visibility = visibility
         }
     }
 

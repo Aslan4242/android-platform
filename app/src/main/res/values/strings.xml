@@ -5,7 +5,7 @@
     <string name="updating_user">Изменение данных пользователя</string>
     <string name="personal_account">Личный кабинет</string>
     <string name="hint_login">Введите логин</string>
-    <string name="hint_phone">Номер телефона</string>
+    <string name="hint_phone">Телефон</string>
     <string name="phone_pattern">+7(999)999–99–99</string>
     <string name="surname_pattern">Иванов</string>
     <string name="name_pattern">Иван</string>
@@ -51,7 +51,7 @@
     <string name="patronymic">Отчество</string>
     <string name="sex">Пол</string>
     <string name="birthdate">День рождения</string>
-    <string name="address">Адрес</string>
+    <string name="address">Адресс</string>
     <string name="spending">Расходы</string>
     <string name="something_went_wrong">Что-то пошло не так</string>
     <string name="nothing_found">Ничего не найдено</string>
@@ -175,4 +175,7 @@
     <string name="confirm">Подтвердить</string>
     <string name="operation_successfully_completed">Перевод успешно выполнен</string>
     <string name="write_off_card">Карта списания</string>
+    <string name="password_length_range">Длина пароля от %s до %s символов.</string>
+    <string name="wait_for_resent_sms">Придется подождать перед переотправкой смс, в качестве извенений посмотрите пока на капибару</string>
+    <string name="secret_way_to_dashboard">Секретный путь на дашборд</string>
 </resources>

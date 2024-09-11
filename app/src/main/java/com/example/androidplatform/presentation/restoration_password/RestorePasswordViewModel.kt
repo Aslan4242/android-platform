@@ -34,6 +34,10 @@ class RestorePasswordViewModel(
     val showNotificationMessage: LiveData<String>
         get() = _showNotificationMessage
 
+    private val _showWaitSmsInfo = MutableLiveData<Boolean>()
+    val showWaitSmsInfo: LiveData<Boolean>
+        get() = _showWaitSmsInfo
+
     private val _formattedTime = MutableLiveData<String>()
     val formattedTime: LiveData<String>
         get() = _formattedTime
@@ -116,8 +120,14 @@ class RestorePasswordViewModel(
     }
 
     fun restartTimer() {
-        startTimer()
-        _showNotificationMessage.postValue(DEFAULT_CODE)
+        if (_formattedTime.value == getApplication<Application>().resources.getString(R.string.resend_code)) {
+            startTimer()
+            _showNotificationMessage.postValue(DEFAULT_CODE)
+            _showToastMessage.postValue(getApplication<Application>().resources.getString(R.string.code_was_resent))
+            _showWaitSmsInfo.postValue(false)
+        } else {
+            _showWaitSmsInfo.postValue(true)
+        }
     }
 
     private fun restoreCode(login: String?, code: String?) {
@@ -160,6 +170,7 @@ class RestorePasswordViewModel(
 
                 override fun onFinish() {
                     _formattedTime.postValue(getApplication<Application>().resources.getString(R.string.resend_code))
+                    _showWaitSmsInfo.postValue(false)
                 }
             }
         }

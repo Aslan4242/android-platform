@@ -215,8 +215,8 @@ class RegistrationViewModel(
         _isButtonEnabled.value = login?.isNotEmpty() == true &&
                 email?.isNotEmpty() == true &&
                 birthdate?.isNotEmpty() == true &&
-                password?.isNotEmpty() == true &&
-                passwordRepeat?.isNotEmpty() == true
+                (password?.length!! in MIN_LENGTH..MAX_LENGTH) &&
+                (passwordRepeat?.length!! in MIN_LENGTH..MAX_LENGTH)
     }
 
     private fun getDateTime(birthdate: String): String {
@@ -230,6 +230,8 @@ class RegistrationViewModel(
         private const val PASSWORD_REGEX =
             "^(?=.*[a-z])(?=.*[A-Z])(?=.*)(?=.*[@$!%*?&])[A-Za-z@$!%*?&]{6,10}$"
         const val NO_INTERNET = "Нет интернета"
+        const val MIN_LENGTH = 8
+        const val MAX_LENGTH = 29
     }
 }
 

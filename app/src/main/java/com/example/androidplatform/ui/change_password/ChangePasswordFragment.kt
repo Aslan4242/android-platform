@@ -21,6 +21,7 @@ class ChangePasswordFragment : Fragment() {
     private var _binding: FragmentChangePasswordBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<ChangePasswordViewModel>()
+    private var openDashboard = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +40,14 @@ class ChangePasswordFragment : Fragment() {
         observeViewModel()
         setClickListeners()
         addTextChangeListeners()
+
+        listOf(
+            binding.tilNewPassword,
+            binding.tilRepeatPassword
+        ).forEach { textInputLayout ->
+            textInputLayout.helperText =
+                String.format(getString(R.string.password_length_range), MIN_LENGTH, MAX_LENGTH)
+        }
     }
 
     private fun setClickListeners() {
@@ -46,6 +55,14 @@ class ChangePasswordFragment : Fragment() {
             val password1 = binding.etNewPassword.text?.toString()
             val password2 = binding.repeatPasswordEt.text?.toString()
             viewModel.changePassword(password1, password2)
+        }
+        binding.enterBtn.setOnLongClickListener {
+            val password1 = binding.etNewPassword.text?.toString()
+            val password2 = binding.repeatPasswordEt.text?.toString()
+            viewModel.changePassword(password1, password2)
+            openDashboard = true
+            showToast(getString(R.string.secret_way_to_dashboard))
+            true
         }
     }
 
@@ -62,18 +79,25 @@ class ChangePasswordFragment : Fragment() {
             binding.enterBtn.isEnabled = it
         }
         viewModel.screenState.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is ChangePasswordState.Loading -> {
                     binding.progressBar.visibility = VISIBLE
                 }
+
                 is ChangePasswordState.Content -> {
                     binding.progressBar.visibility = GONE
                     showToast(getString(R.string.password_change_successful))
-                    findNavController().popBackStack()
+                    if (openDashboard) {
+                        findNavController().navigate(R.id.action_changePasswordFragment_to_dashboardFragment)
+                    } else {
+                        findNavController().popBackStack()
+                    }
                 }
+
                 is ChangePasswordState.ContentAuth -> {
 
                 }
+
                 is ChangePasswordState.Error -> {
                     binding.progressBar.visibility = GONE
                     showToast(context?.resources?.getString(it.message) ?: "")
@@ -118,5 +142,10 @@ class ChangePasswordFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val MIN_LENGTH = 8
+        const val MAX_LENGTH = 29
     }
 }

@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.androidplatform.R
 import com.example.androidplatform.databinding.FragmentHistoryBinding
+import com.example.androidplatform.domain.models.account.Account
+import com.example.androidplatform.domain.models.clients.Client
 import com.example.androidplatform.domain.models.history.Transaction
 import com.example.androidplatform.presentation.history.adapter.HistoryListAdapter
 import com.example.androidplatform.presentation.history.models.HistoryExpenseBlockData
@@ -70,17 +72,43 @@ class HistoryFragment : Fragment() {
     }
 
     private fun showContent(historyList: List<Transaction>) {
+        val transactionHistoryList = historyList.ifEmpty {
+            listOf(
+                Transaction(
+                    id = 0,
+                    account = Account(
+                        id = 0,
+                        client = null,
+                        createdDate = "2024-08-18T12:23:07.757386",
+                        currency = 643,
+                        number = "40861156574182180337",
+                        name = "Текущий счёт",
+                        balance = 40000,
+                        state = "Active"
+                    ),
+                    receiver = "40835111716751865322",
+                    date = "2024-08-26T19:56:56.017938",
+                    paymentDate = "2024-08-26T19:56:56.017938",
+                    amount = 13000,
+                    comment = "Платеж за макдак",
+                    reason = null,
+                    state = "Completed",
+                    type = "Expense"
+                )
+            )
+        }
+
         with(binding) {
             historySrl.visibility = View.VISIBLE
             progressBar.visibility = View.GONE
         }
         val expenseBlockData = HistoryExpenseBlockData(
             header = R.string.spending,
-            text = viewModel.getTransactionSum(historyList)
+            text = viewModel.getTransactionSum(transactionHistoryList)
         )
         adapter.submitList(
             mutableListOf<Any>(expenseBlockData).apply {
-                addAll(viewModel.groupTransactionsByDate(historyList))
+                addAll(viewModel.groupTransactionsByDate(transactionHistoryList))
             }
         )
     }
