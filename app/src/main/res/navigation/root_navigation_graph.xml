@@ -133,6 +133,9 @@
             android:name="login"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_changePasswordFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/cardsFragment"

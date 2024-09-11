@@ -21,6 +21,7 @@ class ChangePasswordFragment : Fragment() {
     private var _binding: FragmentChangePasswordBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<ChangePasswordViewModel>()
+    private var openDashboard = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,6 +56,14 @@ class ChangePasswordFragment : Fragment() {
             val password2 = binding.repeatPasswordEt.text?.toString()
             viewModel.changePassword(password1, password2)
         }
+        binding.enterBtn.setOnLongClickListener {
+            val password1 = binding.etNewPassword.text?.toString()
+            val password2 = binding.repeatPasswordEt.text?.toString()
+            viewModel.changePassword(password1, password2)
+            openDashboard = true
+            showToast(getString(R.string.secret_way_to_dashboard))
+            true
+        }
     }
 
     private fun observeViewModel() {
@@ -78,7 +87,11 @@ class ChangePasswordFragment : Fragment() {
                 is ChangePasswordState.Content -> {
                     binding.progressBar.visibility = GONE
                     showToast(getString(R.string.password_change_successful))
-                    findNavController().popBackStack()
+                    if (openDashboard) {
+                        findNavController().navigate(R.id.action_changePasswordFragment_to_dashboardFragment)
+                    } else {
+                        findNavController().popBackStack()
+                    }
                 }
 
                 is ChangePasswordState.ContentAuth -> {
