@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android Platform</string>
+    <string name="app_name" translatable="false">Android Platform</string>
     <string name="authorization">Авторизация</string>
     <string name="registration">Регистрация</string>
     <string name="updating_user">Изменение данных пользователя</string>
@@ -12,7 +12,7 @@
     <string name="patronymic_pattern">Иванович</string>
     <string name="full_name_pattern">Иванов Иван Иванович</string>
     <string name="birthdate_hint">День рождения</string>
-    <string name="password_masked">********</string>
+    <string name="password_masked" translatable="false">********</string>
     <string name="hint_password">Введите пароль</string>
     <string name="notification_code">Ваш код</string>
     <string name="hint_repeat_password">Повторно введите пароль</string>
@@ -39,16 +39,16 @@
     <string name="open_account">Открыть счет</string>
     <string name="gender">Пол</string>
     <string name="male">Мужской</string>
-    <string name="male_eng">Male</string>
+    <string name="male_eng" translatable="false">Male</string>
     <string name="female">Женский</string>
-    <string name="female_eng">Female</string>
+    <string name="female_eng" translatable="false">Female</string>
     <string name="my_bank">Мой банк</string>
     <string name="history">История</string>
     <string name="login">Логин</string>
     <string name="phone_number">Телефон</string>
     <string name="surname">Фамилия</string>
     <string name="name">Имя</string>
-    <string name="patronymic">Отчество</string>
+    <string name="patronymic" translatable="false">Отчество</string>
     <string name="sex">Пол</string>
     <string name="birthdate">День рождения</string>
     <string name="address">Адресс</string>
@@ -63,7 +63,7 @@
     <string name="unsaved_changes">Несохранённые изменения будут потеряны.</string>
     <string name="cancel">Отмена</string>
     <string name="logout">Выйти</string>
-    <string name="email">Email</string>
+    <string name="email" translatable="false">Email</string>
     <string name="invalid_credentials">Некорректные учетные данные</string>
     <string name="successful_registration">Вы успешно зарегистрированы!</string>
     <string name="passwords_missmatch">Пароли не совпадают</string>
@@ -87,16 +87,16 @@
     <string name="order">Заказать</string>
     <string name="personal_data">Персональные данные</string>
     <string name="passport_data">Паспортные данные</string>
-    <string name="birthdate_pattern">01.01.2000</string>
+    <string name="birthdate_pattern" translatable="false">01.01.2000</string>
     <string name="card_ordered_successfully">Заказ оформлен,\nдождитесь звонка от менеджера</string>
     <string name="account_opened_successfully">Счет открыт</string>
     <string name="back_to_dashboard">Вернуться в мой банк</string>
     <string name="program_type">Программа выпуска</string>
     <string name="account_currency">Валюта счёта</string>
-    <string name="mir">МИР</string>
-    <string name="visa">Visa</string>
-    <string name="mastercard">Mastercard</string>
-    <string name="maestro">Maestro</string>
+    <string name="mir" translatable="false">МИР</string>
+    <string name="visa" translatable="false">Visa</string>
+    <string name="mastercard" translatable="false">Mastercard</string>
+    <string name="maestro" translatable="false">Maestro</string>
     <string name="transaction">Транзакция</string>
     <string name="account_number">Счёт отправителя:</string>
     <string name="account_number_receiver">Счёт получателя:</string>
@@ -113,7 +113,7 @@
     <string name="transaction_type_income">Доходы</string>
     <string name="transaction_type_expense">Расходы</string>
     <string name="unknown">Неизвестно</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="edit">Редактировать</string>
     <string name="current_account">Текущий</string>
     <string name="current_account_title">Текущий счет</string>
@@ -129,9 +129,9 @@
     <string name="card_info">Информация о карте</string>
     <string name="card_number">Номер карты:</string>
     <string name="card_num_hint">Номер карты, 16 цифр</string>
-    <string name="card_number_hiden">**** **** **** %s</string>
+    <string name="card_number_hiden" translatable="false">**** **** **** %s</string>
     <string name="card_expiration_date">До:</string>
-    <string name="card_expiration_delimeter">\ /\ </string>
+    <string name="card_expiration_delimeter" translatable="false">\ /\ </string>
     <string name="card_program">Платежная система карты:</string>
     <string name="card_product">Тип карты:</string>
     <string name="card_state">Статус карты:</string>
@@ -149,7 +149,7 @@
     <string name="dialog_unblock_card_message">Вы хотите разблокировать карту?</string>
     <string name="input_pin_code">Введите пин-код для карты:</string>
     <string name="cvc_code">CVC код:</string>
-    <string name="cvc_code_hiden">***</string>
+    <string name="cvc_code_hiden" translatable="false">***</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="pin_code_continue">Продолжить</string>
